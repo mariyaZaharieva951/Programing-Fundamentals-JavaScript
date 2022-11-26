@@ -31,9 +31,12 @@ function vacation(people, type, day) {
 
     if (type === "Students" && people >= 30) {
       totalPrice = totalPrice - (totalPrice * 15/100);
-    } else if (type === "Business" && people >= 100) {
-       totalPrice = totalPrice - (totalPrice * 10); 
-    } else if (type === "Regular" && (people >= 10 && people <= 20)) {
+    }
+    if (type === "Business" && people >= 100) {
+       people -= 10; 
+       totalPrice = people * price;
+    }
+    if (type === "Regular" && (people >= 10 && people <= 20)) {
         totalPrice = totalPrice - (totalPrice * 5/100);
     }
 
