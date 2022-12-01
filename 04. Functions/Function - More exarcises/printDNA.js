@@ -1,8 +1,0 @@
-function printDNA () {
-
-
-
-
-}
-
-printDNA ()
