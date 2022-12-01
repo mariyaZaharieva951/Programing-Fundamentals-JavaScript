@@ -1,23 +1,27 @@
-function login (array) {
+function login(array) {
 
-    let username = array[0];    
-    let password = username.sort;
-    let incorrect = 0;
+    let i = 0;
+    let username = array[i];
+    i++;
+    let password = username.split('').reverse().join('');
+    let currentUsername = array[i];
+    let counter = 0;
 
-    for(let i = 1; i < array.length; i++ ) {
-        let pass = array[i];
+    while (currentUsername !== password) {
+        counter++;
 
-        if ( pass === password) {
-            console.log(`User ${username} logged in.`);
-        } else { incorrect++;
-            if (incorrect < 4) {
-            console.log(`Incorrect password. Try again.`);
-        } else {console.log(`User ${username} blocked!`);
+        if (counter === 4) {
+            console.log(`User ${username} blocked!`);
+            break;
+        }
+        console.log(`Incorrect password. Try again.`);
+
+        i++;
+        currentUsername = array[i];
+    }
+    if (currentUsername === password) {
+        console.log(`User ${username} logged in.`)
     }
 }
-    }
 
-
-}
-
-login (['Acer','login','go','let me in','recA'])
+login(['Acer', 'login', 'go', 'let me in', 'recA'])
