@@ -1,41 +1,25 @@
-function spiceMustFlow (num) {
+function spiceMustFlow(num) {
 
-let startingYield = Number(num);
-let maxYield = 228;
-let minYield = 0;
-let reserve = 0;
+    let startingYield = Number(num);
+    let yieldPerDay = startingYield;
+    let totalYield = 0;
+    let days = 0;
 
-//if( startingYield > maxYield){
-//    reserve = startingYield - maxYield;
-//    startingYield = maxYield;
-//}
-//if(startingYield < minYield) {
-//    startingYield = minYield;
-//}
-
-let consumedForDay = 26;
-let endConsumed = 26;
-
-let remainder = startingYield - consumedForDay;
-let yield = startingYield - 10;
-let days = 1;
-
-
-
-while(yield >= 100) {
-    remainder += yield - consumedForDay;
-    days++;
-    yield -= 10;
-
-    
-
+    while (startingYield >= 100) {
+        days++;
+        totalYield += (startingYield - 26);
+        yieldPerDay -= 10;
+        startingYield = yieldPerDay;
+    }
+    if (startingYield < 100) {
+        if(totalYield < 26){
+            totalYield = 0;
+        } else{
+        totalYield -= 26;
+    }
+    }
+    console.log(days);
+    console.log(totalYield)
 }
 
-remainder -= endConsumed;
-
-console.log(days);
-console.log(remainder);
-
-}
-
-spiceMustFlow (450)
+spiceMustFlow(0)
