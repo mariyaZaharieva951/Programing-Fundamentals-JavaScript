@@ -1,0 +1,50 @@
+body {
+    background-color: white;
+    padding: 15px 190px;
+    margin: 15px 75px;
+    font-family: "Open Sans", sans-serif;
+    color: #656565; 
+}
+
+header {
+    width: 1007px;
+    text-align: center;
+    display: inline-block;
+}
+h2 {
+    letter-spacing: 5px;
+    margin: 0px 10px 0px 0px;
+    font-weight: 500;
+    font-size: 35px;
+}
+
+.left {
+    text-align: left;
+    display: inline-block;
+    border-left: 2px solid;
+    padding: 0px 364px 0px 13px;
+}
+.right {
+    text-align: left;
+    display: inline-block;
+    padding: 0px 130px 0px 6px;
+    border-left: 2px solid;
+}
+
+main {
+    display: inline-block;
+}
+
+.text {
+    display: inline-block;
+    width: 315px;
+    padding: 0px 17px 0px 5px;
+}
+
+.pic {
+    display: inline-block;
+}
+img {
+    width: 305px;
+    height: 210px;
+}
