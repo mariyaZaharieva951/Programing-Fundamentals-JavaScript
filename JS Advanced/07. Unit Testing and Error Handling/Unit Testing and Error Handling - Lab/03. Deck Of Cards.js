@@ -12,18 +12,20 @@ function printDeckOfCards(cards) {
         card = createCard(face, suit);
         result.push(card);
     }catch(err){
-        result = [`Invalid card: ${oneCard}`]
+        result = [`Invalid card: ${oneCard}`];
     }
     }
+    console.log(result.join(' '));
+
     function createCard (face, suit){
         let validFace = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 
-        let validSuit = {
-            S: '♠',
-            H: '♥',
-            D: '♦',
-            C: '♣'
-        }
+        let validSuit = {                     
+            S: "\u2660",                    
+            H: "\u2665",                        
+            D: "\u2666",                    
+            C: "\u2663",                    
+        };
     
         let card = {
             face,
