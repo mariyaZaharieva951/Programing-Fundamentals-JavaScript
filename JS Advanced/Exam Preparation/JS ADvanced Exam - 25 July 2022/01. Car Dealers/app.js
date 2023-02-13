@@ -45,8 +45,8 @@ function solve() {
     tdModel.textContent = modelValue;
     tdYear.textContent = productionYearValue;
     tdFuel.textContent = fuelTypeValue;
-    tdOrigCost.textContent = Number(originalCostValue);
-    tdSellCost.textContent = Number(sellingPriceValue);
+    tdOrigCost.textContent = originalCostValue;
+    tdSellCost.textContent = sellingPriceValue;
 
     editButton.textContent = 'Edit';
     editButton.classList = 'action-btn edit';
@@ -96,12 +96,12 @@ function solve() {
       let spanModel = document.createElement('span');
       let spanYear = document.createElement('span');
       let spanDiffPrice = document.createElement('span');
+      spanDiffPrice.id = 'profitMade';
 
       spanModel.textContent = `${makeValue} ${modelValue}`;
-      spanYear.textContent = `${productionYearValue}`;
-      spanDiffPrice.textContent = `${sellingPriceValue}` - `${originalCostValue}`;
-      let allSpanDiff = [];
-      allSpanDiff.push(Number(spanDiffPrice.textContent));
+      spanYear.textContent = productionYearValue;
+      spanDiffPrice.textContent = sellingPriceValue - originalCostValue;
+      
 
       liList.appendChild(spanModel);
       liList.appendChild(spanYear);
@@ -109,9 +109,12 @@ function solve() {
 
       carsList.appendChild(liList);
 
+      let allSpanDiff = [...document.querySelectorAll('#profitMade')];
+      console.log(allSpanDiff)
+
       let sum = 0;
       for(let price of allSpanDiff)
-       sum += price;
+       sum += Number(price.textContent);
 
       profit.textContent = sum.toFixed(2);
 
