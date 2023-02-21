@@ -23,16 +23,17 @@ export const suits = {
 
 export const colors = {
     clubs: 'black',
-    diamonds: 'black',
+    diamonds: 'red',
     hearts: 'red',
-    spades: 'red'
+    spades: 'black'
 }
+
 
 export class Card {
     /**@type {keyof suits} */
-    face = null;
-    /**@type {keyof faces} */
     suit = null;
+    /**@type {keyof faces} */
+    face = null;
     /**@type {boolean} */
     faceUp = false;
 
@@ -50,23 +51,10 @@ export class Card {
     }
 }
 
-export class Stock extends Deck {
-
-    canTake(index) {
-        return this.size > 0 && index === this.topIndex;
-    }
-    /**
-     * 
-     * @param {Card | Card[]} cards 
-     */
-    canPlace(cards) {
-        return false
-    }
-
-} 
 export class Deck {
     /**@type {Card[]} */
     cards = [];
+
     /**
      * 
      * @param {Card[]?} cards 
@@ -90,14 +78,14 @@ export class Deck {
     }    
 
     canTake(index) {
-        throw new Error('Cannot invoke abstract method');
+        throw new TypeError('Cannot invoke abstract method');
     }
+
     /**
-     * 
      * @param {Card | Card[]} cards 
      */
     canPlace(cards) {
-        throw new Error('Cannot invoke abstract method');
+        throw new TypeError('Cannot invoke abstract method');
     }
 
     flip() {
@@ -108,13 +96,12 @@ export class Deck {
         }
 
     take() {
-        if(this.canTake(indexedDB) === false){
-            throw new Error('Cannot take from stock');
+        if(this.canTake(index) === false){
+            throw new Error('Cannot take card');
             }
             this.cards.splice(index,this.size - index)
     }
     /**
-     * 
      * @param {Card | Card[]} cards 
      */
 
@@ -132,14 +119,13 @@ export class Deck {
 export class Stock extends Deck {
 
     canTake(index) {
-        return this.size > 0 && index === this.topIndex;
+        return false;
     }
     /**
-     * 
      * @param {Card | Card[]} cards 
      */
     canPlace(cards) {
-        return false
+        return false;
     }
 
 }
@@ -149,17 +135,16 @@ export class Waste extends Deck {
         return this.size > 0 && index === this.topIndex;
     }
     /**
-     * 
      * @param {Card | Card[]} cards 
      */
     canPlace(cards) {
-        return false
+        return false;
     }
 
 }
 
 export class Foundation extends Deck {
-    /**@type{keys of suits} */
+    /**@type{keyof suits} */
     suit = null;
 
     /**
@@ -180,26 +165,19 @@ export class Foundation extends Deck {
      * 
      * @param {Card | Card[]} cards 
      */
+
     canPlace(cards) {
         if(Array.isArray(cards)) {
             return false;
         }
-        return cards.suit === this.suit &&
-        ((cards.face == faces.Ace && this.size === 0) || ((this.size === 0 && cards.face-11) === this.top.face))
-    }
-
-    take() {
-       
-    }
-
-    place(cards) {
-        throw new Error('Cannot take place on waste');
+        return (cards.suit === this.suit &&
+        ((cards.face == faces.Ace && this.size === 0) || (this.size > 0 && (cards.face-1) === this.top.face)));
     }
 }
 
 export class Pile extends Deck {
     canTake(index) {
-        return this.size > 0 && this.cards[index].faceUp === true;
+        return this.size > 0 && this.cards[index].faceUp;
     }
     /**
      * 
@@ -210,8 +188,8 @@ export class Pile extends Deck {
             cards = [cards];
         }
         /**@type{Card} */
-        const buttomCard = cards[0];
-        return (cards.face === faces.King && this.size === 0) || this.size > 0 && (bottomCard.face+1 === this.top.face && colors[bottomCard.suit] !== colors[this.top.suit])
+        const bottomCard = cards[0];
+        return (bottomCard.face === faces.King && this.size === 0) || (this.size > 0 && (bottomCard.face+1) === this.top.face && colors[bottomCard.suit] !== colors[this.top.suit])
     
     }
 
