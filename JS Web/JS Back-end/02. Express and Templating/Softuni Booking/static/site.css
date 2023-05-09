@@ -1,0 +1,43 @@
+h1 {
+    font-size: 150%;
+    padding: 16px;
+}
+
+h2 {
+    font-size: 125%;
+}
+
+html {
+    margin: 0;
+}
+
+#page-content {
+    position: relative;
+    max-width: 980px;
+    margin: auto;
+    min-height: 100vh;
+}
+
+#page-content>header {
+
+}
+
+#page-content>main {
+    padding-bottom: 48px;
+}
+
+#page-content>footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.title-logo img {
+    height: 64px;
+}
+
+
