@@ -1,2 +1,10 @@
-<h1>Details Page</h1>
-<p>Accomodation details</p>
+<section>
+{{#with room}} <!--сменя контекста //в случая сме подали room като свойство не като контекст и затова сменяме контекста на room и си достъпваме свойсвата
+                //ако не сменим контекста, трябва да използваме room.name -->
+<h1>{{name}} - Details</h1>
+<main>
+    <p>{{description}}</p>
+    <p><strong>Price per night: {{price}}$</strong></p>
+</main>
+{{/with}}
+</section>

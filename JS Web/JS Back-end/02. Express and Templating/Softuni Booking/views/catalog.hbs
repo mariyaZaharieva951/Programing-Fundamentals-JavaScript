@@ -1,2 +1,10 @@
+<section>
 <h1>Catalog Page</h1>
-<p>Welcome to our catalog</p>
+<main>
+   <ul>
+    {{#each rooms}}
+    {{>roomCard}}
+    {{/each}}
+   </ul>
+</main>
+</section>
