@@ -2,7 +2,7 @@
     position: relative;
 }
 
-#page-content::after {
+#page-content>header::after {
     content: "";
     display: table;
     clear: both;
@@ -11,7 +11,7 @@
 .title-logo {
     display: block;
     float: left;
-    width: 170px;
+    width: 200px;
     text-decoration: none;
     color: white;
 }
@@ -29,7 +29,7 @@
 }
 
 .title-logo:hover {
-    background-color: hsl(var(--secondary-color), var(--secondary-s), var(--secondary-color));
+    background-color: hsl(var(--secondary-color), var(--secondary-s), var(--secondary-l));
 }
 
 .main-nav {
@@ -44,6 +44,10 @@
 
 .nav-mid {
     text-align: center;
+}
+
+.nav-right {
+    text-align: right;
 }
 
 .main-nav ul {
@@ -62,9 +66,6 @@
     padding: 8px 16px;
     margin: 4px;
 }
-
-
-
 
 
 
