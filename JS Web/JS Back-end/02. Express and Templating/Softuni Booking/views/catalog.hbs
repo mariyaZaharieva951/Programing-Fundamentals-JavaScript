@@ -1,10 +1,26 @@
 <section>
 <h1 class="item">Catalog Page</h1>
-<main>
+
+<main class="item pad-large align-center">
+      <form class="layout left large" method="get">
+         <input name="search">
+         <input class="action" type="submit" value="Search">
+      </form>
+</main>
+
+{{#if rooms}}
    <ul class="catalog cards">
     {{#each rooms}}
     {{>roomCard}}
     {{/each}}
    </ul>
+{{else}}
+<main class="item pad-large align-center">
+   <p>Noting has listed yet. Be the first</p>
+   <div>
+      <a class="action" href="/create">Host Accomodation</a>
+   </div>
 </main>
+{{/if}}
+
 </section>

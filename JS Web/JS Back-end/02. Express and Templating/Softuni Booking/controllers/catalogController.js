@@ -4,11 +4,14 @@ const router = require('express').Router();
 
 
 router.get('/', (req,res) => {
-       
-    const rooms = getAll();
+    //console.log(req.query)   
+    const search = req.query.search || '';
+
+    const rooms = getAll(search);
     res.render('catalog', {
             title: 'Catalog Page',
-            rooms
+            rooms,
+            search
         })
     });
 

@@ -16,8 +16,8 @@ async function persist() {  //записва промените във файл�
 
 
 
-function getAll() {
-    return data
+function getAll(search) {
+    return data.filter(r => r.name.toLowerCase().includes(search.toLowerCase()));
 }
 
 function getById(id) {
