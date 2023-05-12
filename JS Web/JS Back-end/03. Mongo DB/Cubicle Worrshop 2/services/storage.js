@@ -5,6 +5,7 @@
 //-add new entry
 //*get matching entries by search criteria
 
+const Cube = require('../models/Cube')
 const fs = require('fs/promises') //за да работим с промиси
 const uniqid = require('uniqid');
 
@@ -48,16 +49,11 @@ async function init() { //зареждане на дата файла
     }
 
     async function create(cube) {
-        const id = uniqid();
-        data[id] = cube;
-        try {
-            await fs.writeFile('./models/data.json', JSON.stringify(data,null,2))
-            console.log('created new record')
-        } catch(err) {
-            console.error('Error writing out database')
-        }
-        }
-       
+        const record = new Cube(cube);
+        return record.save();
+    }
+      
+    
     module.exports = {
         init,
         getAll,
