@@ -5,11 +5,9 @@
 //-add new entry
 //*get matching entries by search criteria
 
+const { query } = require('express');
 const Cube = require('../models/Cube')
-const fs = require('fs/promises') //за да работим с промиси
-const uniqid = require('uniqid');
-
-let data = {};
+ 
 
 /* модел:
 "asdf1234": {
@@ -21,11 +19,6 @@ let data = {};
     */
 
 async function init() { //зареждане на дата файла
-    try {
-        //data = JSON.parse(await fs.readFile('./models/data.json')) //пътя е релативен спрямо index.js/като го прочетем ще бъде json, затова го парсваме
-    } catch(err) {
-        console.error('Error reading database')
-    }
     
     return (req,res,next) => {
         req.storage = {
@@ -41,20 +34,29 @@ async function init() { //зареждане на дата файла
 }
 
     
-    async function getAll() { //зареждане на всички данни
+    async function getAll(query) { //зареждане на всички данни
         //let cubes =  Object.entries(data).map(([id,v]) => Object.assign({}, {id}, v)); //в празния обект ще сложи ключа -- ид-то и всички стойности
-        const cubes = Cube.find({}).lean(); //зареждаме всички кубчета от базата данни
+        //const cubes = Cube.find({}).lean(); //зареждаме всички кубчета от базата данни
+        const options = {};
+        
         //проверяваме дали се търси по всички критерии
-        // if(query.search) {
+        
+        if(query.search) {
+            options.name = {$regex: query.search, $options: 'i'}
+        }
         //     cubes = cubes.filter(c => c.name.toLowerCase().includes(query.search.toLowerCase()))
         // }
-        // if(query.from) {
+        if(query.from) {
+            options.difficulty = { $gte: Number(query.from) } //оператор за сравнение
         //     cubes = cubes.filter(c => c.difficulty >= Number(query.from));
-        // }
-        // if(query.to) {
+        }
+        if(query.to) {
+            options.difficulty = options.difficulty || {} //ако в горната проверка сме получили отгоеор го сетваме, ако не го сетваме на празен обект
+            options.difficulty = { $gte: Number(query.to) } 
         //     cubes = cubes.filter(c => c.difficulty <= Number(query.to));
-        // }
+        }
         //console.log(cubes)
+        const cubes = Cube.find(options).lean();
         return cubes;
     }
 
