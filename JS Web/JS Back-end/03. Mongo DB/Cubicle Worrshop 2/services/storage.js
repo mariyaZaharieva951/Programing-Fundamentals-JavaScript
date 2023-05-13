@@ -40,12 +40,17 @@ async function init() { //зареждане на дата файла
 }
 
     
-    async function getAll() { //зареждане на всички данни
-        return Object.entries(data).map(([id,v]) => Object.assign({}, {id}, v)); //в празния обект ще сложи ключа -- ид-то и всички стойности
+    async function getAll(query) { //зареждане на всички данни
+        //return Object.entries(data).map(([id,v]) => Object.assign({}, {id}, v)); //в празния обект ще сложи ключа -- ид-то и всички стойности
+        const cubes = Cube.find({}).lean();
+
+        return cubes;
     }
 
     async function getById(id) {
-        return data[id];
+        const cube = await Cube.findById(id)
+
+        return cube;
     }
 
     async function create(cube) {
