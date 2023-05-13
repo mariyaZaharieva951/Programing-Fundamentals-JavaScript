@@ -1,8 +1,10 @@
 module.exports = {
     catalog: async (req,res) => {
         //console.log(req.storage)
-        const cubes = await req.storage.getAll();
-        console.log(cubes)
+        const search = req.query
+        const cubes = await req.storage.getAll(); //ако има съвпадение ще покаже него, ако не ще покаже всички кубчета
+        //console.log(cubes)
+       
         const ctx = {
             title: 'Cubicle',
             cubes

@@ -9,6 +9,7 @@ module.exports = {
             imageUrl: req.body.imageUrl,
             difficulty: req.body.difficulty
         }
+        //console.log(cube)
         await req.storage.create(cube);
         //console.log(req.body) //Никога в базата данни не се записва бодито директно
         res.redirect('/');

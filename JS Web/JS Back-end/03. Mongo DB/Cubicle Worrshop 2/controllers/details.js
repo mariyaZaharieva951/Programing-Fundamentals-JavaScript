@@ -1,6 +1,6 @@
 module.exports = {
     details: async (req,res) => {
-        //console.log(req.params.id)
+        console.log(req.params.id)
         const cubeId = req.params.id;
         const cube = await req.storage.getById(cubeId)
         

@@ -22,7 +22,7 @@ let data = {};
 
 async function init() { //зареждане на дата файла
     try {
-        data = JSON.parse(await fs.readFile('./models/data.json')) //пътя е релативен спрямо index.js/като го прочетем ще бъде json, затова го парсваме
+        //data = JSON.parse(await fs.readFile('./models/data.json')) //пътя е релативен спрямо index.js/като го прочетем ще бъде json, затова го парсваме
     } catch(err) {
         console.error('Error reading database')
     }
@@ -31,7 +31,8 @@ async function init() { //зареждане на дата файла
         req.storage = {
             getAll,
             getById,
-            create
+            create,
+            edit
         }
         next(); 
     }
@@ -40,22 +41,46 @@ async function init() { //зареждане на дата файла
 }
 
     
-    async function getAll(query) { //зареждане на всички данни
-        //return Object.entries(data).map(([id,v]) => Object.assign({}, {id}, v)); //в празния обект ще сложи ключа -- ид-то и всички стойности
-        const cubes = Cube.find({}).lean();
-
+    async function getAll() { //зареждане на всички данни
+        //let cubes =  Object.entries(data).map(([id,v]) => Object.assign({}, {id}, v)); //в празния обект ще сложи ключа -- ид-то и всички стойности
+        const cubes = Cube.find({}).lean(); //зареждаме всички кубчета от базата данни
+        //проверяваме дали се търси по всички критерии
+        // if(query.search) {
+        //     cubes = cubes.filter(c => c.name.toLowerCase().includes(query.search.toLowerCase()))
+        // }
+        // if(query.from) {
+        //     cubes = cubes.filter(c => c.difficulty >= Number(query.from));
+        // }
+        // if(query.to) {
+        //     cubes = cubes.filter(c => c.difficulty <= Number(query.to));
+        // }
+        //console.log(cubes)
         return cubes;
     }
 
     async function getById(id) {
-        const cube = await Cube.findById(id)
-
-        return cube;
+        const cube = await Cube.findById(id).lean();
+        if(cube) {
+            return cube;
+        } else {
+            return undefined;
+        }  
     }
 
     async function create(cube) {
         const record = new Cube(cube);
         return record.save();
+    }
+
+    async function edit(id,cube) {
+        const existing = await Cube.findById(id) //намираме кубчето, която ще редактираме
+        console.log(existing)
+        if(!existing) {
+            throw new ReferenceError('No such ID in database'); //проверяваме дали го има и ако го няма хвърляме грешка
+        }
+        Object.assign(existing,cube) //всички свойства от cube ще ги сложи на existing
+        //console.log(existing)
+        return existing.save();
     }
       
     
@@ -63,6 +88,7 @@ async function init() { //зареждане на дата файла
         init,
         getAll,
         getById,
-        create
+        create,
+        edit
     }
     
