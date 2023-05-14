@@ -9,8 +9,17 @@ module.exports = {
             imageUrl: req.body.imageUrl,
             difficulty: req.body.difficulty
         }
-        //console.log(cube)
-        await req.storage.create(cube);
+        try {
+            await req.storage.create(cube);  
+        } catch(err) {
+            if(err.name == 'ValidationError') {
+                return res.render('create', {
+                    title: 'Create Cube',
+                    error: 'All field are required.'
+                })
+            }
+        }
+        
         //console.log(req.body) //Никога в базата данни не се записва бодито директно
         res.redirect('/');
     }
