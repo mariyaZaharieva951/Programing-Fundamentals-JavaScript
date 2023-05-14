@@ -6,7 +6,8 @@
 //*get matching entries by search criteria
 
 const { query } = require('express');
-const Cube = require('../models/Cube')
+const Cube = require('../models/Cube');
+const Comment = require('../models/Comment');
  
 
 /* модел:
@@ -58,7 +59,7 @@ async function init() { //зареждане на дата файла
     }
 
     async function getById(id) {
-        const cube = await Cube.findById(id).lean();
+        const cube = await Cube.findById(id).populate('comments').lean();
         if(cube) {
             return cube;
         } else {
