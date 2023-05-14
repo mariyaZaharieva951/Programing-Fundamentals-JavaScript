@@ -41,22 +41,19 @@ async function init() { //зареждане на дата файла
         
         //проверяваме дали се търси по всички критерии
         
-        if(query.search) {
-            options.name = {$regex: query.search, $options: 'i'}
+        if (query.search) {
+            options.name = { $regex: query.search, $options: 'i' };
         }
-        //     cubes = cubes.filter(c => c.name.toLowerCase().includes(query.search.toLowerCase()))
-        // }
-        if(query.from) {
-            options.difficulty = { $gte: Number(query.from) } //оператор за сравнение
-        //     cubes = cubes.filter(c => c.difficulty >= Number(query.from));
+        if (query.from) {
+            options.difficulty = { $gte: Number(query.from) };
         }
-        if(query.to) {
-            options.difficulty = options.difficulty || {} //ако в горната проверка сме получили отгоеор го сетваме, ако не го сетваме на празен обект
-            options.difficulty = { $gte: Number(query.to) } 
-        //     cubes = cubes.filter(c => c.difficulty <= Number(query.to));
+        if (query.to) {
+            options.difficulty = options.difficulty || {};
+            options.difficulty.$lte = Number(query.to);
         }
-        //console.log(cubes)
+    
         const cubes = Cube.find(options).lean();
+    
         return cubes;
     }
 
