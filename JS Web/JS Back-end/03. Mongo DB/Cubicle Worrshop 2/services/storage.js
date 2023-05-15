@@ -5,10 +5,10 @@
 //-add new entry
 //*get matching entries by search criteria
 
-const { query } = require('express');
+
 const Cube = require('../models/Cube');
 const Comment = require('../models/Comment');
- 
+const Accessory = require('../models/Accessory')
 
 /* модел:
 "asdf1234": {
@@ -27,7 +27,9 @@ async function init() { //зареждане на дата файла
             getById,
             create,
             edit,
-            createComment
+            createComment,
+            createAccessory,
+            getAllAccessories
         }
         next(); 
     }
@@ -95,6 +97,15 @@ async function init() { //зареждане на дата файла
         cube.comments.push(newComment);
         await cube.save();
     }
+
+    async function createAccessory(accessory) {
+        const record = new Accessory(accessory)
+        return record.save();
+    }
+
+    async function getAllAccessories() {
+        return Accessory.find({})
+    }
     
     module.exports = {
         init,
@@ -102,6 +113,8 @@ async function init() { //зареждане на дата файла
         getById,
         create,
         edit,
-        createComment
+        createComment,
+        createAccessory,
+        getAllAccessories
     }
     
