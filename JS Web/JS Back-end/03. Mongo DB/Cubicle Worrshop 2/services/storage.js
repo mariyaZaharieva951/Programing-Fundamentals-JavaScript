@@ -26,7 +26,8 @@ async function init() { //зареждане на дата файла
             getAll,
             getById,
             create,
-            edit
+            edit,
+            createComment
         }
         next(); 
     }
@@ -83,12 +84,24 @@ async function init() { //зареждане на дата файла
         return existing.save();
     }
       
+    async function createComment(cubeId,comment) {
+        const cube = await Cube.findById(cubeId) //намираме кубчето, която ще редактираме
+        
+        if(!cube) {
+            throw new ReferenceError('No such ID in database'); //проверяваме дали го има и ако го няма хвърляме грешка
+        }
+        const newComment = new Comment(comment);
+        await newComment.save();
+        cube.comments.push(newComment);
+        await cube.save();
+    }
     
     module.exports = {
         init,
         getAll,
         getById,
         create,
-        edit
+        edit,
+        createComment
     }
     
