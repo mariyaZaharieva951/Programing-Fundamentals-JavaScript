@@ -10,7 +10,7 @@ const expressConfig = require('./config/express');
 const dataBaseConfig = require('./config/database')
 const routesConfig = require('./config/routes')
 
-const { init: storage } = require('./services/storage'); //преименува функцията init
+const storage = require('./middlewares/storage'); 
 
 
 

@@ -2,6 +2,9 @@ const { Router } = require('express');
 
 const router = Router();
 
+
+
+
 router.get('/', async (req,res) => {
     const search = req.query
     const cubes = await req.storage.getAll(search); //ако има съвпадение ще покаже него, ако не ще покаже всички кубчета
