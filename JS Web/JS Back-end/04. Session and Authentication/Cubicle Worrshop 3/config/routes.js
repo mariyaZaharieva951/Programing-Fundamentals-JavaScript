@@ -1,22 +1,23 @@
-const { catalog } = require('../controllers/catalog');
+
 const { about } = require('../controllers/about');
-const { create, post: createPost } = require('../controllers/create');
-const { details, attach, attachPost } = require('../controllers/details');
+const { attach, attachPost } = require('../controllers/details');
 const { notFound } = require('../controllers/notFound');
-const { edit, post: editPost } = require('../controllers/edit');
 const { post: commentPost } = require('../controllers/comments');
 const { createAccessory, postAccessory } = require('../controllers/accessory');
+const productController = require('../controllers/productController')
 
 
 
 module.exports = (app) => {
-    app.get('/', catalog) //регистрираме пътя
+    app.get('/', (req,res) => res.redirect('/products')) //регистрираме пътя
     app.get('/about', about);
-    app.get('/create', create);
-    app.get('/details/:id', details);
-    app.post('/create', createPost);
-    app.get('/edit/:id', edit);
-    app.post('/edit/:id', editPost);
+
+    app.use('/products', productController)
+    // app.get('/create', create);
+    // app.get('/details/:id', details);
+    // app.post('/create', createPost);
+    // app.get('/edit/:id', edit);
+    // app.post('/edit/:id', editPost);
     app.post('/comments/:cubeId/create', commentPost);
     app.get('/accessory/create', createAccessory);
     app.post('/accessory/create', postAccessory);
