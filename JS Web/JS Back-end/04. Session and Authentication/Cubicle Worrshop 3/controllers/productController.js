@@ -88,9 +88,9 @@ router.post('/edit/:id', async (req,res) => {
     res.redirect('/');
 });
 
-router.get('/attach/:id', async (req,res) => {
+router.get('/attach/:cubeId', async (req,res) => {
     //console.log(req.params)
-    const cube = await req.storage.getById(req.params.id);
+    const cube = await req.storage.getById(req.params.cubeId);
     const accessories = await req.storage.getAllAccessories(cube.accessories.map(a => a._id))
     
     res.render('attachAccessory', {
@@ -100,7 +100,7 @@ router.get('/attach/:id', async (req,res) => {
     })
 });
 
-router.post('/attach/:id', async (req,res) => {
+router.post('/attach/:cubeId', async (req,res) => {
     //console.log(req.body);
     const cubeId = req.params.cubeId;
     const stickerId = req.body.accessory;
