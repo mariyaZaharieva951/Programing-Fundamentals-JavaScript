@@ -29,7 +29,8 @@ async function init() { //зареждане на дата файла
             edit,
             createComment,
             createAccessory,
-            getAllAccessories
+            getAllAccessories,
+            attachStickers
         }
         next(); 
     }
@@ -62,7 +63,7 @@ async function init() { //зареждане на дата файла
     }
 
     async function getById(id) {
-        const cube = await Cube.findById(id).populate('comments').lean();
+        const cube = await Cube.findById(id).populate('comments').populate('accessories').lean();
         if(cube) {
             return cube;
         } else {
@@ -77,7 +78,7 @@ async function init() { //зареждане на дата файла
 
     async function edit(id,cube) {
         const existing = await Cube.findById(id) //намираме кубчето, която ще редактираме
-        console.log(existing)
+        //console.log(existing)
         if(!existing) {
             throw new ReferenceError('No such ID in database'); //проверяваме дали го има и ако го няма хвърляме грешка
         }
@@ -103,8 +104,20 @@ async function init() { //зареждане на дата файла
         return record.save();
     }
 
-    async function getAllAccessories() {
-        return Accessory.find({})
+    async function getAllAccessories(existing) {
+        return Accessory.find({_id: {$nin: existing}}).lean();
+    }
+
+    async function attachStickers(cubeId,stickerId) {
+        const cube = await Cube.findById(cubeId);
+        const sticker = await Accessory.findById(stickerId);
+
+        if(!cube || !sticker) {
+            throw new ReferenceError('No such ID in database')
+        }
+
+        cube.accessories.push(sticker);
+        return cube.save();
     }
     
     module.exports = {
@@ -115,6 +128,7 @@ async function init() { //зареждане на дата файла
         edit,
         createComment,
         createAccessory,
-        getAllAccessories
+        getAllAccessories,
+        attachStickers
     }
     
