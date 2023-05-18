@@ -9,10 +9,20 @@ router.get('/register', (req,res) => {
     })
 });
 
-router.post('/register', (req,res) => {
-    console.log(req.body);
-    
-    res.redirect('/auth/register');
+router.post('/register', async (req,res) => {
+    try {
+        
+        await req.auth.register(req.body);
+        
+        res.redirect('/products');
+    } catch(err) {
+        const ctx = {
+            title: 'Register', 
+            error: err.message, 
+            data: {username: req.body.username}
+        }
+        res.render('register', ctx)
+    }   
 })
 
 router.get('/login', (req,res) => {
@@ -24,7 +34,7 @@ router.get('/login', (req,res) => {
 router.post('/login', (req,res) => {
     console.log(req.body);
 
-    res.redirect('/auth/login');
+    res.redirect('/products');
 })
 
 

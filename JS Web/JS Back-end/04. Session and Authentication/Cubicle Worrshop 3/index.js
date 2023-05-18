@@ -21,8 +21,9 @@ async function starts() {
 const port = 3000;
 const app = express();
 
-expressConfig(app);
 await dataBaseConfig(app);
+expressConfig(app);
+
 app.use(await storage());
 routesConfig(app);
 
