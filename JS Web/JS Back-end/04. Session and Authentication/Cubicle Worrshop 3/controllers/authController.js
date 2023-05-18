@@ -47,11 +47,13 @@ router.post('/login', async (req,res) => {
         //console.log(ctx)
         res.render('/register', ctx)
     }
-
-
     
 })
 
+router.get('/logout', (req,res) => {
+    req.auth.logout();
+    res.redirect('/products')
+})
 
 
 
