@@ -1,23 +1,21 @@
-const bcrypt = require('bcrypt');
 const User = require('../models/User')
 
-async function createUser({username,password,repeatPassword}) {
-    if(username == '' || password == '' || repeatPassword == '' ) {
-        throw new Error('All fields are required!');
-    } else if(password != repeatPassword) {
-        throw new Error('Passwords don\`t match!')
-    }
-
+async function createUser(username,hashedPassword) {
     const user = new User({
         username,
-        hashedPassword: await bcrypt.hash(password,10)
+        hashedPassword
     });
-    
-    user.save();
-    console.log(user.hashedPassword)
-    //return user;
+    //console.log(user)
+    await user.save();
+
+    return user;
+}
+
+async function getUserByUsername(username) {
+    return await User.findOne({username: {$regex: username, $options: 'i' }})
 }
 
 module.exports = {
-    createUser
+    createUser,
+    getUserByUsername
 }
