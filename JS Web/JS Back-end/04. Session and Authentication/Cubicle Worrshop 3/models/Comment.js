@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const schemaComment = new Schema({
-    author: { type: String, required: true },
+    author: { type: Schema.Types.ObjectId, required: 'User' },
     content: { type: String, required: true, maxLength: 250 }
 });
 
