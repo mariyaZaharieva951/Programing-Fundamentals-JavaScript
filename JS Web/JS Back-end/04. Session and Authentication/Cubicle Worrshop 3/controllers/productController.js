@@ -71,7 +71,7 @@ router.get('/details/:id', preloadCube(), async (req, res) => {
 
 router.get('/edit/:id', preloadCube(), isOwner(), async (req, res) => {
     const cube = req.data.cube;
-
+console.log(cube)
     if (!cube) {
         res.redirect('/404');
     } else {
@@ -92,6 +92,7 @@ router.post('/edit/:id', preloadCube(), isOwner(), async (req, res) => {
         imageUrl: req.body.imageUrl,
         difficulty: Number(req.body.difficulty)
     };
+    console.log(cube)
     try {
         await req.storage.edit(req.params.id, cube);
         res.redirect('/');
