@@ -25,9 +25,20 @@ async function getAll(query) { //зареждане на всички данни
 }
 
 async function getById(id) {
-    const cube = await Cube.findById(id).populate('comments').populate('accessories').lean();
+    const cube = await Cube.findById(id).populate('comments').populate('accessories').populate('author').lean();
     if(cube) {
-        return cube;
+        const viewModel = {
+            _id: cube._id,
+            name: cube.name,
+            sedcription: cube.description,
+            imageUrl: cube.imageUrl,
+            difficulty: cube.difficulty,
+            comments: cube.comments,
+            accessories: cube.accessories,
+            author: cube.author && cube.author.username,
+            authorId: cube.author && cube.author._id
+        }
+        return viewModel;
     } else {
         return undefined;
     }  
@@ -35,6 +46,7 @@ async function getById(id) {
 
 async function create(cube) {
     const record = new Cube(cube);
+    //console.log(record)
     return record.save();
 }
 
