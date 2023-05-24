@@ -46,7 +46,7 @@ router.post('/login', isGuest(),async (req,res) => {
             data: {username: req.body.username}
         }
         //console.log(ctx)
-        res.render('/register', ctx)
+        res.render('login', ctx)
     }
     
 })
