@@ -15,7 +15,7 @@ router.get('/register', isGuest(), (req,res) => {
 router.post('/register', isGuest(), 
 body('username', 'Username must be ar least 5 characters long and may contain only alphanumeric characters').trim().isLength({min: 1}).isAlphanumeric(),
 body('password', 'Username must be ar least 8 characters long and may contain only alphanumeric characters').trim().isLength({min: 1}).isAlphanumeric(),
-body('repeatPassword', 'Username must be ar least 5 characters long and may contain only alphanumeric characters').trim().custom((value, {req}) => {
+body('repeatPassword').trim().custom((value, {req}) => {
     if(value != req.body.password) {
         throw new Error('Password don\`t match!')
     }

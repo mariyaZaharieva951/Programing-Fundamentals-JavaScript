@@ -46,12 +46,15 @@ router.post('/create', isAuth(), async (req, res) => {
         };
 
         if (err.name == 'ValidationError') {
-            ctx.errors = parseMongooseError(err);
+            const errors = parseMongooseError(err);
+            return res.render('create', Object.assign(ctx, { errors}));
         } else {
-            ctx.errors = [err.message];
+            const errors = [err.message];
+            return res.render('create', Object.assign(ctx, { errors}));
         }
-        res.render('create', ctx);
+        
     }
+    res.redirect('/')
 });
 
 router.get('/details/:id', preloadCube(), async (req, res) => {
