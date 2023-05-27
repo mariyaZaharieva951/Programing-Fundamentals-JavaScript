@@ -3,23 +3,25 @@ const jwt = require('jsonwebtoken');
 const { TOKEN_SECRET, COOKIE_NAME} = require('../config/index')
 const userService = require('../services/user')
 
-function init() {
-    return function (req,res,next) {
-       req.auth = {
-        async register(username, password) {
-            const token = await register(username,password);
-            res.cookie(COOKIE_NAME,token);
-        },
-        async login(username,password) {
-            const token = await login(username,password);
-            res.cookie(COOKIE_NAME,token);
-        },
-        logout(user) {
-            res.clearCookie(COOKIE_NAME)
-        }
+module.exports = () => (req,res,next) => {
+       if(parseToken(req,res)) {
+        req.auth = {
+            async register(username, password) {
+                const token = await register(username,password);
+                res.cookie(COOKIE_NAME,token);
+            },
+            async login(username,password) {
+                const token = await login(username,password);
+                res.cookie(COOKIE_NAME,token);
+            },
+            logout() {
+                res.clearCookie(COOKIE_NAME)
+            }
+           }
+            next();
        }
-        next();
-    }
+    
+    
 
 }
 
@@ -63,6 +65,20 @@ function generateToken(userData) {
     
 }
 
-module.exports = {
-    init\
+function parseToken(req,res) {
+    const token = req.cookies[COOKIE_NAME];
+    if(token){
+    try {
+        const userData = jwt.verify(token, TOKEN_SECRET);
+        req.user = userData;
+
+        return true;
+    } catch(err) {
+        res.clearCookie(COOKIE_NAME);
+        res.redirect('/auth/login');
+
+        return false;
+    }
+    }
+    return true;
 }

@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>BookingUni</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-</head>
-
-<body>
-
+<html>
     <div id="container">
         <div>
             <div class="notification loadingBox">
@@ -33,7 +23,7 @@
 
         <section id="viewRegister">
             <h2>Create your account:</h2>
-            <form id="formRegister">
+            <form id="formRegister" action="/auth/register" method="POST">
                 <label for="email">Email:</label>
                 <input type="text" id="email" name="email" placeholder="Email">
                 <label for="username">Username:</label>
@@ -48,7 +38,5 @@
 
         <footer>@SoftUni - JS Back-end - BookingUni 2020</footer>
     </div>
+    </html>
 
-</body>
-
-</html>
