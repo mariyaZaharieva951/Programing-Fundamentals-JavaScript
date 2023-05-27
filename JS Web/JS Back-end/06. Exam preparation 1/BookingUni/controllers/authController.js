@@ -9,7 +9,7 @@ router.get('/register', isGuest(), (req,res) => {
 
 router.post('/register', isGuest(),
 body('email').isEmail().withMessage('Invalid email'),
-body('username').isLength({min: 3}).withMessage('Username must be at least 3 characters!'),
+body('password').isLength({min: 5}).withMessage('Username must be at least 5 characters!').bail().matches(/[a-zA-Z0-9]/).withMessage('Password may contain only letters and numbers'),
 body('rePass').custom((value, { req }) => {
     if(value !== req.body.password) {
         throw new Error('Passwords don\'t match!')
