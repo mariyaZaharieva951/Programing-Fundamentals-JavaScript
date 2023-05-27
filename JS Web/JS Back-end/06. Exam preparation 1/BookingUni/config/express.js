@@ -16,14 +16,14 @@ module.exports = (app) => {
     app.use(cookieParser());
     app.use(authMiddleware());
 
-    app.use((req,res,next) => {
-        if(!req.url.includes('favicon')) {
-            console.log('>>>', req.method, req.url);
+    // app.use((req,res,next) => {
+    //     if(!req.url.includes('favicon')) {
+    //         console.log('>>>', req.method, req.url);
 
-            if(req.user) {
-                console.log('Known user', req.user.username)
-            }
-        }
-        next()
-    })
+    //         if(req.user) {
+    //             console.log('Known user', req.user.username)
+    //         }
+    //     }
+    //     next()
+    // })
 }
