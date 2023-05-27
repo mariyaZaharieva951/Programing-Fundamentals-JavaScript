@@ -8,6 +8,7 @@ router.get('/register', isGuest(), (req,res) => {
 });
 
 router.post('/register', isGuest(),
+body('email').isEmail().withMessage('Invalid email'),
 body('username').isLength({min: 3}).withMessage('Username must be at least 3 characters!'),
 body('rePass').custom((value, { req }) => {
     if(value !== req.body.password) {
@@ -16,23 +17,26 @@ body('rePass').custom((value, { req }) => {
     return true;
 }),
 async (req,res) => {
-    //console.log(req.body);
     const {errors} = validationResult(req);
     try {
         if(errors.length > 0) {
-            throw new Error('Validation error')
+            const message = errors.map(er => er.msg).join('\n');
+            throw new Error(message)
         }
-        await req.auth.register(req.body.username, body.password)
+        await req.auth.register(req.body.username, req.body.email, req.body.password)
         
         res.redirect('/');
     } catch(err) {
         const ctx = {
-            errors,
+            errors: err.message.split('\n'),
             userData: {
-                username: req.body.username
+                username: req.body.username,
+                email: req.body.email
             }
+            
         }
-        res.render('userPages/register', {errors})
+        console.log(ctx)
+        res.render('userPages/register', ctx)
     }
     
     
@@ -50,7 +54,8 @@ router.post('/login',isGuest(), async (req,res) => {
         const ctx = {
             errors: [err.message],
             userData: {
-                username: req.body.username
+                username: req.body.username,
+                email: req.body.email
             }
     }
     res.render('userPages/login', ctx);
