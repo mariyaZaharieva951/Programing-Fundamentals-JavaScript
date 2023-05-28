@@ -25,26 +25,26 @@ async function start() {
         console.log(`Application started at http://localhost:${PORT}`)});
 }
 
-// async function testAuth() { //test
+async function testAuth() { //test
 
-//         const reqMock = {};
-//         const resMock = {
-//             cookie() {
-//                 //console.log('Set cookie',arguments);
-//             }
-//         }
-//         const nextMock = () => {}
+        const reqMock = {};
+        const resMock = {
+            cookie() {
+                //console.log('Set cookie',arguments);
+            }
+        }
+        const nextMock = () => {}
 
-//     try{
-//         const auth = authMiddleware();
-//         auth(reqMock,resMock,nextMock);
-//         await reqMock.auth.login('Peter', '123')
-//         // const result = await userService.createUser('Peter', '123')
-//         // console.log('result',result);
+    try{
+        const auth = authMiddleware();
+        auth(reqMock,resMock,nextMock);
+        await reqMock.auth.login('Peter', '123')
+        // const result = await userService.createUser('Peter', '123')
+        // console.log('result',result);
 
-//         const user = await userService.getUserByUsername('Peter');
-//         //console.log('2',user);
-//     } catch(err) {
-//         console.log('Error:', err.message)
-//     }
-// }
+        const user = await userService.getUserByUsername('Peter');
+        //console.log('2',user);
+    } catch(err) {
+        console.log('Error:', err.message)
+    }
+}
