@@ -21,19 +21,25 @@ async (req,res) => {
     const {errors} = validationResult(req);
     try {
         if(errors.length > 0) {
-            throw new Error('Validation error')
+            const message = errors.map(er => er.msg).join('\n');
+            throw new Error(message)
         }
-        await req.auth.register(req.body.username, body.password)
+        await req.auth.register(req.body.username, req.body.password)
         
         res.redirect('/');
     } catch(err) {
+        let errors = [err.message];
+        if(err.type == 'credential') {
+            errors = ['Incorrect username or password!'];
+        }
         const ctx = {
             errors,
             userData: {
-                username: req.body.username
+                username: req.body.username,
             }
+            
         }
-        res.render('register', {errors})
+        res.render('register', ctx)
     }
     
     

@@ -35,7 +35,7 @@ async (req,res) => {
             }
             
         }
-        console.log(ctx)
+        //.log(ctx)
         res.render('userPages/register', ctx)
     }
     

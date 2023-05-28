@@ -5,9 +5,9 @@ const schema = new Schema({
     title: {type: String, require: true},
     description: {type: String, require: true, maxLength: 50},
     imageUrl: {type: String, require: true},
-    isPublic: {type: Boolean, default: false},
-    createAt: {type: String, require: true},
-    liked: {type: String, require: true}
+    public: {type: Boolean, default: false},
+    createAt: {type: Data, require: true},
+    userLiked: {type: Schema.Types.ObjectId, ref: 'User', default: []}
 
 
 });
