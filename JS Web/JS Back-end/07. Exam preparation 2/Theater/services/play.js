@@ -40,9 +40,8 @@ async function deletePlay(id) {
 }
 
 async function likePlay(playId,userId) {
-    const play = await Play.findById(id);
+    const play = await Play.findById(playId);
     play.userLiked.push(userId);
-
     return play.save();
 }
 
@@ -52,5 +51,6 @@ module.exports = {
     getPlayById,
     createPlay,
     editPlay,
-    deletePlay
+    deletePlay,
+    likePlay
 }
