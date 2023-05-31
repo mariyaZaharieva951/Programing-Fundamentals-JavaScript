@@ -1,7 +1,7 @@
-const homeController = require('express').Router();
+const routes = require('express').Router();
 
-homeController.get('/', (req,res) => {
+routes.get('/', (req,res) => {
     res.render('home')
 });
 
-module.exports = homeController;
+module.exports = routes;
