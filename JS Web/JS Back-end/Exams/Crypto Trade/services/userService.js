@@ -27,8 +27,21 @@ async function register(username,email,password) {
 }
 
 async function login(email, password) {
+    const user = await User.findOne({email}).collation({locale: 'en', strength: 2})
+    if(!user) {
+        throw new Error('Incorrect username or password');
+    }
+
+    const isMatch = await bcrypt.compare(password,user.hashedPassword)
+    if(!isMatch) {
+        throw new Error('Incorrect username or password');
+    }
+    const token = createSession(user);
     
+        return token;
 }
+    
+
 
 
 async function logout() {
@@ -45,8 +58,8 @@ function createSession(user) {
     return token;
 }
 
-function verifyToken() {
-
+function verifyToken(token) {
+    return jwt.verify(token, JWT_SECRET)
 }
 
 module.exports = {

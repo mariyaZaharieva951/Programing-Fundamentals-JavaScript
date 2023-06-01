@@ -1,3 +1,4 @@
+const User = require('../models/User');
 const { register,login } = require('../services/userService');
 const { parseError } = require('../util/parser');
 
@@ -46,13 +47,20 @@ routes.get('/login', (req,res) => {
 routes.post('/login', async (req,res) => {
     try {
         const {email, password} = req.body;
-        
+
         const token = await login(email,password);    
         res.cookie('token', token);
         res.redirect('/');
     } catch(err) {
+        const errors = parseError(err);
         console.error(err.message);
-        res.render('login')
+        res.render('login', {
+            title: 'Login Page',
+            errors,
+            body: {
+                username: req.body.username
+            }
+        })
     }
 })
 
