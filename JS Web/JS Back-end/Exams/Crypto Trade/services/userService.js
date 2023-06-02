@@ -17,6 +17,15 @@ async function createUser(username,email,hashedPassword) {
     return user;
 }
 
+async function getUserByEmail(email) {
+    const pattern = new RegExp(`^${email}$`, 'i');
+    
+    const user = await User.findOne({email: {$regex: pattern}});
+    
+    return user;
+    
+}
+
 
 async function register(username,email,password) {
         const existingUser = await User.findOne({username})
@@ -36,11 +45,10 @@ async function register(username,email,password) {
 
 async function login(email, password) {
     const user = await User.findOne({email}).collation({locale: 'en', strength: 2});
-    console.log('user',user);
     if(!user) {
         throw new Error('Incorrect username or password');
     }
-
+    
     const isMatch = await bcrypt.compare(password,user.hashedPassword)
     if(!isMatch) {
         throw new Error('Incorrect username or password');
@@ -53,7 +61,7 @@ async function login(email, password) {
 
 
 function createSession(user) {
-    const {_id,username } = user;
+    const {_id,username} = user;
     const payload = {
         _id,
         username
@@ -72,5 +80,6 @@ module.exports = {
     createUser,
     register,
     login,
-    verifyToken
+    verifyToken,
+    getUserByEmail
 }

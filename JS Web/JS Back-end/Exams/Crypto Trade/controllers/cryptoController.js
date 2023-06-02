@@ -1,5 +1,6 @@
-const Crypto = require('../models/Crypto');
+
 const { getAllOffers, createOffer } = require('../services/cryptoService');
+const { getOfferById } = require('../services/cryptoService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -47,6 +48,33 @@ routes.get('/catalog', async (req,res) => {
         offers
     });
 });
+
+routes.get('/details/:id', async(req,res) => {
+    try { const offer = await getOfferById(req.params.id);
+
+    if(req.user) {
+        offer.hasUser = true;
+    } else { offer.hasUser = false }
+    
+    if(req.user._id == offer.owner) {
+        offer.isOwner = true;
+    } else { offer.isOwner = false }
+
+    if(offer.buyCripto.find(b => b._id == req.user._id)) {
+        offer.isBuy = true;
+    } else { offer.isBuy = false}
+    console.log('req.user', offer.hasUser);
+    console.log('req.isOwner', offer.isOwner);
+    console.log('req.isBuy', offer.isBuy);
+
+    
+    res.render('details', { offer })
+    } catch(err) {
+        console.error(err)
+    }
+});
+
+
 
 
 

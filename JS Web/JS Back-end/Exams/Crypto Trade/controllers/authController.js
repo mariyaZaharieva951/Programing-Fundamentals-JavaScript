@@ -21,7 +21,7 @@ routes.post('/register', async (req,res) => {
         if( password !== req.body.rePass) {
             throw new Error('Password don\'t match!' );
         }
-        const token = await register(username,email,password);    
+        const token = await register(username,email,password); 
         res.cookie('token', token);
         res.redirect('/')
     } catch(err) {
@@ -46,7 +46,6 @@ routes.get('/login', (req,res) => {
 routes.post('/login', async (req,res) => {
     try {
         const {email, password} = req.body;
-
         const token = await login(email,password);    
         res.cookie('token', token);
         res.redirect('/');
