@@ -2,7 +2,20 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
-const JWT_SECRET = 'brbr5184635brbr'
+const JWT_SECRET = 'brbr5184635brbr';
+
+
+async function createUser(username,email,hashedPassword) {
+    const user = await User.create({
+        username,
+        email,
+        hashedPassword
+    });
+    
+    await user.save();
+
+    return user;
+}
 
 
 async function register(username,email,password) {
@@ -14,12 +27,7 @@ async function register(username,email,password) {
         }
         const hashedPassword = await bcrypt.hash(password,10)
     
-        const user = await User.create({
-            username,
-            email,
-            hashedPassword
-        });
-        await user.save()
+        const user = createUser(username,email,hashedPassword);
         const token = createSession(user);
     
         return token;
@@ -27,7 +35,8 @@ async function register(username,email,password) {
 }
 
 async function login(email, password) {
-    const user = await User.findOne({email}).collation({locale: 'en', strength: 2})
+    const user = await User.findOne({email}).collation({locale: 'en', strength: 2});
+    console.log('user',user);
     if(!user) {
         throw new Error('Incorrect username or password');
     }
@@ -43,19 +52,16 @@ async function login(email, password) {
     
 
 
-
-async function logout() {
-
-}
-
 function createSession(user) {
     const {_id,username } = user;
     const payload = {
         _id,
         username
     }
+    console.log('user',user)
     const token = jwt.sign(payload,JWT_SECRET);
     return token;
+    
 }
 
 function verifyToken(token) {
@@ -63,8 +69,8 @@ function verifyToken(token) {
 }
 
 module.exports = {
+    createUser,
     register,
     login,
-    logout,
     verifyToken
 }

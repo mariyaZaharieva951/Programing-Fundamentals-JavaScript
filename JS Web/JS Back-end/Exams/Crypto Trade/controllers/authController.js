@@ -1,5 +1,5 @@
-const User = require('../models/User');
-const { register,login } = require('../services/userService');
+
+const { register,login} = require('../services/userService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -14,7 +14,7 @@ routes.get('/register', (req,res) => {
 routes.post('/register', async (req,res) => {
     try {
         const {username, email, password} = req.body;
-        console.log(username)
+        
         if(username == '' || email == '' || password == '') {
             throw new Error('All fields are required!');
         }
@@ -23,7 +23,6 @@ routes.post('/register', async (req,res) => {
         }
         const token = await register(username,email,password);    
         res.cookie('token', token);
-        console.log('t',token)
         res.redirect('/')
     } catch(err) {
         console.log(err.errors)
@@ -62,6 +61,11 @@ routes.post('/login', async (req,res) => {
             }
         })
     }
+});
+
+routes.get('/logout', (req,res) => {
+    res.clearCookie('token');
+    res.redirect('/');
 })
 
 module.exports = routes;

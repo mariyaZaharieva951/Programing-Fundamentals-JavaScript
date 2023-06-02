@@ -13,15 +13,23 @@
     <header class="header">
         <nav>
             <img src="/static/images/logo.png" class="logo">
-            <ul>
+                {{#if user}}
+                <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="#">All Crypto</a></li>
-                <li><a href="#">Search</a></li>
-                <li><a href="#">Create Offer</a></li>
+                <li><a href="/crypto/catalog">All Crypto</a></li>
+                <li><a href="/crypto/search">Search</a></li>
+                <li><a href="/crypto/create">Create Offer</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+                </ul>
+                {{else}}
+                <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/crypto/catalog">All Crypto</a></li>
                 <li><a href="/auth/login">Login</a></li>
                 <li><a href="/auth/register">Register</a></li>
-                <li><a href="#">Logout</a></li>
-            </ul>
+                </ul>
+                {{/if}}
+            
         </nav>
     </header>
         {{#if errors}}
@@ -35,11 +43,12 @@
             </div>
         </div> 
         {{/if}}
+        
     {{{body}}}
     
-    <footer>
+    <!--<footer>
         <p>Back-End 2022</p>
-    </footer>
+    </footer>-->
 
 </body>
 

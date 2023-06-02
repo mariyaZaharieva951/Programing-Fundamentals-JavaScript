@@ -1,4 +1,4 @@
-const Hotel = require('../models/Hotel')
+  const Hotel = require('../models/Hotel')
 
 
 async function createHotel(hotelData) {
