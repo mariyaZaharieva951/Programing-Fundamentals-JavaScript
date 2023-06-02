@@ -19,8 +19,27 @@ async function getOfferById(id) {
     return offer;
 }
 
+async function deleteOffer(id) {
+    return Crypto.findByIdAndDelete(id)
+}
+
+async function editOffer(id, offerData) {
+    const crypto = await Crypto.findById(id);
+
+    crypto.name = offerData.name;
+    crypto.image = offerData.image;
+    crypto.price = offerData.price;
+    crypto.description = offerData.description;
+    crypto.payment = offerData.payment;
+
+    return crypto.save();
+
+}
+
 module.exports = {
     createOffer,
     getAllOffers,
-    getOfferById
+    getOfferById,
+    deleteOffer,
+    editOffer
 }

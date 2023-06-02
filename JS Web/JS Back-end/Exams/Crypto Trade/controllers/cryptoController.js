@@ -1,5 +1,5 @@
 
-const { getAllOffers, createOffer } = require('../services/cryptoService');
+const { getAllOffers, createOffer, deleteOffer, editOffer } = require('../services/cryptoService');
 const { getOfferById } = require('../services/cryptoService');
 const { parseError } = require('../util/parser');
 
@@ -63,16 +63,60 @@ routes.get('/details/:id', async(req,res) => {
     if(offer.buyCripto.find(b => b._id == req.user._id)) {
         offer.isBuy = true;
     } else { offer.isBuy = false}
-    console.log('req.user', offer.hasUser);
-    console.log('req.isOwner', offer.isOwner);
-    console.log('req.isBuy', offer.isBuy);
-
     
     res.render('details', { offer })
     } catch(err) {
         console.error(err)
     }
 });
+
+routes.get('/delete/:id', async (req,res) => {
+    try {
+        const offer = await getOfferById(req.params.id);
+        if(offer.owner != req.user._id) {
+            throw new Error('Cannot delete offer you haven\'t created!')
+        }
+        await deleteOffer(req.params.id);
+        res.redirect('/catalog');
+    } catch(err) {
+        console.error(err);
+        res.redirect('/crypto/details/' + req.params.id)
+
+    }
+});
+
+routes.get('/edit/:id', async (req,res) => {
+    try{
+    const offer = await getOfferById(req.params.id);
+        if(offer.owner != req.user._id) {
+            throw new Error('Cannot edit offer you haven\'t created!')
+        }
+        res.render('edit', {offer})
+    } catch(err) {
+        console.error(err);
+        res.redirect('/crypto/details/' + req.params.id)
+    }
+});
+
+routes.post('/edit/:id', async (req,res) => {
+    try {
+        const offer = await getOfferById(req.params.id);
+        if(offer.owner != req.user._id) {
+            throw new Error('Cannot edit offer you haven\'t created!')
+        }
+        await editOffer(req.params.id, req.body);
+        res.redirect('/crypto/details/' + req.params.id);
+    } catch(err) {
+        console.error(err);
+        const errors = parseError(err);
+        res.render('edit', {
+            errors
+        })
+
+    }
+});
+
+
 
 
 
