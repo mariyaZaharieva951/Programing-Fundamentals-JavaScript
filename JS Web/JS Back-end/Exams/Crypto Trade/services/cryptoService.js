@@ -36,10 +36,18 @@ async function editOffer(id, offerData) {
 
 }
 
+async function buyCoins(offerId,userId) {
+    const crypto = await Crypto.findById(offerId);
+    console.log(crypto)
+    crypto.buyCripto.push(userId);
+    return crypto.save();
+}
+
 module.exports = {
     createOffer,
     getAllOffers,
     getOfferById,
     deleteOffer,
-    editOffer
+    editOffer,
+    buyCoins
 }

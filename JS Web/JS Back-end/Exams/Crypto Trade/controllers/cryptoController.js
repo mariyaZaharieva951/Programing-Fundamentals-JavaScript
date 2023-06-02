@@ -1,5 +1,5 @@
 
-const { getAllOffers, createOffer, deleteOffer, editOffer } = require('../services/cryptoService');
+const { getAllOffers, createOffer, deleteOffer, editOffer, buyCoins } = require('../services/cryptoService');
 const { getOfferById } = require('../services/cryptoService');
 const { parseError } = require('../util/parser');
 
@@ -113,6 +113,21 @@ routes.post('/edit/:id', async (req,res) => {
             errors
         })
 
+    }
+});
+
+routes.get('/buy/:id', async (req,res) => {
+    try {
+        const offer = await getOfferById(req.params.id);
+        if(offer.owner == req.user._id) {
+            throw new Error('Cannot buy you own offer!')
+        }
+        await buyCoins(req.params.id,req.user._id);
+        res.redirect('/crypto/details/' + req.params.id);
+    } catch(err) {
+        console.error(err);
+        //const errors = parseError(err);
+        res.render('/crypto/details/' + req.params.id);
     }
 });
 
