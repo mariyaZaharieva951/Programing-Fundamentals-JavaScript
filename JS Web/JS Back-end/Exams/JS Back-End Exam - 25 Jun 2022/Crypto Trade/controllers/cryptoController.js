@@ -1,7 +1,6 @@
 
-const { isUser } = require('../../../07. Exam preparation 2/Theater/middlewares/guards');
-const { getAllOffers, createOffer, deleteOffer, editOffer, buyCoins } = require('../services/cryptoService');
-const { getOfferById } = require('../services/cryptoService');
+const { isUser } = require('../middlewares/guards');
+const { getOfferById, getAllOffers, createOffer, deleteOffer, editOffer, buyCoins } = require('../services/cryptoService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -78,7 +77,7 @@ routes.get('/delete/:id', isUser(), async (req,res) => {
             throw new Error('Cannot delete offer you haven\'t created!')
         }
         await deleteOffer(req.params.id);
-        res.redirect('/catalog');
+        res.redirect('/crypto/catalog');
     } catch(err) {
         console.error(err);
         res.redirect('/crypto/details/' + req.params.id)

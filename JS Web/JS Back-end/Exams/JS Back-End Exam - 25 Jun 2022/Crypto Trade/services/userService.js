@@ -36,9 +36,9 @@ async function register(username,email,password) {
         }
         const hashedPassword = await bcrypt.hash(password,10)
     
-        const user = createUser(username,email,hashedPassword);
+        const user = await createUser(username,email,hashedPassword);
         const token = createSession(user);
-    
+        console.log('token', token)
         return token;
     
 }

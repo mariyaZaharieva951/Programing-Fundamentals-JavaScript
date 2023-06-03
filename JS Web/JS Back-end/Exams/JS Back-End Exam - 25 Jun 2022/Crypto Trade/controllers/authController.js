@@ -1,5 +1,5 @@
 
-const { isGuest } = require('../../../07. Exam preparation 2/Theater/middlewares/guards');
+const { isGuest } = require('../middlewares/guards');
 const { register,login} = require('../services/userService');
 const { parseError } = require('../util/parser');
 
@@ -26,13 +26,13 @@ routes.post('/register', isGuest(), async (req,res) => {
         res.cookie('token', token);
         res.redirect('/')
     } catch(err) {
-        console.log(err.errors)
         const errors = parseError(err);
+        console.error(err.message);
         res.render('register', {
             title: 'Register Page',
             errors,
             body: {
-                username:req.body.username
+                username: req.body.username
             }
         })
     }
@@ -44,7 +44,7 @@ routes.get('/login', isGuest(), (req,res) => {
     })
 });
 
-routes.post('/login', isGuest, async (req,res) => {
+routes.post('/login', isGuest(), async (req,res) => {
     try {
         const {email, password} = req.body;
         const token = await login(email,password);    
