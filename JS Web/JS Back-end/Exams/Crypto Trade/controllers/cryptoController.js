@@ -1,4 +1,5 @@
 
+const { isUser } = require('../../../07. Exam preparation 2/Theater/middlewares/guards');
 const { getAllOffers, createOffer, deleteOffer, editOffer, buyCoins } = require('../services/cryptoService');
 const { getOfferById } = require('../services/cryptoService');
 const { parseError } = require('../util/parser');
@@ -7,13 +8,13 @@ const routes = require('express').Router();
 
 
 
-routes.get('/create', (req,res) => {
+routes.get('/create', isUser(), (req,res) => {
     res.render('create', {
         title: 'Create page'
     })
 });
 
-routes.post('/create', async (req,res) => {
+routes.post('/create', isUser(), async (req,res) => {
     try {
         
         const cryptoData = {
@@ -70,7 +71,7 @@ routes.get('/details/:id', async(req,res) => {
     }
 });
 
-routes.get('/delete/:id', async (req,res) => {
+routes.get('/delete/:id', isUser(), async (req,res) => {
     try {
         const offer = await getOfferById(req.params.id);
         if(offer.owner != req.user._id) {
@@ -85,7 +86,7 @@ routes.get('/delete/:id', async (req,res) => {
     }
 });
 
-routes.get('/edit/:id', async (req,res) => {
+routes.get('/edit/:id', isUser(), async (req,res) => {
     try{
     const offer = await getOfferById(req.params.id);
         if(offer.owner != req.user._id) {
@@ -98,7 +99,7 @@ routes.get('/edit/:id', async (req,res) => {
     }
 });
 
-routes.post('/edit/:id', async (req,res) => {
+routes.post('/edit/:id', isUser(), async (req,res) => {
     try {
         const offer = await getOfferById(req.params.id);
         if(offer.owner != req.user._id) {
@@ -116,7 +117,7 @@ routes.post('/edit/:id', async (req,res) => {
     }
 });
 
-routes.get('/buy/:id', async (req,res) => {
+routes.get('/buy/:id', isUser(), async (req,res) => {
     try {
         const offer = await getOfferById(req.params.id);
         if(offer.owner == req.user._id) {
@@ -130,10 +131,6 @@ routes.get('/buy/:id', async (req,res) => {
         res.render('/crypto/details/' + req.params.id);
     }
 });
-
-
-
-
 
 
 
