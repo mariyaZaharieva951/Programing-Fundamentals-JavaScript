@@ -4,19 +4,21 @@ const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'jb3dfl8xgn7bgkb'
 
 
-async function createUser(username,email,hashedPassowrd) {
-    const user = await new User({
+async function createUser(username,email,hashedPassword) {
+    const user = await User.create({
         username,
         email,
-        hashedPassowrd
+        hashedPassword
     });
 
-    user.save();
+    await user.save();
     return user;
 }
 
 async function getUserByEmail(email) {
-    
+
+    const user = await User.findOne({email})
+    return user;
 }
 
 async function getUserById(userId) {
