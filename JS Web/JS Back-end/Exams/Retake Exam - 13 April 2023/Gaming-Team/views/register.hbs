@@ -1,6 +1,5 @@
 
-
-    <main id="login">
+    <main id="register">
         <!-- In case of error, you should display div with class "errorContainer" -->
         <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
         {{#if errors}}
@@ -12,17 +11,22 @@
             </div>
         </div>
         {{/if}}
-
-        <div class="login-box">
-            <h1>Login</h1>
-            <form action="/auth/login" method="POST">
+        
+        <div class="register-box">
+            <h1>Register</h1>
+            <h4>It's free and only takes a minute</h4>
+            <form action="/auth/register" method="POST">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="Username.." >
                 <label>Email</label>
                 <input type="text" name="email" placeholder="Email..">
                 <label>Password</label>
                 <input type="password" name="password" placeholder="Password..">
-                <input type="submit" value="Login">
+                <label>Confirm Password</label>
+                <input type="password" name="rePassword" placeholder="Confirm Password..">
+                <input type="submit" value="Register">
             </form>
-            <p>Don't have an account? <a href="/auth/login">Register here</a></p>
+            <p>Already have an account? <a href="/auth/login">Login here</a></p>
         </div>
     </main>
 
