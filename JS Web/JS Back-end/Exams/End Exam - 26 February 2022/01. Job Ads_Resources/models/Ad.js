@@ -2,14 +2,13 @@ const { Schema, model} = require('mongoose');
 
 
 const schema = new Schema({
-    name: {type: String, required: true},
-    image: {type: String, required: true},
-    price: {type: Number, required: true},
-    description: {type: String, required: true},
-    methodPay: {type: Number, required: true},
-    buyCripto: {type: Object.Types, required: true},
-    owner: {type: Number, required: true},
+    headline: {type: String, required: true},
+    location: {type: String, required: true},
+    companyName: {type: Number, required: true},
+    companyDescription: {type: String, required: true},
+    author: {type: Schema.Types.ObjectId, ref: 'User', default: []},
+    users: {type: Schema.Types.ObjectId, ref: 'User', default: []},
 });
 
-const Crypto = model('User', schema)
-module.exports = User;
+const Ad = model('Ad', schema)
+module.exports = Ad;
