@@ -16,7 +16,7 @@ async function getAdByID(id) {
 
 async function getAllAds() {
     const ads = await Ad.find({}).lean();
-
+    console.log('ads', ads)
     return ads;
 }
 

@@ -1,4 +1,4 @@
-const { createAd } = require('../services/adService');
+const { createAd, getAllAds } = require('../services/adService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -38,8 +38,13 @@ routes.post('/create', async (req,res) => {
     res.render('create');
 });
 
-routes.get('/catalog', (req,res) => {
-    res.render('catalog');
+routes.get('/catalog', async(req,res) => {
+    const ads = await getAllAds();
+    
+    res.render('catalog', {
+        title: 'Catalog page',
+        ads
+    });
 });
 
 
