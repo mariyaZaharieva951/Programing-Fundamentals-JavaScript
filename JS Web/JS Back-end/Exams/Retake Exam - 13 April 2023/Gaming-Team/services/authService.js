@@ -33,12 +33,9 @@ async function login(email,password) {
 
 }
 
-async function logout() {
 
-}
 
 module.exports = {
     register,
-    login,
-    logout
+    login
 }

@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = 'jb3dfl8xgn7bgkb'
 
@@ -36,14 +35,15 @@ function createSession(user) {
 
 }
 
-function verifyToken() {
-
+function verifyToken(token) {
+    return jwt.verify(token, JWT_SECRET)
 }
 
 module.exports = {
     createUser,
     getUserByEmail,
     getUserById,
-    createSession
+    createSession,
+    verifyToken
 }
 

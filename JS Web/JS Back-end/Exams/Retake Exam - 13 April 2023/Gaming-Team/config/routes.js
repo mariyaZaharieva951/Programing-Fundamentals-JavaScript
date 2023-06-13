@@ -6,5 +6,5 @@ const gameContoller = require('../controllers/gameController');
 module.exports = (app) => {
     app.use('/', homeController);
     app.use('/auth', authController);
-    //app.use('/game', gameContoller);
+    app.use('/game', gameContoller);
 }
