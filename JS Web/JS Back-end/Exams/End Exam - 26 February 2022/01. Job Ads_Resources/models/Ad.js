@@ -7,7 +7,7 @@ const schema = new Schema({
     companyName: {type: Number, required: true},
     companyDescription: {type: String, required: true},
     author: {type: Schema.Types.ObjectId, ref: 'User', default: []},
-    users: {type: Schema.Types.ObjectId, ref: 'User', default: []},
+    users: [{type: Schema.Types.ObjectId, ref: 'User', default: []}],
 });
 
 const Ad = model('Ad', schema)

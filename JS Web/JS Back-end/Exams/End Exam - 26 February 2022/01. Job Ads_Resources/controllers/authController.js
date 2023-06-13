@@ -13,17 +13,18 @@ routes.get('/register', (req,res) => {
 
 routes.post('/register', async (req,res) => {
     try {
-        const {username, email, password} = req.body;
-        console.log(username)
-        if(username == '' || email == '' || password == '') {
+        const {email, password,description} = req.body;
+        if(email == '' || password == '' || description == '') {
             throw new Error('All fields are required!');
         }
         if( password !== req.body.rePass) {
             throw new Error('Password don\'t match!' );
         }
-        const token = await register(username,email,password);    
+       
+        const token = await register(email,password,description);    
+       
         res.cookie('token', token);
-        console.log('t',token)
+        
         res.redirect('/')
     } catch(err) {
         console.log(err.errors)

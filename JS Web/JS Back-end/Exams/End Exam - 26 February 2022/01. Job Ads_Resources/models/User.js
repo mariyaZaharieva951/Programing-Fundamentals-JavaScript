@@ -6,7 +6,7 @@ const schema = new Schema({
     email: {type: String, required: true},
     hashedPassword: {type: String, required: true},
     description: {type: String, required: true},
-    myAds: {type: Schema.Types.ObjectId, ref: 'Ad', default: []}
+    myAds: [{type: Schema.Types.ObjectId, ref: 'Ad', default: []}]
 });
 
 const User = model('User', schema)

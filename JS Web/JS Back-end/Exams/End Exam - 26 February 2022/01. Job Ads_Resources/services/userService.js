@@ -5,20 +5,23 @@ const User = require('../models/User');
 const JWT_SECRET = 'brbr5184635brbr'
 
 
-async function register(username,email,password) {
-        const existingUser = await User.findOne({username})
+
+async function register(email,password,description) {
+        console.log('userService')
+        //const existingUser = await User.findOne({username})
         const existingEmail = await User.findOne({email})
     
-        if(existingUser || existingEmail) {
+        if(existingEmail) {
             throw new Error('Username or email is taken');
         }
         const hashedPassword = await bcrypt.hash(password,10)
     
         const user = await User.create({
-            username,
             email,
-            hashedPassword
+            hashedPassword,
+            description
         });
+        console.log('user', user)
         await user.save()
         const token = createSession(user);
     
