@@ -53,6 +53,7 @@ routes.post('/login', async (req,res) => {
         res.cookie('token', token);
         res.redirect('/');
     } catch(err) {
+        console.log('error')
         const errors = parseError(err);
         console.error(err.message);
         res.render('login', {

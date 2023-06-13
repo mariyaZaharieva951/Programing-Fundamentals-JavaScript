@@ -1,5 +1,5 @@
-const { createGame } = require('../services/adService');
-//const { parseError } = require('../utils/parser');
+const { createAd } = require('../services/adService');
+const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
 
@@ -8,37 +8,35 @@ routes.get('/create', (req,res) => {
     res.render('create');
 });
 
-// routes.post('/create', async (req,res) => {
-//    try {
-//     const gameData = {
-//         name: req.body.name,
-//         image: req.body.image,
-//         price: req.body.price,
-//         description: req.body.description,
-//         genre: req.body.genre,
-//         platform: req.body.platform,
-//         boughtBy: [],
-//         owner: req.user._id
-//     }
-//     const games = await createGame(gameData);
+routes.post('/create', async (req,res) => {
+   try {
+    const adData = {
+        headline: req.body.headline,
+        location: req.body.location,
+        companyName: req.body.companyName,
+        companyDescription: req.body.companyDescription,
+        author: req.user._id,
+        users: []
+    }
+    const ad = await createAd(adData);
 
-//     res.redirect('/game/catalog')
+    res.redirect('/ad/catalog')
 
-//    } catch(error) {
-//     const errors = parseError(error);
-//     console.error(error.message);
-//     res.render('create', {
-//         title: 'Create page',
-//         errors,
-//         body: {
-//             username: req.body.username
-//         }
-//     })
-//    }
+   } catch(error) {
+    const errors = parseError(error);
+    console.error(error.message);
+    res.render('create', {
+        title: 'Create page',
+        errors,
+        body: {
+            username: req.body.username
+        }
+    })
+   }
    
    
-//     res.render('create');
-// });
+    res.render('create');
+});
 
 routes.get('/catalog', (req,res) => {
     res.render('catalog');
