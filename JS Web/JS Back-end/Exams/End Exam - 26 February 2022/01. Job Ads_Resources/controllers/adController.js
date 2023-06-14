@@ -79,7 +79,7 @@ routes.get('/apply/:id', isUser(), async (req,res) => {
         if(ad.author == req.user._id) {
             throw new Error('Cannot apply your own ad!')
         }
-        console.log(req.user._id)
+
         await applyAd(req.params.id,req.user._id);
         res.redirect('/ad/details/' + req.params.id);
     } catch(err) {
@@ -91,7 +91,10 @@ routes.get('/apply/:id', isUser(), async (req,res) => {
 routes.get('/delete/:id', isUser(), async (req,res) => {
     try {
         const ad = await getAdByID(req.params.id);
-        console.log(ad)
+        
+
+
+        
         if(ad.author != req.user._id) {
             throw new Error('Cannot delete ad you haven\'t created!')
         }
