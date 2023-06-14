@@ -20,12 +20,6 @@ async function getAllAds() {
     return ads;
 }
 
-// async function lastThreeAds() {
-//     const ads = await Ad.find({}).slice(0,3);
-//    console.log(ads)
-//     return ads;
-// }
-
 
 
 async function editAd(id, adData) {

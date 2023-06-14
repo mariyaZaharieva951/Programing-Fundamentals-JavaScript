@@ -20,8 +20,12 @@ routes.post('/create', isUser(), async (req,res) => {
         author: req.user._id,
         users: []
     }
+    const user = await getUserById(adData.author);
+    
     const ad = await createAd(adData);
-
+    
+    user.myAds.push(ad._id)
+    
     res.redirect('/ad/catalog')
 
    } catch(error) {

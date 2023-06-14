@@ -21,15 +21,20 @@ routes.post('/register', isGuest(), async (req,res) => {
         if( password !== req.body.rePass) {
             throw new Error('Password don\'t match!' );
         }
-       
+
+        const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(!email.match(mailformat)) {
+            throw new Error('You have entered an invalid email address!');
+        }
+
         const token = await register(email,password,description);    
        
         res.cookie('token', token);
         
         res.redirect('/')
     } catch(err) {
-        console.log(err.errors)
         const errors = parseError(err);
+        console.error(err.message)
         res.render('register', {
             title: 'Register Page',
             errors,
