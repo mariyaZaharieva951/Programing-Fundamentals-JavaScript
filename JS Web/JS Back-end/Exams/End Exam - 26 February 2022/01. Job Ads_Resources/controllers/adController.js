@@ -56,8 +56,8 @@ routes.get('/details/:id', async (req,res) => {
 
     ad.hasUser = Boolean(req.user);
     ad.isAuthor = req.user && req.user._id == ad.author;
-    ad.usersApply = req.user && ad.users.find(u => u._id == req.user._id);
-    console.log(ad.users)
+    ad.usersApply = req.user && ad.users.find(u => (u._id).toString() == req.user._id);
+    
     ad.email = user.email;
     
 
