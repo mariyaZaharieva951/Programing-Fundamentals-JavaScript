@@ -1,17 +1,18 @@
 
+const { isGuest } = require('../middlewares/guards');
 const { register,login} = require('../services/userService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
 
 
-routes.get('/register', (req,res) => {
+routes.get('/register', isGuest(), (req,res) => {
     res.render('register', {
         title: 'Register page'
     })
 });
 
-routes.post('/register', async (req,res) => {
+routes.post('/register', isGuest(), async (req,res) => {
     try {
         const {email, password,description} = req.body;
         if(email == '' || password == '' || description == '') {
@@ -39,13 +40,13 @@ routes.post('/register', async (req,res) => {
     }
 });
 
-routes.get('/login', (req,res) => {
+routes.get('/login', isGuest(), (req,res) => {
     res.render('login', {
         title: 'Register page'
     })
 });
 
-routes.post('/login', async (req,res) => {
+routes.post('/login', isGuest(), async (req,res) => {
     try {
         const {email, password} = req.body;
 
@@ -69,6 +70,10 @@ routes.post('/login', async (req,res) => {
 routes.get('/logout', (req,res) => {
     res.clearCookie('token');
     res.redirect('/');
-})
+});
+
+
+
+
 
 module.exports = routes;

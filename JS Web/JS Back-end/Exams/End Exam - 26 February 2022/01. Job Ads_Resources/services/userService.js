@@ -7,7 +7,6 @@ const JWT_SECRET = 'brbr5184635brbr'
 
 
 async function register(email,password,description) {
-        console.log('userService')
         //const existingUser = await User.findOne({username})
         const existingEmail = await User.findOne({email})
     
@@ -21,7 +20,6 @@ async function register(email,password,description) {
             hashedPassword,
             description
         });
-        console.log('user', user)
         await user.save()
         const token = createSession(user);
     
@@ -61,8 +59,14 @@ function verifyToken(token) {
     return jwt.verify(token, JWT_SECRET)
 }
 
+async function getUserById(id) {
+    let user = await User.findById(id).lean();
+    return user;
+}
+
 module.exports = {
     register,
     login,
-    verifyToken
+    verifyToken,
+    getUserById
 }

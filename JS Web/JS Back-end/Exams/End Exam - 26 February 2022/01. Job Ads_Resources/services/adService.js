@@ -16,31 +16,46 @@ async function getAdByID(id) {
 
 async function getAllAds() {
     const ads = await Ad.find({}).lean();
-    console.log('ads', ads)
+    
     return ads;
 }
 
-// async function editGame(id,gameData) {
-//     const game = await Game.findById(id).lean();
+// async function lastThreeAds() {
+//     const ads = await Ad.find({}).slice(0,3);
+//    console.log(ads)
+//     return ads;
+// }
 
-//     game.name = gameData.name,
-//     game.image = gameData.image,
-//     game.price = gameData.price,
-//     game.description = gameData.description,
-//     game.genre = gameData.genre,
-//     game.platform = gameData.platform
+
+
+async function editAd(id, adData) {
+    const ad = await Ad.findById(id);
+
+    ad.headline = adData.headline;
+    ad.location = adData.location;
+    ad.companyName = adData.companyName;
+    ad.companyDescription = adData.companyDescription;
     
-//     return game.save();
-// }
+    return ad.save();
+}
 
-// async function deleteGame(id) {
-//     return Game.findByIdAndDelete(id);
-// }
+async function deleteAd(id) {
+    return Ad.findByIdAndDelete(id)
+}
+
+async function applyAd(adId,userId) {
+    const ad = await Ad.findById(adId);
+    
+    ad.users.push(userId);
+    return ad.save();
+}
 
 module.exports = {
     createAd,
     getAdByID,
-    getAllAds
-    // editGame,
-    // deleteGame
+    getAllAds,
+    //lastThreeAds,
+    applyAd,
+    editAd,
+    deleteAd
 }
