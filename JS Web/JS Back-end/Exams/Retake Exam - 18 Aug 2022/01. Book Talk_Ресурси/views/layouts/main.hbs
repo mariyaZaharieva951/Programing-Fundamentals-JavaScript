@@ -20,7 +20,7 @@
                 <a href="/">Home</a>
                 <a href="/book/catalog">Catalog</a>
                 {{#if user}}
-                <a href="/auth/profile">Profile</a>
+                <a href="/book/profile">Profile</a>
                 <a href="/book/create">Create Review</a>
                 <a href="/auth/logout">Logout</a>
                 {{else}}
@@ -31,7 +31,13 @@
         </div>
 
     </header>
-
+        {{#if errors}}
+        <div class="errorContainer">
+           {{#each errors}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
     <section class="home" id="home">
         {{{body}}}
     </section>

@@ -22,10 +22,7 @@ routes.post('/register', isGuest(), async (req,res) => {
             throw new Error('Password don\'t match!' );
         }
 
-        // const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        // if(!email.match(mailformat)) {
-        //     throw new Error('You have entered an invalid email address!');
-        // }
+        
 
         const token = await register(username,email,password);    
        

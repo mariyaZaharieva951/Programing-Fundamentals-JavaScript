@@ -22,6 +22,10 @@ routes.post('/create', isUser(), async (req,res) => {
         wishingList: [],
         owner: req.user._id
     }
+    const imageValidation = /https?:\/\//;
+        if(!req.body.image.match(imageValidation)) {
+            throw new Error('You have entered an invalid image address!');
+        }
 
     
     const book = await createBook(bookData);
@@ -43,11 +47,25 @@ routes.post('/create', isUser(), async (req,res) => {
 
 routes.get('/catalog', async(req,res) => {
     const books = await getAllBooks();
+    const myWishes = 
     res.render('catalog', {
         title: 'Catalog page',
         books
     });
 });
+
+// routes.get('/profile', async(req,res) => {
+//     const books = await getAllBooks();
+//     const myWish = books.populate('wishinList')
+
+//     //book.wishingList.find(u => u._id == req.user._id);
+//     console.log(books);
+//     console.log(myWish)
+//     res.render('catalog', {
+//         title: 'Catalog page',
+//         books
+//     });
+// });
 
 
 routes.get('/details/:id', async (req,res) => {
