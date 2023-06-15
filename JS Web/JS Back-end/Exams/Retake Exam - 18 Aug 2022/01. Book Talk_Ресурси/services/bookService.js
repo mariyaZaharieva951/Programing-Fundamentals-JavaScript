@@ -37,18 +37,18 @@ async function getAllBooks() {
 //     return Ad.findByIdAndDelete(id)
 // }
 
-// async function applyAd(adId,userId) {
-//     const ad = await Ad.findById(adId);
+async function wishBook(bookId,userId) {
+    const book = await Book.findById(bookId);
     
-//     ad.users.push(userId);
-//     return ad.save();
-// }
+    book.wishingList.push(userId);
+    return book.save();
+}
 
 module.exports = {
     createBook,
     getBookByID,
     getAllBooks,
-    // applyAd,
+    wishBook,
     // editAd,
     // deleteAd
 }

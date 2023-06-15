@@ -12,5 +12,5 @@ const schema = new Schema({
     owner: {type: Schema.Types.ObjectId, ref: 'User'},
 });
 
-const Ad = model('Ad', schema)
-module.exports = Ad;
+const Book = model('Book', schema)
+module.exports = Book;

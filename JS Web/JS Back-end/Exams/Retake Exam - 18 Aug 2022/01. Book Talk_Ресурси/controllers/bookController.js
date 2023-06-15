@@ -1,5 +1,5 @@
 const { isUser } = require('../middlewares/guards');
-const { getAllBooks, createBook } = require('../services/bookService');
+const { getAllBooks, createBook, getBookByID, wishBook } = require('../services/bookService');
 //const { getUserById } = require('../services/userService');
 const { parseError } = require('../util/parser');
 
@@ -22,7 +22,7 @@ routes.post('/create', isUser(), async (req,res) => {
         wishingList: [],
         owner: req.user._id
     }
-    //const user = await getUserById(bookData.owner);
+
     
     const book = await createBook(bookData);
     
@@ -50,40 +50,41 @@ routes.get('/catalog', async(req,res) => {
 });
 
 
-// routes.get('/details/:id', async (req,res) => {
-//     try {
-//     const ad = await getAdByID(req.params.id);
-//     const user = await getUserById(ad.author);
-
-//     ad.hasUser = Boolean(req.user);
-//     ad.isAuthor = req.user && req.user._id == ad.author;
-//     ad.usersApply = req.user && ad.users.find(u => (u._id).toString() == req.user._id);
+routes.get('/details/:id', async (req,res) => {
+    try {
+    const book = await getBookByID(req.params.id);
+    //const user = await getUserById(ad.author);
+        console.log(req.user);
+        console.log(book)
+    book.hasUser = Boolean(req.user);
+    book.isCreator = req.user && req.user._id == book.owner;
+    book.wishing = req.user && book.wishingList.find(u => u._id == req.user._id);
+        console.log(book)
+    //ad.email = user.email;
     
-//     ad.email = user.email;
-    
 
-//     res.render('details', {ad})
-//     } catch(err) {
-//         console.log(err.message)
-//             res.redirect('/404')
+    res.render('details', {book})
+    } catch(err) {
+        console.log(err.message)
+            res.redirect('/404')
         
-//     }  
-// });
+    }  
+});
 
-// routes.get('/apply/:id', isUser(), async (req,res) => {
-//     try {
-//         const ad = await getAdByID(req.params.id);
-//         if(ad.author == req.user._id) {
-//             throw new Error('Cannot apply your own ad!')
-//         }
+routes.get('/wish/:id', isUser(), async (req,res) => {
+    try {
+        const book = await getBookByID(req.params.id);
+        if(book.owner == req.user._id) {
+            throw new Error('Cannot wish your own book!')
+        }
 
-//         await applyAd(req.params.id,req.user._id);
-//         res.redirect('/ad/details/' + req.params.id);
-//     } catch(err) {
-//         console.log(err.message);
-//         res.render('ad/details/' + req.params.id)
-//     }
-// }); 
+        await wishBook(req.params.id,req.user._id);
+        res.redirect('/book/details/' + req.params.id);
+    } catch(err) {
+        console.log(err.message);
+        res.render('book/details/' + req.params.id)
+    }
+}); 
 
 // routes.get('/delete/:id', isUser(), async (req,res) => {
 //     try {
