@@ -4,7 +4,7 @@ function isUser() {
     if(req.user) {
         next();
     } else {
-        res.redirect('/ad/login');
+        res.redirect('/photo/login');
     }
 }
 }

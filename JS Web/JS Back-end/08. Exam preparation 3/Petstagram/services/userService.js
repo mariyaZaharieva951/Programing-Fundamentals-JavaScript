@@ -6,19 +6,19 @@ const JWT_SECRET = 'brbr5184635brbr'
 
 
 
-async function register(email,password,description) {
-        //const existingUser = await User.findOne({username})
+async function register(username,email,password) {
+        const existingUser = await User.findOne({username})
         const existingEmail = await User.findOne({email})
     
-        if(existingEmail) {
+        if(existingEmail || existingUser) {
             throw new Error('Username or email is taken');
         }
         const hashedPassword = await bcrypt.hash(password,10)
     
         const user = await User.create({
+            username,
             email,
-            hashedPassword,
-            description
+            hashedPassword
         });
         await user.save()
         const token = createSession(user);
@@ -27,8 +27,8 @@ async function register(email,password,description) {
     
 }
 
-async function login(email, password) {
-    const user = await User.findOne({email})
+async function login(username, password) {
+    const user = await User.findOne({username})
     
     if(!user) {
         throw new Error('Incorrect username or password');
