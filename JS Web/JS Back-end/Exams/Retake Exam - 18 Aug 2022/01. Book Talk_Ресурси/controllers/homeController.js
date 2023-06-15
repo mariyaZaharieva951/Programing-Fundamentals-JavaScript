@@ -1,4 +1,4 @@
-const { lastThreeAds, getAllAds } = require('../services/adService');
+const { lastThreeAds, getAllAds } = require('../services/bookService');
 
 const routes = require('express').Router();
 

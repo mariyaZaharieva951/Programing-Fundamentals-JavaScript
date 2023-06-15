@@ -1,12 +1,12 @@
 const homeController = require('../controllers/homeController');
 const authContoller = require('../controllers/authController');
-//const adController = require('../controllers/adController');
+const bookController = require('../controllers/bookController');
 
 
 module.exports = (app) => {
     app.use('/', homeController);
     app.use('/auth', authContoller);
-    //app.use('/book', adController);
+    app.use('/book', bookController);
 
 
 }
