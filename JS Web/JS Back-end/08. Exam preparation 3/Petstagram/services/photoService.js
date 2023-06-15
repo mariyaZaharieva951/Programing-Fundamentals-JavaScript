@@ -9,7 +9,7 @@ async function createPhoto(photoData) {
 }
 
 async function getPhotoByID(id) {
-    const photo = await Photo.findById(id).lean();
+    const photo = await Photo.findById(id).populate('owner').lean();
     
     return photo;
 }
@@ -37,18 +37,19 @@ async function deletePhoto(id) {
     return Photo.findByIdAndDelete(id)
 }
 
-// async function applyAd(adId,userId) {
-//     const ad = await Photo.findById(adId);
+async function commentPhoto(photoId,dataComment) {
+    const photo = await Photo.findById(photoId);
     
-//     ad.users.push(userId);
-//     return ad.save();
-// }
+    photo.commentList.push(dataComment);
+    console.log(photo)
+    return photo.save();
+}
 
 module.exports = {
     createPhoto,
     getPhotoByID,
     getAllPhotos,
-    //applyAd,
+    commentPhoto,
     editPhoto,
     deletePhoto
 }

@@ -1,5 +1,5 @@
 const { isUser } = require('../middlewares/guards');
-const { getAllPhotos, createPhoto } = require('../services/adService');
+const { getAllPhotos, createPhoto, getPhotoByID, commentPhoto } = require('../services/photoService');
 const { getUserById } = require('../services/userService');
 const { parseError } = require('../util/parser');
 
@@ -55,17 +55,18 @@ routes.get('/catalog', async(req,res) => {
 
 routes.get('/details/:id', async (req,res) => {
     try {
-    const ad = await getAdByID(req.params.id);
-    const user = await getUserById(ad.author);
+    const photo = await getPhotoByID(req.params.id);
+    //const user = await getUserById(photo.owner);
+        
+    photo.hasUser = Boolean(req.user);
+    photo.isAuthor = req.user && req.user._id == photo.owner._id;
 
-    ad.hasUser = Boolean(req.user);
-    ad.isAuthor = req.user && req.user._id == ad.author;
-    ad.usersApply = req.user && ad.users.find(u => (u._id).toString() == req.user._id);
+    //photo.comments = req.user && photo.users.find(u => (u._id).toString() == req.user._id);
     
-    ad.email = user.email;
+    //photo.email = user.email;
     
 
-    res.render('details', {ad})
+    res.render('details', {photo})
     } catch(err) {
         console.log(err.message)
             res.redirect('/404')
@@ -73,18 +74,21 @@ routes.get('/details/:id', async (req,res) => {
     }  
 });
 
-routes.get('/apply/:id', isUser(), async (req,res) => {
+routes.post('/comment/:id', isUser(), async (req,res) => {
     try {
-        const ad = await getAdByID(req.params.id);
-        if(ad.author == req.user._id) {
-            throw new Error('Cannot apply your own ad!')
-        }
+        //const photo = await getPhotoByID(req.params.id);
+        const user = req.user._id
+        const {comment} = req.body
+    
+        // if(photo.owner._id == req.user._id) {
+        //     throw new Error('Cannot comment your own photo!')
+        // }
 
-        await applyAd(req.params.id,req.user._id);
-        res.redirect('/ad/details/' + req.params.id);
+        await commentPhoto(req.params.id,{user, comment});
+        res.redirect('/photo/details/' + req.params.id);
     } catch(err) {
         console.log(err.message);
-        res.render('ad/details/' + req.params.id)
+        res.render('/photo/details/' + req.params.id)
     }
 }); 
 
