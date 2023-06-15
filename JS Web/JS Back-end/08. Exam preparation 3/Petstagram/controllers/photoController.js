@@ -1,5 +1,5 @@
 const { isUser } = require('../middlewares/guards');
-const { createAd, getAllAds, getAdByID, applyAd, editAd, deleteAd } = require('../services/adService');
+const { getAllPhotos, createPhoto } = require('../services/adService');
 const { getUserById } = require('../services/userService');
 const { parseError } = require('../util/parser');
 
@@ -12,21 +12,22 @@ routes.get('/create', isUser(), (req,res) => {
 
 routes.post('/create', isUser(), async (req,res) => {
    try {
-    const adData = {
-        headline: req.body.headline,
+    const photoData = {
+        name: req.body.name,
+        image: req.body.image,
+        age: req.body.age,
+        description: req.body.description,
         location: req.body.location,
-        companyName: req.body.companyName,
-        companyDescription: req.body.companyDescription,
-        author: req.user._id,
-        users: []
+        commentList: [],
+        owner: req.user._id
     }
-    const user = await getUserById(adData.author);
     
-    const ad = await createAd(adData);
+    const photo = await createPhoto(photoData);
     
-    user.myAds.push(ad._id)
+
+    //user.myAds.push(photo._id)
     
-    res.redirect('/ad/catalog')
+    res.redirect('/photo/catalog')
 
    } catch(error) {
     const errors = parseError(error);
@@ -39,16 +40,15 @@ routes.post('/create', isUser(), async (req,res) => {
         }
     })
    }
-   
-   
-    res.render('create');
 });
 
 routes.get('/catalog', async(req,res) => {
-    const ads = await getAllAds();
+    const photos = await getAllPhotos();
+    
+
     res.render('catalog', {
         title: 'Catalog page',
-        ads
+        photos
     });
 });
 

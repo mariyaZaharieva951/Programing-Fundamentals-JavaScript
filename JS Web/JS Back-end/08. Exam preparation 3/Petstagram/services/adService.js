@@ -1,55 +1,54 @@
-const Ad = require('../models/Photo');
+const Photo = require('../models/Photo');
 
 
-async function createAd(adData) {
-    const ad = await Ad.create(adData);
-    ad.save();
+async function createPhoto(photoData) {
+    const photo = await Photo.create(photoData);
+    photo.save();
 
-    return ad;
+    return photo;
 }
 
-async function getAdByID(id) {
-    const ad = await Ad.findById(id).lean();
+async function getPhotoByID(id) {
+    const photo = await Photo.findById(id).lean();
     
-    return ad;
+    return photo;
 }
 
-async function getAllAds() {
-    const ads = await Ad.find({}).lean();
+async function getAllPhotos() {
+    const photos = await Photo.find({}).populate('owner').lean();
     
-    return ads;
+    return photos;
 }
 
 
 
-async function editAd(id, adData) {
-    const ad = await Ad.findById(id);
+async function editPhoto(id, photoData) {
+    const photo = await Photo.findById(id);
 
-    ad.headline = adData.headline;
-    ad.location = adData.location;
-    ad.companyName = adData.companyName;
-    ad.companyDescription = adData.companyDescription;
+    photo.headline = photoData.headline;
+    photo.location = photoData.location;
+    photo.companyName = photoData.companyName;
+    photo.companyDescription = photoData.companyDescription;
     
-    return ad.save();
+    return photo.save();
 }
 
-async function deleteAd(id) {
-    return Ad.findByIdAndDelete(id)
+async function deletePhoto(id) {
+    return Photo.findByIdAndDelete(id)
 }
 
-async function applyAd(adId,userId) {
-    const ad = await Ad.findById(adId);
+// async function applyAd(adId,userId) {
+//     const ad = await Photo.findById(adId);
     
-    ad.users.push(userId);
-    return ad.save();
-}
+//     ad.users.push(userId);
+//     return ad.save();
+// }
 
 module.exports = {
-    createAd,
-    getAdByID,
-    getAllAds,
-    //lastThreeAds,
-    applyAd,
-    editAd,
-    deleteAd
+    createPhoto,
+    getPhotoByID,
+    getAllPhotos,
+    //applyAd,
+    editPhoto,
+    deletePhoto
 }

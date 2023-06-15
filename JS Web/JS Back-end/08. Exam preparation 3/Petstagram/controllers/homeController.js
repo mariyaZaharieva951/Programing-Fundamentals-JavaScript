@@ -12,4 +12,11 @@ routes.get('/', async (req,res) => {
     });
 });
 
+routes.get('/404', async (req,res) => {
+    res.render('404', {
+        title: 'Error page',
+        
+    });
+});
+
 module.exports = routes;
