@@ -1,5 +1,5 @@
 const { isUser } = require('../middlewares/guards');
-const { getAllBooks, createBook, getBookByID, wishBook } = require('../services/bookService');
+const { getAllBooks, createBook, getBookByID, wishBook, deleteBook, editBook } = require('../services/bookService');
 //const { getUserById } = require('../services/userService');
 const { parseError } = require('../util/parser');
 
@@ -54,12 +54,11 @@ routes.get('/details/:id', async (req,res) => {
     try {
     const book = await getBookByID(req.params.id);
     //const user = await getUserById(ad.author);
-        console.log(req.user);
-        console.log(book)
+    
     book.hasUser = Boolean(req.user);
     book.isCreator = req.user && req.user._id == book.owner;
     book.wishing = req.user && book.wishingList.find(u => u._id == req.user._id);
-        console.log(book)
+       
     //ad.email = user.email;
     
 
@@ -86,59 +85,57 @@ routes.get('/wish/:id', isUser(), async (req,res) => {
     }
 }); 
 
-// routes.get('/delete/:id', isUser(), async (req,res) => {
-//     try {
-//         const ad = await getAdByID(req.params.id);
+routes.get('/delete/:id', isUser(), async (req,res) => {
+    try {
+        const book = await getBookByID(req.params.id);
         
+        if(book.owner != req.user._id) {
+            throw new Error('Cannot delete book you haven\'t created!')
+        }
+        await deleteBook(req.params.id);
+        res.redirect('/book/catalog');
+    } catch(err) {
+        console.log(err.message);
+        res.redirect('/book/details/' + req.params.id)
+    }
+});
 
 
+routes.get('/edit/:id', isUser(), async (req,res) => {
+    try {
+        const book = await getBookByID(req.params.id);
         
-//         if(ad.author != req.user._id) {
-//             throw new Error('Cannot delete ad you haven\'t created!')
-//         }
-//         await deleteAd(req.params.id);
-//         res.redirect('/');
-//     } catch(err) {
-//         console.log(err.message);
-//         res.redirect('/ad/details/' + req.params.id)
-//     }
-// });
-
-
-// routes.get('/edit/:id', isUser(), async (req,res) => {
-//     try {
-//         const ad = await getAdByID(req.params.id);
+        if(book.owner != req.user._id) {
+            throw new Error('Cannot edit book you haven\'t created!')
+        }
         
-//         if(ad.author != req.user._id) {
-//             throw new Error('Cannot edit ad you haven\'t created!')
-//         }
-        
-//         res.render('edit', {ad})
-//     } catch(err) {
-//         console.log(err.message);
-//         res.redirect('/ad/details/' + req.params.id)
-//     }
-// });
+        res.render('edit', {book})
+    } catch(err) {
+        console.log(err.message);
+        res.redirect('/book/details/' + req.params.id)
+    }
+});
 
-// routes.post('/edit/:id', isUser(), async (req,res) => {
-//     try {
-//         const ad = await getAdByID(req.params.id);
-//         if(ad.author != req.user._id) {
-//             throw new Error('Cannot edit ad you haven\'t created!')
-//         }
-//         await editAd(req.params.id, req.body);
-//         res.redirect('/')
-//     } catch(error) {
-//         const errors = parseError(error);
-//         console.error(error.message);
-//         res.redirect('/ad/edit/' + req.params.id, {
-//         title: 'Create page',
-//         errors,
-//         body: {
-//             username: req.body.username
-//         }
-//     })
-//     };
-// });
+routes.post('/edit/:id', isUser(), async (req,res) => {
+    try {
+        const book = await getBookByID(req.params.id);
+        console.log(book)
+        if(book.owner != req.user._id) {
+            throw new Error('Cannot edit book you haven\'t created!')
+        }
+        await editBook(req.params.id, req.body);
+        res.redirect('/book/details/' + req.params.id)
+    } catch(error) {
+        const errors = parseError(error);
+        console.error(error.message);
+        res.redirect('/book/edit/' + req.params.id, {
+        title: 'Edit page',
+        errors,
+        body: {
+            username: req.body.username
+        }
+    })
+    };
+});
 
 module.exports = routes;

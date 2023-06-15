@@ -22,20 +22,22 @@ async function getAllBooks() {
 
 
 
-// async function editAd(id, adData) {
-//     const ad = await Ad.findById(id);
+async function editBook(id, bookData) {
+    const book = await Book.findById(id);
 
-//     ad.headline = adData.headline;
-//     ad.location = adData.location;
-//     ad.companyName = adData.companyName;
-//     ad.companyDescription = adData.companyDescription;
+    book.title = bookData.title;
+    book.author = bookData.author;
+    book.image = bookData.image;
+    book.bookReview = bookData.bookReview;
+    book.genre = bookData.genre;
+    book.stars = bookData.stars;
     
-//     return ad.save();
-// }
+    return book.save();
+}
 
-// async function deleteAd(id) {
-//     return Ad.findByIdAndDelete(id)
-// }
+async function deleteBook(id) {
+    return Book.findByIdAndDelete(id)
+}
 
 async function wishBook(bookId,userId) {
     const book = await Book.findById(bookId);
@@ -49,6 +51,6 @@ module.exports = {
     getBookByID,
     getAllBooks,
     wishBook,
-    // editAd,
-    // deleteAd
+    editBook,
+    deleteBook
 }
