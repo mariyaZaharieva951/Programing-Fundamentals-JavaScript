@@ -137,7 +137,6 @@ routes.get('/edit/:id', isUser(), async (req,res) => {
 routes.post('/edit/:id', isUser(), async (req,res) => {
     try {
         const book = await getBookByID(req.params.id);
-        console.log(book)
         if(book.owner != req.user._id) {
             throw new Error('Cannot edit book you haven\'t created!')
         }
