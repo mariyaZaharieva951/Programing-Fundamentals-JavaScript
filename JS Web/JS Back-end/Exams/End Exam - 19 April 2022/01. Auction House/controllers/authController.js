@@ -14,8 +14,8 @@ routes.get('/register', isGuest(), (req,res) => {
 
 routes.post('/register', isGuest(), async (req,res) => {
     try {
-        const {username,email, password} = req.body;
-        if( username == '' || email == '' || password == '') {
+        const {email, firstName, lastName, password} = req.body;
+        if( email == '' || firstName == '' || lastName == '' || password == '') {
             throw new Error('All fields are required!');
         }
         
@@ -23,12 +23,12 @@ routes.post('/register', isGuest(), async (req,res) => {
             throw new Error('Password don\'t match!' );
         }
 
-        // const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        // if(!email.match(mailformat)) {
-        //     throw new Error('You have entered an invalid email address!');
-        // }
+        const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(!email.match(mailformat)) {
+            throw new Error('You have entered an invalid email address!');
+        }
 
-        const token = await register(username,email,password);    
+        const token = await register(email, firstName, lastName, password);    
        
         res.cookie('token', token);
         
@@ -54,9 +54,9 @@ routes.get('/login', isGuest(), (req,res) => {
 
 routes.post('/login', isGuest(), async (req,res) => {
     try {
-        const {username, password} = req.body;
+        const {email, password} = req.body;
 
-        const token = await login(username,password);    
+        const token = await login(email,password);    
         res.cookie('token', token);
         res.redirect('/');
     } catch(err) {
