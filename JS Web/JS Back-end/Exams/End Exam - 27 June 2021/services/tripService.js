@@ -37,8 +37,8 @@ async function editTrip(id, tripData) {
     trip.time = tripData.time;
     trip.carImage = tripData.carImage;
     trip.carBrand = tripData.carBrand;
-    trip.seats = tripData.seats;
-    trip.price = tripData.price;
+    trip.seats = Number(tripData.seats);
+    trip.price = Number(tripData.price);
     trip.description = tripData.description;
     
     

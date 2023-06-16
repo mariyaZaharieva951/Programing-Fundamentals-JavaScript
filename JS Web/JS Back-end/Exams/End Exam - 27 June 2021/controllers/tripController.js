@@ -1,5 +1,5 @@
 const { isUser } = require('../middlewares/guards');
-const { getAllTrips, createTrip, deleteTrip, getTripByID, buddiesJoin } = require('../services/tripService');
+const { getAllTrips, createTrip, deleteTrip, getTripByID, buddiesJoin, editTrip } = require('../services/tripService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -72,7 +72,7 @@ routes.get('/details/:id', async (req,res) => {
     trip.freeSeats = trip.seats != 0;
     trip.AllBuddies = trip.buddies.map(b => b.email).join(', ');
 
-    //console.log(trip.buddies)
+    
     res.render('details', {trip})
     } catch(err) {
         console.log(err.message)
@@ -124,41 +124,41 @@ routes.get('/delete/:id', isUser(), async (req,res) => {
 });
 
 
-// routes.get('/edit/:id', isUser(), async (req,res) => {
-//     try {
-//         const photo = await getPhotoByID(req.params.id);
+routes.get('/edit/:id', isUser(), async (req,res) => {
+    try {
+        const trip = await getTripByID(req.params.id);
         
-//         if(photo.owner._id != req.user._id) {
-//             throw new Error('Cannot edit photo you haven\'t created!')
-//         }
+        if(trip.creator._id != req.user._id) {
+            throw new Error('Cannot edit trip you haven\'t created!')
+        }
         
-//         res.render('edit', {photo})
-//     } catch(err) {
-//         console.log(err.message);
-//         res.redirect('/photo/details/' + req.params.id)
-//     }
-// });
+        res.render('edit', {trip})
+    } catch(err) {
+        console.log(err.message);
+        res.redirect('/trip/details/' + req.params.id)
+    }
+});
 
-// routes.post('/edit/:id', isUser(), async (req,res) => {
-//     try {
-//         const photo = await getPhotoByID(req.params.id);
-//         if(photo.owner._id != req.user._id) {
-//             throw new Error('Cannot edit ad you haven\'t created!')
-//         }
-//         await editPhoto(req.params.id, req.body);
-//         res.redirect('/photo/details/' + req.params.id)
-//     } catch(error) {
-//        // console.log(req.params.id)
-//         const errors = parseError(error);
-//         console.error(error.message);
-//         res.redirect('/photo/edit/' + req.params.id, {
-//         title: 'Edit page',
-//         errors,
-//         body: {
-//             username: req.body.username
-//         }
-//     })
-//     };
-// });
+routes.post('/edit/:id', isUser(), async (req,res) => {
+    try {
+        const trip = await getTripByID(req.params.id);
+        if(trip.creator._id != req.user._id) {
+            throw new Error('Cannot edit trip you haven\'t created!')
+        }
+        await editTrip(req.params.id, req.body);
+        res.redirect('/trip/catalog')
+    } catch(error) {
+       // console.log(req.params.id)
+        const errors = parseError(error);
+        console.error(error.message);
+        res.redirect('/trip/edit' + req.params.id, {
+        title: 'Edit page',
+        errors,
+        body: {
+            username: req.body.username
+        }
+    })
+    };
+});
 
 module.exports = routes;
