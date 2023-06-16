@@ -6,8 +6,8 @@
                     {{auction.title}}
                     {{#if auction.isAuthor}}
                     <div class="f-right">
-                        <a class="action pad-small f-left" href="#">Edit</a>
-                        <a class="action pad-small f-left" href="#">Delete</a>
+                        <a class="action pad-small f-left" href="/auction/edit/{{auction._id}}">Edit</a>
+                        <a class="action pad-small f-left" href="/auction/delete/{{auction._id}}">Delete</a>
                     </div>
                     {{/if}}
                 </h1>

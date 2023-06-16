@@ -1,5 +1,5 @@
 const { isUser } = require('../middlewares/guards');
-const { getAllAuctions, createAuction, getAuctionByID, bidderAuction, getAuction } = require('../services/auctionService');
+const { getAllAuctions, createAuction, getAuctionByID, bidderAuction, getAuction, editAuction, deleteAuction } = require('../services/auctionService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -17,7 +17,7 @@ routes.post('/create', isUser(), async (req,res) => {
         category: req.body.category,
         imageUrl: req.body.imageUrl,
         price: req.body.price,
-        // author: req.user._id,
+        author: req.user._id,
         // bidder
         
     }
@@ -60,7 +60,7 @@ routes.get('/browse', async(req,res) => {
 routes.get('/details/:id', async (req,res) => {
     try {
     const auction = await getAuction(req.params.id);
-   
+        console.log(auction)
         
     auction.hasUser = Boolean(req.user);
     auction.isAuthor = req.user && req.user._id == auction.author._id;
@@ -102,17 +102,17 @@ routes.post('/bid/:id', isUser(), async (req,res) => {
 
 routes.get('/delete/:id', isUser(), async (req,res) => {
     try {
-        const photo = await getPhotoByID(req.params.id);
+        const auction = await getAuctionByID(req.params.id);
         
-        if(photo.owner._id != req.user._id) {
+        if(auction.author._id != req.user._id) {
             throw new Error('Cannot delete photo you haven\'t created!')
         }
-        await deletePhoto(req.params.id);
-        res.redirect('/photo/catalog');
+        await deleteAuction(req.params.id);
+        res.redirect('/auction/browse');
     } catch(err) {
         console.log(err.message);
         res.render('details', {
-            error: 'Can\`t delete photo!'
+            error: 'Can\`t delete auction!'
         })
     }
 });
@@ -120,32 +120,32 @@ routes.get('/delete/:id', isUser(), async (req,res) => {
 
 routes.get('/edit/:id', isUser(), async (req,res) => {
     try {
-        const photo = await getPhotoByID(req.params.id);
+        const auction = await getAuctionByID(req.params.id);
         
-        if(photo.owner._id != req.user._id) {
-            throw new Error('Cannot edit photo you haven\'t created!')
+        if(auction.author._id != req.user._id) {
+            throw new Error('Cannot edit auction you haven\'t created!')
         }
         
-        res.render('edit', {photo})
+        res.render('edit', {auction})
     } catch(err) {
         console.log(err.message);
-        res.redirect('/photo/details/' + req.params.id)
+        res.redirect('/auction/details/' + req.params.id)
     }
 });
 
 routes.post('/edit/:id', isUser(), async (req,res) => {
     try {
-        const photo = await getPhotoByID(req.params.id);
-        if(photo.owner._id != req.user._id) {
-            throw new Error('Cannot edit ad you haven\'t created!')
+        const auction = await getAuctionByID(req.params.id);
+        if(auction.author._id != req.user._id) {
+            throw new Error('Cannot edit auction you haven\'t created!')
         }
-        await editPhoto(req.params.id, req.body);
-        res.redirect('/photo/details/' + req.params.id)
+        await editAuction(req.params.id, req.body);
+        res.redirect('/auction/details/' + req.params.id)
     } catch(error) {
        // console.log(req.params.id)
         const errors = parseError(error);
         console.error(error.message);
-        res.redirect('/photo/edit/' + req.params.id, {
+        res.redirect('/auction/edit/' + req.params.id, {
         title: 'Edit page',
         errors,
         body: {
