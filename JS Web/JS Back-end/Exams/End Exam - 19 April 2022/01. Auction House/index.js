@@ -13,5 +13,5 @@ async function start() {
     await databaseConfig(app);
     routesConfig(app);
 
-    app.listen(5000, () => console.log('Server listening on port 3000'))
+    app.listen(5000, () => console.log('Server listening on port 5000'))
 }

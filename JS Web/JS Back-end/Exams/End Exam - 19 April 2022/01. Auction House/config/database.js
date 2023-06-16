@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CONNECTION_STRING = 'mongodb://127.0.0.1:27017/pets'
+const CONNECTION_STRING = 'mongodb://127.0.0.1:27017/auctions'
 
 module.exports = async (app) => {
     try {
