@@ -1,12 +1,12 @@
 const homeController = require('../controllers/homeController');
 const authContoller = require('../controllers/authController');
-// const photoController = require('../controllers/photoController');
+const tripController = require('../controllers/tripController');
 
 
 module.exports = (app) => {
     app.use('/', homeController);
     app.use('/auth', authContoller);
-    // app.use('/photo', photoController);
+    app.use('/trip', tripController);
 
 
 }
