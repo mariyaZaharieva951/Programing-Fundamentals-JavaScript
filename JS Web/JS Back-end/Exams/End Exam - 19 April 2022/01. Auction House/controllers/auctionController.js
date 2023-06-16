@@ -1,5 +1,5 @@
 const { isUser } = require('../middlewares/guards');
-const { getAllAuctions, createAuction, getAuctionByID } = require('../services/auctionService');
+const { getAllAuctions, createAuction, getAuctionByID, bidderAuction, getAuction } = require('../services/auctionService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -17,8 +17,8 @@ routes.post('/create', isUser(), async (req,res) => {
         category: req.body.category,
         imageUrl: req.body.imageUrl,
         price: req.body.price,
-        author: req.user._id,
-        bidder: []
+        // author: req.user._id,
+        // bidder
         
     }
     const imageValidation = /https?:\/\//;
@@ -59,16 +59,15 @@ routes.get('/browse', async(req,res) => {
 
 routes.get('/details/:id', async (req,res) => {
     try {
-    const auction = await getAuctionByID(req.params.id);
+    const auction = await getAuction(req.params.id);
    
         
     auction.hasUser = Boolean(req.user);
-    auction.isAuthor = req.user && req.user._id == auction.owner._id;
+    auction.isAuthor = req.user && req.user._id == auction.author._id;
 
-    //photo.comments = req.user && photo.users.find(u => (u._id).toString() == req.user._id);
+    //auction.bidd = req.user && auction.bidder.find(u => u._id == req.user._id);
     
-    
-    res.render('details', {photo: auction})
+    res.render('details', {auction})
     } catch(err) {
         console.log(err.message)
             res.redirect('/404')
@@ -76,18 +75,18 @@ routes.get('/details/:id', async (req,res) => {
     }  
 });
 
-routes.post('/comment/:id', isUser(), async (req,res) => {
+routes.post('/bid/:id', isUser(), async (req,res) => {
     try {
-        const photo = await getPhotoByID(req.params.id);
+        const auction = await getAuction(req.params.id);
         const user = req.user._id
-        const {comment} = req.body
-        
-        if(photo.owner._id == req.user._id) {
-            throw new Error('Cannot comment your own photo!')
+        const {price} = req.body
+        //console.log(auction)
+        if(auction.author._id == req.user._id) {
+            throw new Error('Cannot bidd your own auction!')
         }
 
-        await commentPhoto(req.params.id,{user, comment});
-        res.redirect('/photo/details/' + req.params.id);
+        await bidderAuction(req.params.id,user, price);
+        res.redirect('/auction/details/' + req.params.id);
     } catch(err) {
         const errors = parseError(err);
         console.log(err.message);

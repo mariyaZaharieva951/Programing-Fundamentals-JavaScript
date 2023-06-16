@@ -8,7 +8,7 @@ const schema = new Schema({
     imageUrl: {type: String, required: true},
     price: {type: Number, required: true,  min: 1},
     author: {type: Schema.Types.ObjectId, ref: 'User'},
-    bidder: [{type: Schema.Types.ObjectId, ref: 'User', default: []}],
+    bidder: {type: Schema.Types.ObjectId, ref: 'User'}
     
 });
 

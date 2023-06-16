@@ -14,11 +14,11 @@ async function getAuctionByID(id) {
     return auction;
 }
 
-// async function getPhoto(id) {
-//     const auction = await Photo.findById(id).populate('owner').populate('commentList.user').lean();
+async function getAuction(id) {
+    const auction = await Auction.findById(id).populate('bidder').lean();
     
-//     return auction;
-// }
+    return auction;
+}
 
 async function getAllAuctions() {
     const auctions = await Auction.find({}).lean();
@@ -45,19 +45,24 @@ async function deleteAuction(id) {
     return Auction.findByIdAndDelete(id)
 }
 
-// async function commentPhoto(photoId,dataComment) {
-//     const photo = await Photo.findById(photoId);
-    
-//     photo.commentList.push(dataComment);
+async function bidderAuction(auctionId, userId, price) {
+    const auction = await Auction.findById(auctionId);
+    if(auction.price < Number(price)) {
+        auction.bidder = userId;
+        auction.price = price
+    } else {
+        throw new Error('Your bid should no higher then the price!')
+    }
 
-//     return photo.save();
-// }
+    return auction.save();
+}
 
 module.exports = {
     createAuction,
     getAuctionByID,
     getAllAuctions,
-    //commentPhoto,
+    getAuction,
+    bidderAuction,
     editAuction,
     deleteAuction
 }
