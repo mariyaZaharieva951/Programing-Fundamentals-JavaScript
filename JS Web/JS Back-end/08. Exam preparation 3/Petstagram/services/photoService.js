@@ -14,6 +14,12 @@ async function getPhotoByID(id) {
     return photo;
 }
 
+async function getPhoto(id) {
+    const photo = await Photo.findById(id).populate('owner').populate('commentList.user').lean();
+    
+    return photo;
+}
+
 async function getAllPhotos() {
     const photos = await Photo.find({}).populate('owner').lean();
     
@@ -25,10 +31,12 @@ async function getAllPhotos() {
 async function editPhoto(id, photoData) {
     const photo = await Photo.findById(id);
 
-    photo.headline = photoData.headline;
+    photo.name = photoData.name;
+    photo.image = photoData.image;
+    photo.age = photoData.age;
+    photo.description = photoData.description;
     photo.location = photoData.location;
-    photo.companyName = photoData.companyName;
-    photo.companyDescription = photoData.companyDescription;
+    
     
     return photo.save();
 }
@@ -41,13 +49,14 @@ async function commentPhoto(photoId,dataComment) {
     const photo = await Photo.findById(photoId);
     
     photo.commentList.push(dataComment);
-    console.log(photo)
+
     return photo.save();
 }
 
 module.exports = {
     createPhoto,
     getPhotoByID,
+    getPhoto,
     getAllPhotos,
     commentPhoto,
     editPhoto,
