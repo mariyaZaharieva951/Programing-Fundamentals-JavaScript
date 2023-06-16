@@ -1,5 +1,5 @@
 const { isUser } = require('../middlewares/guards');
-const { getAllPhotos, createPhoto, getPhotoByID, commentPhoto, getPhoto, deletePhoto, editPhoto } = require('../services/photoService');
+const { getAllAuctions, createAuction, getAuctionByID } = require('../services/auctionService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -11,27 +11,27 @@ routes.get('/create', isUser(), (req,res) => {
 
 routes.post('/create', isUser(), async (req,res) => {
    try {
-    const photoData = {
-        name: req.body.name,
-        image: req.body.image,
-        age: req.body.age,
+    const auctionData = {
+        title: req.body.title,
         description: req.body.description,
-        location: req.body.location,
-        commentList: [],
-        owner: req.user._id
+        category: req.body.category,
+        imageUrl: req.body.imageUrl,
+        price: req.body.price,
+        author: req.user._id,
+        bidder: []
+        
     }
-
     const imageValidation = /https?:\/\//;
-        if(!req.body.image.match(imageValidation)) {
+        if(!req.body.imageUrl.match(imageValidation)) {
             throw new Error('You have entered an invalid image address!');
         }
     
-    const photo = await createPhoto(photoData);
+    const auction = await createAuction(auctionData);
     
 
     //user.myAds.push(photo._id)
     
-    res.redirect('/photo/catalog')
+    res.redirect('/auction/browse')
 
    } catch(error) {
     const errors = parseError(error);
@@ -46,29 +46,29 @@ routes.post('/create', isUser(), async (req,res) => {
    }
 });
 
-routes.get('/catalog', async(req,res) => {
-    const photos = await getAllPhotos();
+routes.get('/browse', async(req,res) => {
+    const auctions = await getAllAuctions();
     
 
-    res.render('catalog', {
-        title: 'Catalog page',
-        photos
+    res.render('browse', {
+        title: 'Browse page',
+        auctions
     });
 });
 
 
 routes.get('/details/:id', async (req,res) => {
     try {
-    const photo = await getPhoto(req.params.id);
+    const auction = await getAuctionByID(req.params.id);
    
         
-    photo.hasUser = Boolean(req.user);
-    photo.isAuthor = req.user && req.user._id == photo.owner._id;
+    auction.hasUser = Boolean(req.user);
+    auction.isAuthor = req.user && req.user._id == auction.owner._id;
 
     //photo.comments = req.user && photo.users.find(u => (u._id).toString() == req.user._id);
     
     
-    res.render('details', {photo})
+    res.render('details', {photo: auction})
     } catch(err) {
         console.log(err.message)
             res.redirect('/404')
