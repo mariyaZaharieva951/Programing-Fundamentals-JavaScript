@@ -11,6 +11,7 @@ routes.get('/create', isUser(), (req,res) => {
 });
 
 routes.post('/create', isUser(), async (req,res) => {
+    console.log(req.user)
    try {
     const productData = {
         title: req.body.title,
@@ -19,18 +20,19 @@ routes.post('/create', isUser(), async (req,res) => {
         date: req.body.date,
         image: req.body.image,
         description: req.body.description,
-        author: req.user._id,
+        author: req.user._id, 
         votes: [],
         rating: 0  
     }
-    console.log(req.body)
+    
+    //console.log(req.body)
     // const imageValidation = /https?:\/\//;
     //     if(!req.body.imageUrl.match(imageValidation)) {
     //         throw new Error('You have entered an invalid image address!');
     //     }
     //const user = await getUser(req.user._id);
 
-    const product = await createProduct (productData);
+    const product = await createProduct(productData);
 
     // console.log(product);
     // console.log(user);
@@ -67,17 +69,24 @@ routes.get('/catalog', async(req,res) => {
 routes.get('/details/:id', async (req,res) => {
     try {
     const product = await getProductByID(req.params.id);
-        
+       // console.log(product)
         
     product.hasUser = Boolean(req.user);
     product.isAuthor = req.user && req.user._id == product.author._id;
     
-    product.isUsers = req.user && product.users.find(u => u._id == req.user._id);
+    product.isVotes = req.user && product.votes.find(u => u._id == req.user._id);
     
     res.render('details', {product})
     } catch(err) {
-        console.log(err.message)
-            res.redirect('/404')
+        const errors = parseError(err);
+        console.log(err.message);
+        res.render('details', {
+            title: 'Details page',
+            errors,
+            body: {
+                username: req.body.username
+            } 
+        })
         
     }  
 });

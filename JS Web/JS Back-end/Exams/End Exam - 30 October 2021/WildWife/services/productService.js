@@ -2,30 +2,23 @@ const Product = require('../models/Product');
 
 
 async function createProduct(productData) {
+
     const product = await Product.create(productData);
     product.save();
-
     return product;
 }
 
 async function getProductByID(id) {
-    const product = await Product.findById(id).populate('author').lean();
-    
+    const product = await Product.findById(id).lean();
     return product;
 }
 
-// async function getAuction(id) {
-//     const auction = await Product.findById(id).populate('bidder').lean();
-    
-//     return auction;
-// }
 
 async function getAllProducts() {
     const products = await Product.find({}).lean();
     
     return products;
 }
-
 
 
 async function editProduct(id, productData) {
