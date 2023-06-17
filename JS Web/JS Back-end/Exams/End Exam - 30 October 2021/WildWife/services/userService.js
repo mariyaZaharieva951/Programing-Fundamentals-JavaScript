@@ -6,18 +6,19 @@ const JWT_SECRET = 'brbr5184635brbr'
 
 
 
-async function register(username, password, adress) {
-        const existingUsername = await User.findOne({username})
+async function register(firstName, lastName, email, password) {
+        const existingEmail = await User.findOne({email})
     
-        if(existingUsername) {
-            throw new Error('Username is taken');
+        if(existingEmail) {
+            throw new Error('Email is taken');
         }
         const hashedPassword = await bcrypt.hash(password,10)
     
         const user = await User.create({
-            username,  
-            hashedPassword,
-            adress
+            firstName, 
+            lastName, 
+            email, 
+            hashedPassword
         });
         await user.save()
         const token = createSession(user);

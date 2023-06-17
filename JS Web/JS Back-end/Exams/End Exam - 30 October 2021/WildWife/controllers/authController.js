@@ -15,8 +15,8 @@ routes.get('/register', isGuest(), (req,res) => {
 
 routes.post('/register', isGuest(), async (req,res) => {
     try {
-        const {username, password, adress} = req.body;
-        if( username == '' || password == '' || adress == '') {
+        const {firstName, lastName, email, password} = req.body;
+        if( firstName == '' || lastName == '' || email == '' || password == '') {
             throw new Error('All fields are required!');
         }
         
@@ -29,7 +29,7 @@ routes.post('/register', isGuest(), async (req,res) => {
         //     throw new Error('You have entered an invalid email address!');
         // }
 
-        const token = await register(username,password,adress);    
+        const token = await register(firstName, lastName, email, password);    
        
         res.cookie('token', token);
         
