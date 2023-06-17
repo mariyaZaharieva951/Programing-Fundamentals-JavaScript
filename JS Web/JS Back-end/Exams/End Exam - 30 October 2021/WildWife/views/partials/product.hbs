@@ -1,10 +1,11 @@
-<article class="card-info">
-                        <article class="card-info-image">
-                            <img src="{{picture}}" alt="art-image">
-                        </article>
-                        <article class="card-info-text">
-                            <h2>Title: {{title}}</h2>
-                            <h3>Certificate of authenticity: {{certificate}}</h3>
-                            <a href="/product/details/{{_id}}" class="details-btn">Details</a>
-                        </article>
-                    </article>
+<div class="flip flip-vertical">
+                        <div class="front">
+                            <img src="{{image}}" alt="image_nature_1">
+                            <h1 class="text-shadow">Keyword: Mountain</h1>
+                        </div>
+                        <div class="back">
+                            <h2>{{title}}</h2>
+                            <p>Description: {{description}}</p>
+                            <a href="/product/details/{{_id}}" class="details">Details</a>
+                        </div>
+                    </div>

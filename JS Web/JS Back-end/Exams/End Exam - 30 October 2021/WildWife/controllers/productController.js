@@ -14,22 +14,27 @@ routes.post('/create', isUser(), async (req,res) => {
    try {
     const productData = {
         title: req.body.title,
-        technique: req.body.technique,
-        picture: req.body.picture,
-        certificate: req.body.certificate,
+        keyword: req.body.keyword,
+        location: req.body.location,
+        date: req.body.date,
+        image: req.body.image,
+        description: req.body.description,
         author: req.user._id,
-        users: []
-        
+        votes: [],
+        rating: 0  
     }
+    console.log(req.body)
     // const imageValidation = /https?:\/\//;
     //     if(!req.body.imageUrl.match(imageValidation)) {
     //         throw new Error('You have entered an invalid image address!');
     //     }
-    const user = await getUser(req.user._id);
+    //const user = await getUser(req.user._id);
+
     const product = await createProduct (productData);
+
     // console.log(product);
     // console.log(user);
-    await addShare(product._id, user._id)
+    //await addShare(product._id, user._id)
 
     //user.myAds.push(photo._id)
     
