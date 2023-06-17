@@ -43,8 +43,6 @@ async function login(username, password) {
         return token;
 }
     
-
-
 function createSession(user) {
     const {_id,username } = user;
     const payload = {
@@ -64,9 +62,26 @@ async function getUserById(id) {
     return user;
 }
 
+async function getUser(id) {
+    let user = await User.findById(id).populate('myPublications').lean();
+    return user;
+}
+
+async function addShare(productId, userId) {
+    let user = await User.findById(userId);
+    //console.log('USER', user)
+    user.myPublications.push(productId);
+    //console.log('AFTER',user)
+    await user.save()
+    return user;
+}
+
+
 module.exports = {
     register,
     login,
     verifyToken,
-    getUserById
+    getUserById,
+    getUser,
+    addShare
 }

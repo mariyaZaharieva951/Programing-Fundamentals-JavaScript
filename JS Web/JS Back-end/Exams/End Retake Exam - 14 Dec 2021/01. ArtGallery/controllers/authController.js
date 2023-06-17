@@ -1,6 +1,7 @@
 
-const { isGuest } = require('../middlewares/guards');
-const { register,login} = require('../services/userService');
+const { isGuest, isUser } = require('../middlewares/guards');
+const { getProductByID } = require('../services/productService');
+const { register,login, getUserById, getUser} = require('../services/userService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -78,6 +79,35 @@ routes.get('/logout', (req,res) => {
     res.redirect('/');
 });
 
+routes.get('/profile', isUser(), async (req,res) => {
+    try {
+        const user = await getUser(req.user._id);
+        
+        const pubs = user.myPublications.length > 0 ? true: false;
+        const allPubs = user.myPublications.map(p => p.title).join(', ');
+        
+       // const isShared = product.users.find(u => u._id == user._id);
+        console.log(product)
+        // if(product.author._id != req.user._id) {
+        //     throw new Error('Cannot edit auction you haven\'t created!')
+        // }
+        //await editProduct(req.params.id, req.body);
+        res.render('profile', {
+            user, pubs, allPubs
+        })
+    } catch(error) {
+       // console.log(req.params.id)
+        const errors = parseError(error);
+        console.error(error.message);
+        res.redirect('/auth/profile', {
+        title: 'Profil page',
+        errors,
+        body: {
+            username: req.body.username
+        }
+    })
+    };
+});
 
 
 

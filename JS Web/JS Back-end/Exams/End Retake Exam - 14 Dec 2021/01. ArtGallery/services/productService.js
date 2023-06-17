@@ -57,6 +57,9 @@ async function productShare(productId, userId) {
     return product.save();
 }
 
+
+
+
 module.exports = {
     createProduct,
     getProductByID,

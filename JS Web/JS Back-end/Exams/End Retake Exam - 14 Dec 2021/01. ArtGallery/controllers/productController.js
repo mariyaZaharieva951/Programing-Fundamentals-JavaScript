@@ -1,5 +1,6 @@
 const { isUser } = require('../middlewares/guards');
 const { createProduct, getAllProducts, getProductByID, productShare, deleteProduct, editProduct } = require('../services/productService');
+const { addShare, getUserById, getUser } = require('../services/userService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -24,9 +25,11 @@ routes.post('/create', isUser(), async (req,res) => {
     //     if(!req.body.imageUrl.match(imageValidation)) {
     //         throw new Error('You have entered an invalid image address!');
     //     }
-    
+    const user = await getUser(req.user._id);
     const product = await createProduct (productData);
-    
+    // console.log(product);
+    // console.log(user);
+    await addShare(product._id, user._id)
 
     //user.myAds.push(photo._id)
     
@@ -79,11 +82,12 @@ routes.get('/share/:id', isUser(), async (req,res) => {
         const product = await getProductByID(req.params.id);
         const user = req.user._id
         //const {price} = req.body
-        console.log(product)
+        //console.log(product)
         if(product.author._id == req.user._id) {
             throw new Error('Cannot share your own art!')
         }
-
+        
+        
         await productShare(req.params.id,user);
         res.redirect('/');
     } catch(err) {
@@ -152,5 +156,7 @@ routes.post('/edit/:id', isUser(), async (req,res) => {
     })
     };
 });
+
+
 
 module.exports = routes;
