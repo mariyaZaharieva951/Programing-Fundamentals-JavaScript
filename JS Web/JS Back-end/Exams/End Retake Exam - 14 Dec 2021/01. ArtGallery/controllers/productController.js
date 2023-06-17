@@ -1,5 +1,5 @@
 const { isUser } = require('../middlewares/guards');
-const { createProduct, getAllProducts } = require('../services/productService');
+const { createProduct, getAllProducts, getProductByID, productShare } = require('../services/productService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -58,15 +58,15 @@ routes.get('/catalog', async(req,res) => {
 
 routes.get('/details/:id', async (req,res) => {
     try {
-    const auction = await getAuction(req.params.id);
-        console.log(auction)
+    const product = await getProductByID(req.params.id);
         
-    auction.hasUser = Boolean(req.user);
-    auction.isAuthor = req.user && req.user._id == auction.author._id;
-
-    //auction.bidd = req.user && auction.bidder.find(u => u._id == req.user._id);
+        
+    product.hasUser = Boolean(req.user);
+    product.isAuthor = req.user && req.user._id == product.author._id;
     
-    res.render('details', {auction})
+    product.isUsers = req.user && product.users.find(u => u._id == req.user._id);
+    console.log(product)
+    res.render('details', {product})
     } catch(err) {
         console.log(err.message)
             res.redirect('/404')
@@ -74,18 +74,18 @@ routes.get('/details/:id', async (req,res) => {
     }  
 });
 
-routes.post('/bid/:id', isUser(), async (req,res) => {
+routes.get('/share/:id', isUser(), async (req,res) => {
     try {
-        const auction = await getAuction(req.params.id);
+        const product = await getProductByID(req.params.id);
         const user = req.user._id
-        const {price} = req.body
-        //console.log(auction)
-        if(auction.author._id == req.user._id) {
-            throw new Error('Cannot bidd your own auction!')
+        //const {price} = req.body
+        console.log(product)
+        if(product.author._id == req.user._id) {
+            throw new Error('Cannot share your own art!')
         }
 
-        await bidderAuction(req.params.id,user, price);
-        res.redirect('/auction/details/' + req.params.id);
+        await productShare(req.params.id,user);
+        res.redirect('/product/details/' + req.params.id);
     } catch(err) {
         const errors = parseError(err);
         console.log(err.message);

@@ -9,7 +9,7 @@ async function createProduct(productData) {
 }
 
 async function getProductByID(id) {
-    const product = await Product.findById(id).lean();
+    const product = await Product.findById(id).populate('author').lean();
     
     return product;
 }
@@ -44,23 +44,24 @@ async function deleteProduct(id) {
     return Product.findByIdAndDelete(id)
 }
 
-// async function bidderAuction(auctionId, userId, price) {
-//     const auction = await Product.findById(auctionId);
-//     if(auction.price < Number(price)) {
-//         auction.bidder = userId;
-//         auction.price = price
-//     } else {
-//         throw new Error('Your bid should no higher then the price!')
-//     }
+async function productShare(productId, userId) {
+    const product = await Product.findById(productId);
+    //if(product.price < Number(price)) {
+        product.users.push(userId);
+        console.log(product.users)
+        //product.price = price
+   // } else {
+    //     throw new Error('Your bid should no higher then the price!')
+    // }
 
-//     return auction.save();
-// }
+    return product.save();
+}
 
 module.exports = {
     createProduct,
     getProductByID,
     getAllProducts,
-    //bidderAuction,
+    productShare,
     editProduct,
     deleteProduct
 }
