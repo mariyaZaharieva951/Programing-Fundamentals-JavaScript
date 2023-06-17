@@ -1,5 +1,5 @@
 const { isUser } = require('../middlewares/guards');
-const { createProduct, getAllProducts, getProductByID, productShare } = require('../services/productService');
+const { createProduct, getAllProducts, getProductByID, productShare, deleteProduct, editProduct } = require('../services/productService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -65,7 +65,7 @@ routes.get('/details/:id', async (req,res) => {
     product.isAuthor = req.user && req.user._id == product.author._id;
     
     product.isUsers = req.user && product.users.find(u => u._id == req.user._id);
-    console.log(product)
+    
     res.render('details', {product})
     } catch(err) {
         console.log(err.message)
@@ -85,7 +85,7 @@ routes.get('/share/:id', isUser(), async (req,res) => {
         }
 
         await productShare(req.params.id,user);
-        res.redirect('/product/details/' + req.params.id);
+        res.redirect('/');
     } catch(err) {
         const errors = parseError(err);
         console.log(err.message);
@@ -101,13 +101,13 @@ routes.get('/share/:id', isUser(), async (req,res) => {
 
 routes.get('/delete/:id', isUser(), async (req,res) => {
     try {
-        const auction = await getAuctionByID(req.params.id);
+        const product = await getProductByID(req.params.id);
         
-        if(auction.author._id != req.user._id) {
-            throw new Error('Cannot delete photo you haven\'t created!')
+        if(product.author._id != req.user._id) {
+            throw new Error('Cannot delete product you haven\'t created!')
         }
-        await deleteAuction(req.params.id);
-        res.redirect('/auction/browse');
+        await deleteProduct(req.params.id);
+        res.redirect('/product/catalog');
     } catch(err) {
         console.log(err.message);
         res.render('details', {
@@ -119,32 +119,31 @@ routes.get('/delete/:id', isUser(), async (req,res) => {
 
 routes.get('/edit/:id', isUser(), async (req,res) => {
     try {
-        const auction = await getAuctionByID(req.params.id);
+        const product = await getProductByID(req.params.id);
         
-        if(auction.author._id != req.user._id) {
-            throw new Error('Cannot edit auction you haven\'t created!')
+        if(product.author._id != req.user._id) {
+            throw new Error('Cannot edit product you haven\'t created!')
         }
-        
-        res.render('edit', {auction})
+        res.render('edit', {product})
     } catch(err) {
         console.log(err.message);
-        res.redirect('/auction/details/' + req.params.id)
+        res.redirect('/product/details/' + req.params.id)
     }
 });
 
 routes.post('/edit/:id', isUser(), async (req,res) => {
     try {
-        const auction = await getAuctionByID(req.params.id);
-        if(auction.author._id != req.user._id) {
+        const product = await getProductByID(req.params.id);
+        if(product.author._id != req.user._id) {
             throw new Error('Cannot edit auction you haven\'t created!')
         }
-        await editAuction(req.params.id, req.body);
-        res.redirect('/auction/details/' + req.params.id)
+        await editProduct(req.params.id, req.body);
+        res.redirect('/product/details/' + req.params.id)
     } catch(error) {
        // console.log(req.params.id)
         const errors = parseError(error);
         console.error(error.message);
-        res.redirect('/auction/edit/' + req.params.id, {
+        res.redirect('/product/edit/' + req.params.id, {
         title: 'Edit page',
         errors,
         body: {
