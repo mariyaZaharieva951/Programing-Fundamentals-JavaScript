@@ -81,8 +81,8 @@ routes.get('/share/:id', isUser(), async (req,res) => {
     try {
         const product = await getProductByID(req.params.id);
         const user = req.user._id
-        //const {price} = req.body
-        //console.log(product)
+        
+
         if(product.author._id == req.user._id) {
             throw new Error('Cannot share your own art!')
         }

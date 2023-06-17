@@ -1,6 +1,6 @@
 
 const { isGuest, isUser } = require('../middlewares/guards');
-const { getProductByID } = require('../services/productService');
+const { getProductByID, getAllProducts } = require('../services/productService');
 const { register,login, getUserById, getUser} = require('../services/userService');
 const { parseError } = require('../util/parser');
 
@@ -86,8 +86,8 @@ routes.get('/profile', isUser(), async (req,res) => {
         const pubs = user.myPublications.length > 0 ? true: false;
         const allPubs = user.myPublications.map(p => p.title).join(', ');
         
-       // const isShared = product.users.find(u => u._id == user._id);
-        console.log(product)
+        const products = await getAllProducts();
+        
         // if(product.author._id != req.user._id) {
         //     throw new Error('Cannot edit auction you haven\'t created!')
         // }

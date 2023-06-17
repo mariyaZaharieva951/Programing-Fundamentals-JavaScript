@@ -48,7 +48,7 @@ async function productShare(productId, userId) {
     const product = await Product.findById(productId);
     //if(product.price < Number(price)) {
         product.users.push(userId);
-        console.log(product.users)
+        //console.log(product.users)
         //product.price = price
    // } else {
     //     throw new Error('Your bid should no higher then the price!')
