@@ -41,7 +41,6 @@ async function editTrip(id, tripData) {
     trip.price = Number(tripData.price);
     trip.description = tripData.description;
     
-    
     return trip.save();
 }
 

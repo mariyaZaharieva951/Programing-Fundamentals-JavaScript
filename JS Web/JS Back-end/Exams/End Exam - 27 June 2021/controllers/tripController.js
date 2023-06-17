@@ -108,7 +108,7 @@ routes.get('/join/:id', isUser(), async (req,res) => {
 
 routes.get('/delete/:id', isUser(), async (req,res) => {
     try {
-        const trip = await getPhotoByID(req.params.id);
+        const trip = await getTripByID(req.params.id);
         
         if(trip.creator._id != req.user._id) {
             throw new Error('Cannot delete trip you haven\'t created!')
@@ -145,10 +145,11 @@ routes.post('/edit/:id', isUser(), async (req,res) => {
         if(trip.creator._id != req.user._id) {
             throw new Error('Cannot edit trip you haven\'t created!')
         }
+        
         await editTrip(req.params.id, req.body);
         res.redirect('/trip/catalog')
     } catch(error) {
-       // console.log(req.params.id)
+       
         const errors = parseError(error);
         console.error(error.message);
         res.redirect('/trip/edit' + req.params.id, {
