@@ -1,14 +1,15 @@
-//const { lastThreeAds, getAllAds } = require('../services/adService');
+
+const { getAllProducts } = require('../services/productService');
 
 const routes = require('express').Router();
 
 routes.get('/', async (req,res) => {
-    // const allAds = await getAllAds();
-    // const ads = allAds.slice(0,3);
+    const products = await getAllProducts();
+    //const ads = allAds.slice(0,3);
     
     res.render('home', {
         title: 'Home page',
-        
+        products
     });
 });
 

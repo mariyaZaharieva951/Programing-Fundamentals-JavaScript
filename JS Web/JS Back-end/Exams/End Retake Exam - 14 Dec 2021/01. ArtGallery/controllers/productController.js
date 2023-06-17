@@ -1,5 +1,5 @@
 const { isUser } = require('../middlewares/guards');
-const { getAllAuctions, createAuction, getAuctionByID, bidderAuction, getAuction, editAuction, deleteAuction } = require('../services/auctionService');
+const { createProduct, getAllProducts } = require('../services/productService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -11,27 +11,26 @@ routes.get('/create', isUser(), (req,res) => {
 
 routes.post('/create', isUser(), async (req,res) => {
    try {
-    const auctionData = {
+    const productData = {
         title: req.body.title,
-        description: req.body.description,
-        category: req.body.category,
-        imageUrl: req.body.imageUrl,
-        price: req.body.price,
+        technique: req.body.technique,
+        picture: req.body.picture,
+        certificate: req.body.certificate,
         author: req.user._id,
-        // bidder
+        users: []
         
     }
-    const imageValidation = /https?:\/\//;
-        if(!req.body.imageUrl.match(imageValidation)) {
-            throw new Error('You have entered an invalid image address!');
-        }
+    // const imageValidation = /https?:\/\//;
+    //     if(!req.body.imageUrl.match(imageValidation)) {
+    //         throw new Error('You have entered an invalid image address!');
+    //     }
     
-    const auction = await createAuction(auctionData);
+    const product = await createProduct (productData);
     
 
     //user.myAds.push(photo._id)
     
-    res.redirect('/auction/browse')
+    res.redirect('/product/catalog')
 
    } catch(error) {
     const errors = parseError(error);
@@ -46,13 +45,13 @@ routes.post('/create', isUser(), async (req,res) => {
    }
 });
 
-routes.get('/browse', async(req,res) => {
-    const auctions = await getAllAuctions();
+routes.get('/catalog', async(req,res) => {
+    const products = await getAllProducts();
     
 
-    res.render('browse', {
-        title: 'Browse page',
-        auctions
+    res.render('catalog', {
+        title: 'Catalog page',
+        products
     });
 });
 
