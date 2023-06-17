@@ -9,7 +9,7 @@ async function createProduct(productData) {
 }
 
 async function getProductByID(id) {
-    const product = await Product.findById(id).lean();
+    const product = await Product.findById(id).populate('votes').lean();
     return product;
 }
 
@@ -37,16 +37,19 @@ async function deleteProduct(id) {
     return Product.findByIdAndDelete(id)
 }
 
-async function productShare(productId, userId) {
+async function upVote(productId, userId) {
     const product = await Product.findById(productId);
-    //if(product.price < Number(price)) {
-        product.users.push(userId);
-        //console.log(product.users)
-        //product.price = price
-   // } else {
-    //     throw new Error('Your bid should no higher then the price!')
-    // }
+    
+    product.votes.push(userId);
+    product.rating++;
+    return product.save();
+}
 
+async function downVote(productId, userId) {
+    const product = await Product.findById(productId);
+    
+    product.votes.push(userId);
+    product.rating--;
     return product.save();
 }
 
@@ -57,7 +60,8 @@ module.exports = {
     createProduct,
     getProductByID,
     getAllProducts,
-    productShare,
+    upVote,
+    downVote,
     editProduct,
     deleteProduct
 }

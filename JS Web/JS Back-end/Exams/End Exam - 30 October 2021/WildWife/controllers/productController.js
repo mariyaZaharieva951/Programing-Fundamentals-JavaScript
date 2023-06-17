@@ -1,5 +1,5 @@
 const { isUser } = require('../middlewares/guards');
-const { createProduct, getAllProducts, getProductByID, productShare, deleteProduct, editProduct } = require('../services/productService');
+const { createProduct, getAllProducts, getProductByID, productShare, deleteProduct, editProduct, upVote } = require('../services/productService');
 const { addShare, getUserById, getUser } = require('../services/userService');
 const { parseError } = require('../util/parser');
 
@@ -69,13 +69,18 @@ routes.get('/catalog', async(req,res) => {
 routes.get('/details/:id', async (req,res) => {
     try {
     const product = await getProductByID(req.params.id);
-       // console.log(product)
-        
+       
     product.hasUser = Boolean(req.user);
     product.isAuthor = req.user && req.user._id == product.author._id;
-    
-    product.isVotes = req.user && product.votes.find(u => u._id == req.user._id);
-    
+    //product.isVotes = req.user && product.votes.find(u => u._id == req.user._id);
+    product.isVotes = product.votes.length > 0
+    product.AllVotesUsers = product.votes.map(v => v.email).join(', ')
+
+
+console.log(product)
+        
+
+
     res.render('details', {product})
     } catch(err) {
         const errors = parseError(err);
@@ -91,18 +96,40 @@ routes.get('/details/:id', async (req,res) => {
     }  
 });
 
-routes.get('/share/:id', isUser(), async (req,res) => {
+routes.get('/upVote/:id', isUser(), async (req,res) => {
     try {
         const product = await getProductByID(req.params.id);
-        const user = req.user._id
-        
+        const userId = req.user._id
 
         if(product.author._id == req.user._id) {
-            throw new Error('Cannot share your own art!')
+            throw new Error('Cannot vote your own art!')
         }
         
+        await upVote(req.params.id,userId);
+        res.redirect('/');
+    } catch(err) {
+        const errors = parseError(err);
+        console.log(err.message);
+        res.render('details', {
+            title: 'Details page',
+            errors,
+            body: {
+                username: req.body.username
+            } 
+        })
+    }
+}); 
+
+routes.get('/downVote/:id', isUser(), async (req,res) => {
+    try {
+        const product = await getProductByID(req.params.id);
+        const userId = req.user._id
+
+        if(product.author._id == req.user._id) {
+            throw new Error('Cannot vote your own art!')
+        }
         
-        await productShare(req.params.id,user);
+        await downVote(req.params.id,userId);
         res.redirect('/');
     } catch(err) {
         const errors = parseError(err);
