@@ -1,6 +1,6 @@
 const { isUser } = require('../middlewares/guards');
 const { createProduct, getAllProducts, getProductByID, productShare, deleteProduct, editProduct, upVote } = require('../services/productService');
-const { addShare, getUserById, getUser } = require('../services/userService');
+const { addShare, getUserById, getUser, addPost } = require('../services/userService');
 const { parseError } = require('../util/parser');
 
 const routes = require('express').Router();
@@ -33,7 +33,7 @@ routes.post('/create', isUser(), async (req,res) => {
     //const user = await getUser(req.user._id);
 
     const product = await createProduct(productData);
-
+    await addPost(req.params.id,product._id)
     // console.log(product);
     // console.log(user);
     //await addShare(product._id, user._id)

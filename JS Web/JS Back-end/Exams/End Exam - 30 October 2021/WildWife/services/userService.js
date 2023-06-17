@@ -64,14 +64,14 @@ async function getUserById(id) {
 }
 
 async function getUser(id) {
-    let user = await User.findById(id).populate('myPublications').lean();
+    let user = await User.findById(id).populate('myPosts').lean();
     return user;
 }
 
-async function addShare(productId, userId) {
+async function addPost(postId, userId) {
     let user = await User.findById(userId);
     //console.log('USER', user)
-    user.myPublications.push(productId);
+    user.myPosts.push(postId);
     //console.log('AFTER',user)
     await user.save()
     return user;
@@ -84,5 +84,5 @@ module.exports = {
     verifyToken,
     getUserById,
     getUser,
-    addShare
+    addPost
 }

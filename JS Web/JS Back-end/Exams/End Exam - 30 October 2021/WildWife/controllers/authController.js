@@ -79,21 +79,14 @@ routes.get('/logout', (req,res) => {
     res.redirect('/');
 });
 
-routes.get('/profile', isUser(), async (req,res) => {
+routes.get('/myPosts', isUser(), async (req,res) => {
     try {
-        const user = await getUser(req.user._id);
+        const user = await getUserById(req.user._id);
+        const myPosts = user.myPosts;
+        myPosts.author = `${user.firstName} ${user.lastName}`
         
-        const pubs = user.myPublications.length > 0 ? true: false;
-        const allPubs = user.myPublications.map(p => p.title).join(', ');
-        
-        const products = await getAllProducts();
-        
-        // if(product.author._id != req.user._id) {
-        //     throw new Error('Cannot edit auction you haven\'t created!')
-        // }
-        //await editProduct(req.params.id, req.body);
-        res.render('profile', {
-            user, pubs, allPubs
+        res.render('myPosts', {
+            user, myPosts
         })
     } catch(error) {
        // console.log(req.params.id)
