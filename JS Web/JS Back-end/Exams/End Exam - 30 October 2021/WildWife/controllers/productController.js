@@ -11,7 +11,7 @@ routes.get('/create', isUser(), (req,res) => {
 });
 
 routes.post('/create', isUser(), async (req,res) => {
-    console.log(req.user)
+    console.log('REQ',req.user)
    try {
     const productData = {
         title: req.body.title,
@@ -33,7 +33,7 @@ routes.post('/create', isUser(), async (req,res) => {
     //const user = await getUser(req.user._id);
 
     const product = await createProduct(productData);
-    await addPost(req.params.id,product._id)
+    await addPost(req.params.id,req.user._id)
     // console.log(product);
     // console.log(user);
     //await addShare(product._id, user._id)
@@ -69,7 +69,8 @@ routes.get('/catalog', async(req,res) => {
 routes.get('/details/:id', async (req,res) => {
     try {
     const product = await getProductByID(req.params.id);
-       
+    console.log(product)
+     console.log(req.user)  
     product.hasUser = Boolean(req.user);
     product.isAuthor = req.user && req.user._id == product.author._id;
     //product.isVotes = req.user && product.votes.find(u => u._id == req.user._id);

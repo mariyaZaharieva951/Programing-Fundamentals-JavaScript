@@ -70,7 +70,7 @@ async function getUser(id) {
 
 async function addPost(postId, userId) {
     let user = await User.findById(userId);
-    //console.log('USER', user)
+    console.log('USER', user)
     user.myPosts.push(postId);
     //console.log('AFTER',user)
     await user.save()
