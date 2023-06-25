@@ -23,7 +23,7 @@ export class ArticleComponent {
       this.articleDescLen = 0;
     }
 
-    readMore(): void{
+    readMore(): void {
       this.articleDescLen += this.symbols;
       if(this.articleDescLen >= this.articleDesc.length) {
         this.showHideBtn = true;
@@ -31,5 +31,20 @@ export class ArticleComponent {
       } else {
         this.descToShow = this.articleDesc.substring(0,this.articleDescLen)
       }
+    }
+
+    toggleImage(): void {
+      this.imageIsShow = !this.imageIsShow;
+      this.imageButtonTitle = this.imageButtonTitle === 'Show Image' ? 'Hide image' : "Show Image"
+      
+    }
+
+    hideDesc(): void {
+        this.descToShow = '';
+        this.articleDescLen = 0;
+        this.showHideBtn = false;
+        this.showReadMoreBtn = true;
+
+
     }
 }
