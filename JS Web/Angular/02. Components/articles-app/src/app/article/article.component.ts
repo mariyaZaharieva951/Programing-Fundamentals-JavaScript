@@ -17,8 +17,8 @@ export class ArticleComponent {
   showHideBtn: boolean = true;
   imageIsShow: boolean = false;
   imageButtonTitle: string = 'Show Image';
-
-    constructor() {
+   
+     constructor() {
       this.descToShow = '';
       this.articleDescLen = 0;
     }
@@ -47,4 +47,6 @@ export class ArticleComponent {
 
 
     }
+    
 }
+console.log('f')
