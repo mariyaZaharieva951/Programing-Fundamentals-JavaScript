@@ -5,7 +5,7 @@ import { Article } from '../models/article.model';
   selector: 'app-article',
   templateUrl: './article.component.html',
   styleUrls: ['./article.component.css']
-})
+})  
 
 export class ArticleComponent {
   private symbols: number = 250;
@@ -13,7 +13,7 @@ export class ArticleComponent {
   @Input() articleDesc!: string;
   descToShow: string;
   articleDescLen: number;
-  showReadMoreBtn: boolean = true;
+  showReadMoreBtn: boolean = true;  
   showHideBtn: boolean = true;
   imageIsShow: boolean = false;
   imageButtonTitle: string = 'Show Image';
