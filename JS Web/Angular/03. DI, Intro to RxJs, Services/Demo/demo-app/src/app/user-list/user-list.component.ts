@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { User } from '../type/User';
+import { User } from '../type/JsonPlaceholderUser';
 
 @Component({
   selector: 'app-user-list',

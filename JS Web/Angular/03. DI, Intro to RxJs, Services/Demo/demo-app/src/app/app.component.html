@@ -5,4 +5,9 @@
  <input #inputAge type="text" placeholder="age"/>
  <button (click)="userService.addUser(inputName,inputAge)">Add user</button> 
 </div>
-<app-user-list [users]="userService.users"/>
+<div *ngIf="isLoading">
+    <h3>Loading...</h3>
+</div>
+<div *ngIf="!isLoading">
+    <app-user-list [users]="appUsers"/>
+</div>
