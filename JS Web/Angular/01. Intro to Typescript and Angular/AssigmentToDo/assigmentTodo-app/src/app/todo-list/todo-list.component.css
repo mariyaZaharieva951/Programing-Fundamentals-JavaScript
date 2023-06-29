@@ -1,0 +1,63 @@
+.todolist {
+    padding: 20px 0;
+}
+
+.error-info {
+    margin-top: 20px;
+    color: var(--dark-blue);
+}
+
+.tools {
+    display: inline-block;
+}
+
+.edit {
+    font-weight: bold;
+    color: rgb(15, 179, 69);
+}
+
+.delete {
+    color: tomato;
+}
+
+.complete {
+    color: var(--light-blue);
+}
+.fas {
+	pointer-events: none;
+}
+
+.todolist h3 {
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.todolist li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px;
+    padding-left: 20px;
+    text-align: left;
+    list-style: none;
+    background-color: var(--light);
+}
+
+.tools button {
+    padding: 15px 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+.tools button:hover {
+    background-color: #ddd;
+}
+
+.completed {
+    font-size: 12px;
+    color: var(--light-dark);
+    text-decoration: line-through;
+    font-style: italic;
+}
