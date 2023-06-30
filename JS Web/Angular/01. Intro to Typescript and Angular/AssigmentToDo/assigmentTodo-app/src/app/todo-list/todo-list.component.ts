@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Todo } from '../interfaces/todoModel';
 
 @Component({
   selector: 'app-todo-list',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent {
+    @Input() data!: Todo[];
+    //@Output() aditEvent = new EventEmitter<{name: string}>;
+
 
 }

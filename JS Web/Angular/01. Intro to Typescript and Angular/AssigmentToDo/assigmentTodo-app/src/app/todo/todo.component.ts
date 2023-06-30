@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Todo } from '../interfaces/todoModel';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-todo',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent {
-
+  @Input() todo: Todo | undefined = undefined;
+  
+  constructor(private data: DataService) {
+    
+  }
 }

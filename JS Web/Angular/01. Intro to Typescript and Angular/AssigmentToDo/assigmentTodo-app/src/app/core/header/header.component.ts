@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Todo } from 'src/app/interfaces/todoModel';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+   
+  constructor() {
 
+  }
+
+  addTodo(inputElement: HTMLInputElement): void {
+    if(inputElement.value != '') {
+     
+    } else {
+      console.log('The field is emty!')
+    }
+  }
 }
