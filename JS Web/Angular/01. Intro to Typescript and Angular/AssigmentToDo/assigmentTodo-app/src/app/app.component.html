@@ -1,15 +1,7 @@
 
 
-<app-main></app-main>
+<app-main (editEvent)="showEdit($event)"></app-main>
 
-<!-- <div class="popup">
-  <h3>Edit your todo:</h3>
-  <div class="popup-body">
-      <p class="popup-info"></p>
-      <input type="text" class="popup-input" placeholder="Wprowadź nową treść zadania...">
-      <button class="popup-btn accept">Update</button>
-      <button class="popup-btn cancel">Cancel</button>
-  </div>
-</div> -->
+<app-edit *ngIf="isTodoEdit" [todo]="todoToEdit" (deleteEdit)="hideEdit()"></app-edit>
 
 <app-footer></app-footer>

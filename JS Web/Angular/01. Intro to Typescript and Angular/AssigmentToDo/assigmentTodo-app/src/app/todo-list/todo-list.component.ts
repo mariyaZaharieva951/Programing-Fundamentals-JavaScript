@@ -8,7 +8,10 @@ import { Todo } from '../interfaces/todoModel';
 })
 export class TodoListComponent {
     @Input() data!: Todo[];
-    //@Output() aditEvent = new EventEmitter<{name: string}>;
+    @Output() editEvent = new EventEmitter<{name: string}>;
 
+    editTodo(todo: {name:string}): void {
+      this.editEvent.emit(todo)
+    }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Todo } from '../interfaces/todoModel';
 import { DataService } from '../data.service';
 
@@ -9,8 +9,12 @@ import { DataService } from '../data.service';
 })
 export class TodoComponent {
   @Input() todo: Todo | undefined = undefined;
-  
+  @Output() editEvent = new EventEmitter<{name:string}>
   constructor(private data: DataService) {
     
+  }
+
+  editTodo(): void {
+    this.editEvent.emit(this.todo)
   }
 }

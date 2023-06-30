@@ -1,6 +1,6 @@
 <div class="todo">
-    <app-header></app-header>
-   <app-todo-list [data]="todos">
+    <app-header (inputEvent)="addTodo($event)" ></app-header>
+   <app-todo-list [data]="todos" (editEvent)="editTodo($event)">
     
    </app-todo-list>
 </div>

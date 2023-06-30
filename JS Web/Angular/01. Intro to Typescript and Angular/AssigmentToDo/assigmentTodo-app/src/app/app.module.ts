@@ -8,13 +8,15 @@ import { TodoComponent } from './todo/todo.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { DataService } from './data.service';
 import { MainComponent } from './main/main.component';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoComponent,
     TodoListComponent,
-    MainComponent
+    MainComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
