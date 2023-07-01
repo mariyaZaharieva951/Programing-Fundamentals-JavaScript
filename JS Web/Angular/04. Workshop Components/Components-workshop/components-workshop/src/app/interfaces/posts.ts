@@ -1,6 +1,6 @@
 import { UserId } from "./user"
 
-export interface Posts {likes: string[],
+export interface Post {likes: string[],
   _id: string,
   text: string,
   userId: UserId,
