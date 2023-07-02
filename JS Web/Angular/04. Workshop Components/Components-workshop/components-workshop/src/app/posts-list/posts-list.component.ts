@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Post } from '../interfaces/posts';
 
@@ -7,7 +7,7 @@ import { Post } from '../interfaces/posts';
   templateUrl: './posts-list.component.html',
   styleUrls: ['./posts-list.component.css']
 })
-export class PostsListComponent {
+export class PostsListComponent implements OnInit {
   postsList: Post[] = [];
 
   constructor(private apiService: ApiService) {
@@ -15,9 +15,9 @@ export class PostsListComponent {
   }
 
   ngOnInit(): void {
-   this.apiService.getPosts().subscribe({
+   this.apiService.getPosts(5).subscribe({
     next: (posts) => {
-      console.log(posts);
+     this.postsList = posts;
     }
     });
 
