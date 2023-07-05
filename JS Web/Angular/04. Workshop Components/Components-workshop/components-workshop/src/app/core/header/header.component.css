@@ -17,12 +17,7 @@ header ul span {
     padding: 0.5em;
 }
 
-.mini-navbar ul {
-    border: 1px solid #00d4ff;
-    border-radius: 0.3em;
-    padding-left: 0;
-    width: 100%;
-}
+
 
 header li {
     list-style: none;
@@ -36,39 +31,4 @@ header a {
     cursor: pointer;
 }
 
-nav {
-    border-top: 1px solid #00acf4;
-}
 
-.logo {
-    font-size: 1.3em;
-    color: white;
-    padding-bottom: 0;
-}
-
-.logo-wrap {
-    font-family: 'Parisienne', cursive;
-    letter-spacing: .5em;
-    margin: 0.5em 0;
-}
-
-.mini-navbar-wrap {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 75%;
-    margin: auto;
-}
-
-/* mini-navbar */
-
-.mini-navbar ul {
-    background-color: #6ba1b8;
-    border-radius: 5px;
-}
-
-.mini-navbar ul li+li {
-    border-left: 1px solid lightgrey;
-    padding-left: .5em;
-}
