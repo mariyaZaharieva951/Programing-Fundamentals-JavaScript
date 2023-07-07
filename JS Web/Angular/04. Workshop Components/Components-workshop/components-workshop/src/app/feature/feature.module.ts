@@ -5,15 +5,14 @@ import { ThemesListComponent } from './themes-list/themes-list.component';
 import { MainComponent } from './main/main.component';
 import { RouterModule } from '@angular/router';
 import { CreateComponent } from './create/create.component';
-import { AuthModule } from '../auth/auth.module';
-import { SharedModule } from '../shared/shared.module';
+import { ThemeRouterModule } from './feature-routing.module';
 
 
 
 @NgModule({
   declarations: [PostsListComponent, ThemesListComponent, MainComponent, CreateComponent],
   imports: [
-    CommonModule, RouterModule, AuthModule, SharedModule
+    CommonModule, RouterModule, ThemeRouterModule
   ],
   exports: [MainComponent, PostsListComponent, ThemesListComponent, CreateComponent]
 })

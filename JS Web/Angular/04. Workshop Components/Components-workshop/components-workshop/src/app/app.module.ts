@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { FeatureModule } from './feature/feature.module';
+import { ThemeRouterModule } from './feature/feature-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,11 +20,12 @@ import { FeatureModule } from './feature/feature.module';
   imports: [
     BrowserModule,
     AuthModule,
+    FeatureModule,
     AppRoutingModule,
     CoreModule,
     HttpClientModule,
-    SharedModule,
-    FeatureModule
+    SharedModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

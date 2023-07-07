@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
     HomeComponent
   ],
   imports: [
-    CommonModule, RouterModule
+    CommonModule, RouterModule,
   ],
   exports: [
     HomeComponent

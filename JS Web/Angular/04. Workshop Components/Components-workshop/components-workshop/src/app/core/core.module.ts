@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { AuthModule } from '../auth/auth.module';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { FeatureModule } from '../feature/feature.module';
 
 
 
@@ -18,7 +19,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     NotFoundComponent
   ],
   imports: [
-    CommonModule, RouterModule, AuthModule, SharedModule, 
+    CommonModule, RouterModule, AuthModule, SharedModule, FeatureModule
   ],
   exports: [
     HeaderComponent,
