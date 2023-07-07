@@ -18,11 +18,11 @@ import { FeatureModule } from './feature/feature.module';
   ],
   imports: [
     BrowserModule,
+    AuthModule,
     AppRoutingModule,
     CoreModule,
     HttpClientModule,
     SharedModule,
-    AuthModule,
     FeatureModule
   ],
   providers: [],

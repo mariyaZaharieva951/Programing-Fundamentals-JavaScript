@@ -6,6 +6,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { AuthModule } from '../auth/auth.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -13,15 +14,17 @@ import { AuthModule } from '../auth/auth.module';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    NavigationComponent
+    NavigationComponent,
+    NotFoundComponent
   ],
   imports: [
-    CommonModule, RouterModule, SharedModule, AuthModule
+    CommonModule, RouterModule, AuthModule, SharedModule, 
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    NavigationComponent
+    NavigationComponent,
+    NotFoundComponent
   ]
 })
 export class CoreModule { }
