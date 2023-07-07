@@ -1,25 +1,26 @@
 import { Injectable } from '@angular/core';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  //currentUser: {username: string, password: string} = null;
+  user: User | null = null;
 
-  // get isLogged() {
-  //   return this.currentUser;
-  // }
+  get isLogged() {
+    return this.user != null;
+  }
   constructor() { }
 
-  register() {
+  // register() {
 
-  }
+  // }
 
-  login() {
+  // login() {
 
-  }
+  // }
 
-  logout() {
+  // logout() {
 
-  }
+  // }
 }

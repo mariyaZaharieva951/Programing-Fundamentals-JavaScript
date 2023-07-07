@@ -4,6 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthRoutingModule } from './auth-routing.module';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
@@ -11,10 +13,11 @@ import { ProfileComponent } from './profile/profile.component';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    LogoutComponent
   ],
   imports: [
-    CommonModule, RouterModule
+    CommonModule, RouterModule, AuthRoutingModule
   ],
   exports: [
     LoginComponent, RegisterComponent, ProfileComponent

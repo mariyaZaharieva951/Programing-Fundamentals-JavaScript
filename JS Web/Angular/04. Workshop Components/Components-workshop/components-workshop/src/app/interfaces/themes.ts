@@ -1,4 +1,4 @@
-import { UserId } from "./user";
+import { UserId } from "./userId";
 
 export interface Theme {
     subscribers: string[],
