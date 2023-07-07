@@ -5,7 +5,7 @@
         <p>SoftUni forum is a place, where you can post your questions, comment, and discuss problems, which
             you have in your programming language or in your study in SoftUni.</p>
         <div class="logged">
-            <ul>
+            <ul *ngIf="!isLogged">
                 <li>
                     <a href="#">
                         <i class="fas fa-sign-in-alt"></i>

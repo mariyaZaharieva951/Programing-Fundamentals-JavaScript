@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/auth/user.service';
 
 @Component({
   selector: 'app-home',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  get isLogged() {
+    return this.userService.isLogged
+  }
+  constructor(private userService: UserService, private router: Router) {
+
+  }
 }
