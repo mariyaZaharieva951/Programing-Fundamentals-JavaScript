@@ -6,14 +6,16 @@ import { MainComponent } from './main/main.component';
 import { RouterModule } from '@angular/router';
 import { CreateComponent } from './create/create.component';
 import { ThemeRouterModule } from './feature-routing.module';
+import { ThemeDetailsComponent } from './theme-details/theme-details.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
 @NgModule({
-  declarations: [PostsListComponent, ThemesListComponent, MainComponent, CreateComponent],
+  declarations: [PostsListComponent, ThemesListComponent, MainComponent, CreateComponent, ThemeDetailsComponent],
   imports: [
-    CommonModule, RouterModule, ThemeRouterModule
+    CommonModule, RouterModule, ThemeRouterModule, SharedModule
   ],
-  exports: [MainComponent, PostsListComponent, ThemesListComponent, CreateComponent]
+  exports: [MainComponent, PostsListComponent, ThemesListComponent, CreateComponent, ThemeDetailsComponent]
 })
 export class FeatureModule { }
