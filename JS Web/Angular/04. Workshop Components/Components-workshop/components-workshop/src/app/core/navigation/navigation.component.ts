@@ -8,17 +8,18 @@ import { UserService } from 'src/app/auth/user.service';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
-      
+  constructor(private router: Router, private userService: UserService) {
+
+  }
   get isLogged() {
+    
     return this.userService.isLogged;
   }
 
   get user() {
     return this.userService.user;
   }
-  constructor(private router: Router, private userService: UserService) {
-
-  }
+  
 
       
     }

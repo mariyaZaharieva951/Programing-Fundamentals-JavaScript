@@ -14,14 +14,16 @@ export class AuthActivate implements CanActivate {
     constructor(private userService: UserService, private router: Router) {}
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+        console.log( this.userService.isLogged)
+        return this.userService.isLogged;
        
-    const required = route.data['required'];
+    // const required = route.data['required'];
     
-        if(required == undefined || this.userService.isLogged == required) {
-            return true;
-        }
-        const returnUrl = route.url.map(u => u.path).join('/');
-        return this.router.createUrlTree([`/auth/login`], {queryParams: {returnUrl}});
-    }
+    //     if(required == undefined || this.userService.isLogged == required) {
+    //         return true;
+    //     }
+    //     const returnUrl = route.url.map(u => u.path).join('/');
+    //     return this.router.createUrlTree([`/auth/login`], {queryParams: {returnUrl}});
+     }
 
 }

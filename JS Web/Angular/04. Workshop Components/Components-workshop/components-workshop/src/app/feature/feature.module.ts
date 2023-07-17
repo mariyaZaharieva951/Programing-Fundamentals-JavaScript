@@ -16,6 +16,6 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule, RouterModule, ThemeRouterModule, SharedModule
   ],
-  exports: [MainComponent, PostsListComponent, ThemesListComponent, CreateComponent, ThemeDetailsComponent]
+  //exports: [MainComponent, PostsListComponent, ThemesListComponent, CreateComponent, ThemeDetailsComponent]
 })
 export class FeatureModule { }

@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateComponent } from './create/create.component';
 import { ThemeDetailsComponent } from './theme-details/theme-details.component';
 import { MainComponent } from './main/main.component';
+import { NgModule } from '@angular/core';
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
             component: CreateComponent
         },
         {
-            path: 'details/:id',
+            path: ':themeId',
             component: ThemeDetailsComponent
         }
 
@@ -25,5 +26,8 @@ const routes: Routes = [
   
 ];
 
-
-export const ThemeRouterModule = RouterModule.forChild(routes);
+@NgModule({
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
+  })
+export class ThemeRouterModule{};
