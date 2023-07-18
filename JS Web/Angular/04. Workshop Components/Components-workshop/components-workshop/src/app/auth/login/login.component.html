@@ -5,26 +5,28 @@
 
         <p class="field field-icon">
             <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-            <input class="input-error" type="email" name="email" id="email" placeholder="john.doe@gmail.com" ngModel #inputEmail="ngModel" required>
+            <input class="input-error" type="email" name="email" id="email" placeholder="john.doe@gmail.com" ngModel #inputEmail="ngModel" required email>
         </p>
-        <p class="error">
+        <ul *ngIf="inputEmail.invalid && inputEmail.touched" >
+        <p class="error" *ngIf="inputEmail.errors?.['required']">
             Email is required!
         </p>
-        <!-- <p class="error">
+        <p class="error" *ngIf="inputEmail.errors?.['email']">
             Email is not valid!
-        </p> -->
-
+        </p>
+        </ul>
         <p class="field field-icon">
             <label for="password"><span><i class="fas fa-lock"></i></span></label>
-            <input type="password" name="password" id="password" placeholder="******" ngModel #inputPassword="ngModel" required>
+            <input type="password" name="password" id="password" placeholder="******" ngModel #inputPassword="ngModel" required minlength="6">
         </p>
-        <!-- <p class="error">
+        <ul *ngIf="inputPassword.invalid && inputPassword.touched">
+        <p class="error"  *ngIf="inputPassword.errors?.['required']">
             Password is required!
         </p>
-        <p class="error">
+        <p class="error" *ngIf="inputPassword.errors?.['minlength']">
             Password must be at least 4 characters!
-        </p> -->
-
+        </p>
+        </ul>
         <button>Login</button>
 
         <p class="text-center">

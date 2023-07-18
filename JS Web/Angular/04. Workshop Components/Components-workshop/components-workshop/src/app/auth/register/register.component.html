@@ -8,22 +8,23 @@
             <label for="username"><span><i class="fas fa-user"></i></span></label>
             <input class="input-error" type="text" name="username" id="username" placeholder="Johny" ngModel #inputUserName="ngModel" required>
         </p>
-        <p class="error">
+        <p class="error" *ngIf="inputUserName.errors?.['required']">
             Username is required!
         </p>
 
         <!-- email -->
         <p class="field field-icon">
             <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-            <input type="email" name="email" id="email" placeholder="john.doe@gmail.com" ngModel #inputEmail="ngModel" required>
+            <input type="email" name="email" id="email" placeholder="john.doe@gmail.com" ngModel #inputEmail="ngModel" required email>
         </p>
-        <!-- <p class="error">
+        <ul *ngIf="inputEmail.invalid && inputEmail.touched">
+        <p class="error" *ngIf="inputEmail.errors?.['required']">
             Email is required!
         </p>
-        <p class="error">
+        <p class="error" *ngIf="inputEmail.errors?.['email']">
             Email is not valid!
-        </p> -->
-
+        </p>
+    </ul>
         <!-- telephone -->
         <p class="field field-icon">
             <label for="tel"><span><i class="fas fa-phone"></i></span></label>
@@ -38,19 +39,26 @@
             <label for="password"><span><i class="fas fa-lock"></i></span></label>
             <input type="password" name="password" id="password" placeholder="******" ngModel #inputPassword="ngModel" required minlength="5">
         </p>
-        <!-- <p class="error">
+        <ul *ngIf="inputPassword.invalid && inputPassword.touched">
+        <p class="error" *ngIf="inputPassword.errors?.['required']">
             Password is required!
         </p>
-        <p class="error">
+        <p class="error" *ngIf="inputPassword.errors?.['minlength']">
             Password must be at least 4 characters!
-        </p> -->
+        </p>
+        </ul>
 
         <!-- rePassword -->
+        
         <p class="field field-icon">
             <label for="rePassword"><span><i class="fas fa-lock"></i></span></label>
-            <input type="password" name="rePassword" id="rePassword" placeholder="******" ngModel #inputRePass="ngModel" required >
+            <input type="password" name="rePassword" id="rePassword" placeholder="******" ngModel #inputRePassword="ngModel" required minlength="5" appSameValue="password" >
         </p>
-        <!-- <p class="error">Repeat Password does not match password!</p> -->
+        <ul *ngIf="inputRePassword.invalid && inputRePassword.touched">
+        <p class="error" *ngIf="inputRePassword.errors?.['appSameValue']">
+            Repeat Password does not match password!
+        </p>
+        </ul>
 
         <button>Create Account</button>
 
