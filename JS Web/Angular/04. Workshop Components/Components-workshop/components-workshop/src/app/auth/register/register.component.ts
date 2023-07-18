@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit{
     if(form.invalid) {
       return;
     }
-    //console.log(form.value)
+   // console.log(form.value)
     this.userService.register(form.value);
     this.router.navigate(['/']);
   }

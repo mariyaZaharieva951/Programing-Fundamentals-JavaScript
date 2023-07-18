@@ -15,14 +15,14 @@ export class UserService {
   }
   constructor() { }
 
-  register(data: {email: string, username: string, password: string, phone: string}) {
+  register(data: {email: string, username: string, password: string, tel: string}) {
     //console.log(data)
     //debugger
     this.user = {
       email: data.email,
       username: data.username,
       password: data.password,
-      phone: data.phone
+      phone: data.tel
     };
 
     localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
@@ -30,17 +30,18 @@ export class UserService {
 
     login(): void {
       this.user = {
-        email: 'mariq@gmail.com',
+        email: 'mariya@gmai.com',
         username: 'mariya',
-        password: '123',
-        phone: '5225'
+        password: '123456',
+        phone: '656565'
       };
-
+      
       localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
 
   }
 
-  // logout() {
-
-  // }
+  logout() {
+    this.user = null;
+    localStorage.removeItem('<USER>');
+  }
 }
