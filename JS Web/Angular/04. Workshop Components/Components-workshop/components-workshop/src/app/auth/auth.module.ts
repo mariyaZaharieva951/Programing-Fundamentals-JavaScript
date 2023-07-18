@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LogoutComponent } from './logout/logout.component';
+import { FormsModule } from '@angular/forms'
 
 
 
@@ -17,7 +18,7 @@ import { LogoutComponent } from './logout/logout.component';
     LogoutComponent
   ],
   imports: [
-    CommonModule, RouterModule, AuthRoutingModule
+    CommonModule, RouterModule, AuthRoutingModule, FormsModule
   ],
   exports: [
     LoginComponent, RegisterComponent, ProfileComponent
