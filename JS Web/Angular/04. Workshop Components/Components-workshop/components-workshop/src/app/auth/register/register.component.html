@@ -1,4 +1,4 @@
-<form class="register" action="" method="post">
+<form class="register" #form="ngForm" (ngSubmit)="register(form)">
 
     <fieldset>
         <h2>Registration Form</h2>
@@ -6,7 +6,7 @@
         <!-- username -->
         <p class="field field-icon">
             <label for="username"><span><i class="fas fa-user"></i></span></label>
-            <input class="input-error" type="text" name="username" id="username" placeholder="Johny">
+            <input class="input-error" type="text" name="username" id="username" placeholder="Johny" ngModel #inputUserName="ngModel" required>
         </p>
         <p class="error">
             Username is required!
@@ -15,7 +15,7 @@
         <!-- email -->
         <p class="field field-icon">
             <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-            <input type="email" name="email" id="email" placeholder="john.doe@gmail.com">
+            <input type="email" name="email" id="email" placeholder="john.doe@gmail.com" ngModel #inputEmail="ngModel" required>
         </p>
         <!-- <p class="error">
             Email is required!
@@ -30,13 +30,13 @@
             <select name="select-tel" id="select-tel" class="tel">
                 <option value="00359">+359</option>
             </select>
-            <input type="text" name="tel" id="tel" placeholder="885 888 888">
+            <input type="text" name="tel" id="tel" placeholder="885 888 888" ngModel #inputPhone="ngModel">
         </p>
 
         <!-- password -->
         <p class="field field-icon">
             <label for="password"><span><i class="fas fa-lock"></i></span></label>
-            <input type="password" name="password" id="password" placeholder="******">
+            <input type="password" name="password" id="password" placeholder="******" ngModel #inputPassword="ngModel" required minlength="5">
         </p>
         <!-- <p class="error">
             Password is required!
@@ -48,11 +48,11 @@
         <!-- rePassword -->
         <p class="field field-icon">
             <label for="rePassword"><span><i class="fas fa-lock"></i></span></label>
-            <input type="password" name="rePassword" id="rePassword" placeholder="******">
+            <input type="password" name="rePassword" id="rePassword" placeholder="******" ngModel #inputRePass="ngModel" required >
         </p>
         <!-- <p class="error">Repeat Password does not match password!</p> -->
 
-        <button disabled>Create Account</button>
+        <button>Create Account</button>
 
         <p class="text-center">
             Have an account?

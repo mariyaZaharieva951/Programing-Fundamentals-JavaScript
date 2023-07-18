@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,9 +15,18 @@ export class UserService {
   }
   constructor() { }
 
-  // register() {
+  register(data: {email: string, username: string, password: string, phone: string}) {
+    //console.log(data)
+    //debugger
+    this.user = {
+      email: data.email,
+      username: data.username,
+      password: data.password,
+      phone: data.phone
+    };
 
-  // }
+    localStorage.setItem(this.USER_KEY, JSON.stringify(this.user));
+  }
 
     login(): void {
       this.user = {
