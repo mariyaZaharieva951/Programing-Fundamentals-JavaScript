@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { Theme } from 'src/app/interfaces/themes';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
+
 
 @Component({
   selector: 'app-create',
@@ -7,5 +10,21 @@ import { Theme } from 'src/app/interfaces/themes';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent {
-  
+ 
+  constructor(private apiService: ApiService, private router: Router) {}
+
+  createTheme(form: NgForm): void {
+    //console.log(form)
+    if(form.invalid) {
+      return;
+    }
+    this.apiService.saveTheme(form.value).subscribe({
+      next: () => {
+        this.router.navigate(['/themes/list'])
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    })
+  }
 }

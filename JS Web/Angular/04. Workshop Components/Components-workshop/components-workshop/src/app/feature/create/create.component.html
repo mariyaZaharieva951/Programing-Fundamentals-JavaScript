@@ -2,7 +2,7 @@
     <div class="header-background">
         <span>New Theme</span>
     </div>
-    <form>
+    <form #form="ngForm" (ngSubmit)="createTheme(form)">
         <div class="new-theme-title">
             <label for="themeName">Title <span class="red">*</span></label>
             <input type="text" name="themeName" id="themeName">
@@ -24,7 +24,7 @@
             </p>
         </div>
         <div class="new-theme-buttons">
-            <button class="cancel">Cancel</button>
+            <button routerLink="/themes/list" class="cancel">Cancel</button>
             <button class="public">Post</button>
         </div>
 

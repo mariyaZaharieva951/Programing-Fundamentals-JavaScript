@@ -8,13 +8,14 @@ import { CreateComponent } from './create/create.component';
 import { ThemeRouterModule } from './feature-routing.module';
 import { ThemeDetailsComponent } from './theme-details/theme-details.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms'
 
 
 
 @NgModule({
   declarations: [PostsListComponent, ThemesListComponent, MainComponent, CreateComponent, ThemeDetailsComponent],
   imports: [
-    CommonModule, RouterModule, ThemeRouterModule, SharedModule
+    CommonModule, RouterModule, ThemeRouterModule, SharedModule, FormsModule
   ],
   //exports: [MainComponent, PostsListComponent, ThemesListComponent, CreateComponent, ThemeDetailsComponent]
 })

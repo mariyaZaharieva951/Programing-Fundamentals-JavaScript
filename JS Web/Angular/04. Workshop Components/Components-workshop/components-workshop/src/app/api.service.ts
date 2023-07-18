@@ -27,4 +27,9 @@ export class ApiService {
     const limitFilter = limit ? `?limit=${limit}` : '';
     return this.http.get<Post[]>(`${appUrl}/posts/${limitFilter}`)
   }
+
+  saveTheme(data: any) {
+    const {appUrl} = environment;
+    return this.http.post<Theme>(`${appUrl}/themes`,data)
+  }
 }
