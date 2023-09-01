@@ -1,0 +1,11 @@
+@import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css);
+
+
+.icons {
+    list-style: none;
+    font-size: 16px;
+}
+
+.icons.check i, .icons.star i, .icons.contact i{
+    font-size: 14px;
+}
