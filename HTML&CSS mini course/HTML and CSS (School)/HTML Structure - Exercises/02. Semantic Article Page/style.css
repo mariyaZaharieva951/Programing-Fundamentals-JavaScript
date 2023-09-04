@@ -1,0 +1,26 @@
+body {
+    padding: 5px 15px;
+    background-color: #e4e978;
+    
+}
+
+article.publish {
+    background-color: #f2f4c0;
+    border: 1px solid #b2ad7d;
+    margin: 15px 10px;
+    padding: 5px 15px;
+}
+
+article.comment {
+    border: 1px solid #b2ad7d;
+    margin: 15px 10px;
+    background-color: #f2f4c0;
+    padding: 5px 15px;
+    font-style: italic;
+    color: #4c7658;
+}
+
+
+
+
+
