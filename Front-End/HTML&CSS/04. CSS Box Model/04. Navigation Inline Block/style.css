@@ -1,0 +1,28 @@
+html {
+    font-style: 16px/1.5;
+    font-family: Helvetica, sans-serif;
+    padding: 30px;
+    margin: 30px;
+
+}
+
+header h1 {
+    display: inline-block;
+    padding-right: 50px;
+}
+li {
+    display: inline-block;
+    padding-inline: 10px;
+}
+
+header nav{
+    display: inline-block;
+    color: green
+}
+
+header {
+    border-bottom: 2px solid;
+}
+
+
+
