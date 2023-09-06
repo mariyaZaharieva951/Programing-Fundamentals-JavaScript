@@ -1,0 +1,19 @@
+body {
+    width: 900px;
+    height: 100px;
+
+}
+
+img {
+    border-right: 1px solid lightgray;
+    padding-right: 20px;
+    margin-right: 20px;
+    float: left;
+}
+
+p {
+    text-align: justify;
+    line-height: 30px;
+    
+}
+
