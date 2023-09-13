@@ -1,8 +1,18 @@
 body {
     padding: 2em;
+    margin: 0 auto;
 }
 
 .site {
     max-width: 40em;
     margin: 0 auto;
+}
+
+.site-header {
+    border-bottom: 2px solid #000;
+}
+
+.site-footer {
+    border-bottom: 2px solid #000;
+    padding-top: 1em;
 }

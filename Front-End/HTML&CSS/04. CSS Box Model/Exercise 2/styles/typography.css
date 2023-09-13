@@ -6,14 +6,26 @@ body, table, textarea, input, option, button {
     font: inherit;
 }
 
-p {
-    padding-bottom: 1.5wm;
+footer {
+    padding-top: 1.5em;
+}
+
+p, ul, ol, dl {
+    padding-bottom: 1.5em;
+}
+
+ul, ol, dl, blockquote {
+    padding-left: 3em;
+}
+
+dt {
+    font-weight: bold;
 }
 
 h1,h2,h3,h4,h5,h6 {
     font-family: Georgia, serif;
     font-weight: bold;
-    margin: 1em 0 0.2em;
+    margin: 0.2em 0 1em;
     line-height: 1.1em;
 }
 
@@ -23,3 +35,15 @@ h3 {font-size: 1.8em;}
 h4 {font-size: 1.4em;}
 h5 {font-size: 1.2em;}
 h6 {font-size: 1em;}
+
+
+blockquote {
+    border-left: 0.1em solid #ccc;
+    
+}
+
+blockquote p{
+    font-style: italic;
+    padding-block: 0.5em;
+    padding-top: 0;
+}
