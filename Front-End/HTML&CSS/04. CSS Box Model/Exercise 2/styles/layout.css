@@ -1,0 +1,8 @@
+body {
+    padding: 2em;
+}
+
+.site {
+    max-width: 40em;
+    margin: 0 auto;
+}
