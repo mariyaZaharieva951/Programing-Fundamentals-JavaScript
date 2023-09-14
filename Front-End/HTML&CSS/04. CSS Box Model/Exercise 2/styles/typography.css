@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@300&family=Great+Vibes&family=Lato:wght@100&family=PT+Sans&family=Raleway:wght@200&family=Roboto+Slab:wght@600;900&display=swap');
+
 html {
     font: 16px/1.5 Verdana, sans-serif;
 }
@@ -23,11 +25,32 @@ dt {
 }
 
 h1,h2,h3,h4,h5,h6 {
-    font-family: Georgia, serif;
+    font-family: "Roboto Slab", serif;
     font-weight: bold;
     margin: 0.2em 0 1em;
     line-height: 1.1em;
 }
+
+h1 a[href^="#"],h2 a[href^="#"],h3 a[href^="#"],h4 a[href^="#"],h5 a[href^="#"],h6 a[href^="#"] {
+    opacity: 0.5;
+    text-decoration: none;
+    font-size: 0.8em;
+    vertical-align: baseline;
+    padding-left: 1em 0 1em;
+    border: 0.1em solid;
+    background: rgba(0,0,0,0.1);
+    border-radius: 0.5em;
+}
+
+h1 a[href^="#"]:hover,h2 a[href^="#"]:hover,h3 a[href^="#"]:hover,h4 a[href^="#"]:hover,h5 a[href^="#"]:hover,h6 a[href^="#"]:hover {
+        background: rgba(0,0,0,0.5);
+        color: #fff;
+}
+
+h1:target,h2:target,h3:target,h4:target,h5:target,h6:target {
+    color: purple;
+}
+
 
 h1 {font-size: 3em;}
 h2 {font-size: 2.2em;}
@@ -47,3 +70,4 @@ blockquote p{
     padding-block: 0.5em;
     padding-top: 0;
 }
+
