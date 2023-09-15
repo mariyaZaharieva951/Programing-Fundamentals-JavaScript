@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 1em;
+}
+
+.container {
+    padding: 2em;
+    display: flex;
+    
+    
+    gap: 2em;
+
+}
+
+.box {
+    padding: 0.5em;
+    background: #eee;
+    border: 1px solid black;
+    flex-basis: 20em;
+
+}
+
+.box:nth-child(3) {
+    flex-shrink: 3;
+}
