@@ -1,0 +1,56 @@
+body {
+    font-size: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+
+.site-header {
+    background: #369;
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    margin-top: 1em;
+    border-radius: 0.5em;
+    width: 100%;
+}
+
+.site-header,
+.site-header a {
+    color: #fff;
+}
+
+.site-header .icon svg {
+    fill: #fff;
+    padding-right: 2em;
+    height: 3em;
+}
+
+
+
+.site-header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+
+.main-nav {
+    margin-left: auto;
+}
+.main-nav ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.main-nav li,
+.main-nav li a {
+    display: block;
+}
+
+.main-nav li a {
+    text-decoration: none;
+    padding: 0.5em;
+}
+
+.main-nav li a:hover {
+    background-color: rgba(255,255,255,0.1);
+}

@@ -1,0 +1,44 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 2em;
+}
+
+.site {
+    border: 2px solid #333;
+    display: flex;
+    padding: 1em;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+.site > * {
+    background: #eee;
+    border: 1px solid #999;
+    padding: 1em;
+    order: 10;
+}
+
+.site-header,
+.site-footer {
+    flex: 1 0 100%;
+}
+
+.site-aside {
+    flex: 0 0 30%;
+}
+
+.site-main {
+    flex: 1 1 auto;
+}
+
+.right .site-header{order: 1;}
+.right .site-main{order: 2;}
+.right .site-aside{order: 3;}
