@@ -1,0 +1,36 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body,ul,li {
+    display: flex;
+}
+
+.gallery {
+    padding: 5em;
+    margin: 4em;
+    background-color: #EEE;
+    border: 1px solid black;
+}
+
+body > section > ul {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2em;
+    
+}
+
+body > section > ul > li > img {
+    display: block;
+    width: 100%;
+    height: auto; 
+}
+
+body > section > ul > li {
+    align-items: center;
+    border: 7px solid black;
+    box-shadow: 0 0 1em rgba(0,0,0,0.3) inset, 
+    0 0 1em rgba(0,0,0,0.4);
+    padding: 1.5em;
+
+}
