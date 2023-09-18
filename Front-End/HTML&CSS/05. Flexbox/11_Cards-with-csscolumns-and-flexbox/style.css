@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(238, 238, 238);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5em 15em;
+}
+
+
+.cards-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    justify-content: center;
+    align-items: flex-start;
+    
+}
+
+.masonary {
+    flex-direction: column;
+    height: 106em;
+}
+
+h2 {
+    padding-left: 5.3em;
+    
+}
+
+.image {
+    display: flex;
+    border: 1px solid rgba(202, 196, 196, 0.801);
+    background: white;
+    flex-direction: column;
+    height:auto;
+    width: 15em;
+    border-radius: 0.5em;
+}
+
+img{
+    display: block;
+    
+    
+}
+
+footer {
+    border-top: 1px solid rgba(202, 196, 196, 0.801);
+}
+
+div > section {
+    padding: 0 1em;
+    line-height: 1rem;
+}
+
+h3 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    margin-top: 0.5em;
+    padding-top: 0;
+}
+p {
+    margin-top: 0;
+    
+}
