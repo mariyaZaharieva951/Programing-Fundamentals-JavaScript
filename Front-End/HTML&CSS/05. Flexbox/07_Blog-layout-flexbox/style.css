@@ -1,0 +1,104 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+body {
+    background: rgb(238, 238, 238);
+    padding: 2em;
+    margin: 0 5em;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+}
+
+
+
+header {
+    border-bottom: 2px solid black;
+}
+
+main {
+   width: 60%; 
+}
+
+aside {
+    align-content: flex-start;
+}
+
+.first-img {
+    float: right;
+    width: 10em;
+    height: auto;
+    margin-left: 1em;
+}
+
+.second-img {
+    float: left;
+    width: 10em;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+img {
+    border: 3px solid black;
+    background: rgb(255, 255, 255);
+    padding: 0.5em;
+}
+
+.article-two {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.author {
+    display: flex;
+    flex-wrap: wrap;
+    /* align-content: center; */
+}
+
+.p-author {
+    width: 50%;
+}
+
+.blockquote-author {
+    width: 30%;
+    border-left: 1px solid rgba(0, 0, 0, 0.8);
+    padding-left: 1em;
+    align-items: center;
+    flex-grow: 7;
+    margin-right: 0;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.8);
+    font-family: Georgia, serif;
+
+}
+
+.name-author {
+    text-align: right;
+    font-family: Georgia, serif;
+    
+}
+
+aside > ul > li {
+    margin-left: 2.2em;
+}
+aside > ul > h3 {
+    margin-bottom: 0.5em;
+}
+
+aside > ul > li > a {
+    text-decoration: none;
+    color: rgb(0, 153, 0) 
+
+}
+
