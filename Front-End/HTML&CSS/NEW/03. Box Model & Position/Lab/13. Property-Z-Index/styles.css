@@ -4,6 +4,7 @@
 
 .dashed-box {
   position: relative;
+  z-index: 2;
   border: dashed;
   height: 8em;
   margin-bottom: 1em;
@@ -11,6 +12,7 @@
 }
 .gold-box {
   position: absolute;
+  z-index: 2;
   background: gold;
   width: 80%;
   left: 60px;
@@ -18,10 +20,12 @@
 }
 .green-box {
   position: absolute;
+  z-index: 1;
   background: lightgreen;
   width: 20%;
   left: 65%;
   top: -25px;
   height: 7em;
   opacity: 0.9;
+  z-index: dashed  ;
 }
