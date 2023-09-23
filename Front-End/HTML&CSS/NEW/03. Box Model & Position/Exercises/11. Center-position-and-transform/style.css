@@ -1,0 +1,38 @@
+body {
+    background-color: rgb(238,238,238);
+    position: relative;
+}
+
+.card {
+    background-color: rgb(255,255,255);
+    position: absolute;
+    width: 30%;
+    border-radius: 5px;
+}
+
+img {
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+h3, p {
+    margin: 20px 30px;
+}
+
+
+div a {
+    display: block;
+    text-align: center;
+    width: 15%;
+    margin-left: 350px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    border: 2px solid green;
+    background-color: green;
+    border-radius: 3px;
+    color: white;
+    padding: 7px 12px;
+
+}
