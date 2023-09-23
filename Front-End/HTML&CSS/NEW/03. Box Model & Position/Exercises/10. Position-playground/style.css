@@ -1,0 +1,34 @@
+body {
+    display: block;
+    
+}
+
+div:nth-child(1) {
+    background-color:rgb(65, 204, 204);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    
+}
+
+div:nth-child(2) {
+    background-color:rgb(166, 51, 23);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+}
+
+img {
+    width: 20%;
+    height: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+      
+}
+
+
+.viewport {
+    position: relative;
+    width: 90%;
+    height: auto;
+}
