@@ -1,0 +1,18 @@
+main {
+    Width: 700px;
+    Height: 500px;
+    Margin: 60px;
+}
+
+.parent {
+    position: relative;
+}
+
+img.new {
+    position: absolute;
+    margin-top: -60px;
+    margin-right: 150px;
+    margin-left: -150px;
+
+    
+}
