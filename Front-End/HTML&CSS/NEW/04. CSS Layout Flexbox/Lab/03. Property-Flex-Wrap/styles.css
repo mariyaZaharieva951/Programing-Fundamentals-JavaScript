@@ -3,6 +3,7 @@
   background-color: DodgerBlue;
   width: 300px;
   flex-wrap: wrap;
+  
 }
 
 .flex-container > div {
@@ -10,4 +11,5 @@
   margin: 10px;
   padding: 20px;
   font-size: 30px;
+  
 }
