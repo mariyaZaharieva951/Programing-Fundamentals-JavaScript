@@ -1,0 +1,77 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: lightgray;
+    color: rgb(86, 84, 84);
+}
+
+h2 {
+    font-size: 1em;
+}
+h1 {
+    font-size: 1.5em;
+}
+
+h1,h2 {
+    padding: 1px;
+    margin: 1px;
+}
+
+header, p, span>div {
+    padding: 15px;
+}
+
+div {
+    display: flex;
+    padding: 40px;
+}
+
+.pic {
+    width: 400px;
+    height: 250px;
+}
+
+.avatar {
+    
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+article {
+    margin: 20px;
+    box-shadow:  1px 1px 0px  rgba(0, 0, 0, 0.03);
+    
+}
+
+article > p {
+    width: 400px;
+    
+    padding-bottom: 30px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+span > div {
+    display: flex;
+}
+
+article > span {
+    display: flex;
+    width: 400px;
+    justify-content:space-between;
+    border-top: 1px solid black;
+}
+
+.time {
+    padding-top: 18px;
+    color: rgb(156, 149, 149);
+}
+
+.author {
+    padding-top: 1px;
+}
+
