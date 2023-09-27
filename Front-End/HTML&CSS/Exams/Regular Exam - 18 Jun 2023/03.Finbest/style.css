@@ -16,13 +16,17 @@ h1 {
     margin-bottom: 0px;
 }
 
+h2 {
+    font-size: 2.1em;
+}
+
 
 div, p, a {
     font: inherit
 }
 
 header, main, footer{
-    padding: 20px 200px;
+    padding: 20px 240px;
 }
 
 nav {
@@ -108,3 +112,101 @@ nav>ul a {
 .statistic:nth-last-child(1) {
     border-right: 0.5px solid lightgray;
 }
+
+.description {
+    display: flex;
+    background:  rgb(156, 244, 226);
+}
+
+img {
+    width: 200px;
+    height: 300px;
+    border: 2px dashed lightgray;
+    margin-left: 170px; 
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+article {
+    padding: 20px 185px 0px 50px ;
+}
+
+.fees {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+    gap: 1em;
+    background: rgba(228, 223, 223, 0.282);
+    
+}
+
+.fees>button {
+    display: inline-block;
+    text-align: center;
+    background: rgb(156, 244, 226);
+}
+
+.fees>p {
+    font-size: 1.9em;
+    font-weight: bold;
+}
+
+.plans {
+    display: flex;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.typePlans {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.plan>h4 {
+    text-align: center;
+    margin: 0px 0px;
+    padding-bottom: 0px;
+}
+
+.plan>p {
+    margin-top: 0px;
+   
+}
+
+.plan {
+    padding: 0px 10px;
+}
+
+.plan:nth-child(1), .plan:nth-child(2) {
+    border-right: 1px solid lightgray;
+}
+.expand {
+    background-color: rgb(156, 244, 226);;
+}
+
+.cost>span {
+    font-size: 1.8em;
+    font-weight: bold;
+    padding-right: 8px;
+}
+
+.plan>ul {
+    border-top: 1px solid lightgray;
+    padding-top: 20px;
+    list-style-type: "\2713";
+    padding-left: 15px;
+    line-height: 2;
+    
+}
+
+.plan>button {
+    text-align: center;
+    border: 1px solid rgb(156, 244, 226);
+    background: rgb(156, 244, 226);
+    border-radius: 7px;
+    flex: 1 1 1px;
+}
+
