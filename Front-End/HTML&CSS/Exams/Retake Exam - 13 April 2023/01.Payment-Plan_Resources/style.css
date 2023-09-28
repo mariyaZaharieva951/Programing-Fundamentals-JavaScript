@@ -1,0 +1,87 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap.);
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    
+}
+
+.container {
+    width: 75%;
+    height: 500px;
+    background-image: url('image/background.jpg');
+    background-repeat: no-repeat;
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+   
+    
+    
+}
+
+section {
+    background-color: white;
+    flex: 0 1 27%;
+    padding: 10px 20px;
+    
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+p.price {
+    font-size: 1em;
+    padding-bottom: 0.7em;
+}
+
+span {
+    font-size: 3em;
+    font-weight: bold;
+}
+
+p.period {
+    font-size: 0.6em;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    line-height: 2em;
+    /* padding-bottom: 3em; */
+
+}
+ul li:before {
+    content: "\2713";
+    padding: 0.2em;
+}
+
+.standart .button {
+    padding: 3em 0 1em 0;
+}
+
+.basic .button {
+    padding: 2.3em 0 1em 0;
+}
+
+.premium .button {
+    padding: 1em 0 1em 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    border: 1px solid black;
+    background: black;
+    padding: 0.7em 1.8em;
+    border-radius: 0.5em;
+
+}
+
