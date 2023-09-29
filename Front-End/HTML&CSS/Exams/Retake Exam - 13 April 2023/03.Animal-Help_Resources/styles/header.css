@@ -1,0 +1,12 @@
+header {
+    display: flex;
+    gap: 56em;
+    font-weight: bold;
+    padding: 2em 5em;
+}
+
+.nav {
+    display: flex;
+    list-style-type: none;
+    gap: 1em;
+}

@@ -1,0 +1,261 @@
+.first {
+    background-color: rgba(26, 201, 245, 0.603);
+    display: flex;
+    justify-content: space-around;  
+    height: 300px;
+}
+
+.first img {
+    width: 130%;
+    height: 300px;
+
+    padding-right: 12em;
+    
+}
+
+.first>.text {
+    text-align: left;
+    padding-top: 7em;
+    padding-left: 11em;
+}
+
+.text>h1 {
+    padding-bottom: 1.2em;
+
+}
+
+.text>p {
+    padding-right: 11em;
+    
+    line-height: 1.5;
+}
+
+.text>.buttons {
+    padding-top: 1.2em;
+}
+
+.text button {
+    padding: 1em 5.1em;
+    margin-right: 1em;
+    border-radius: 0.5em;
+    border: none;
+    
+}
+
+button:nth-child(1) {
+    background: white;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+a:nth-child(1) {
+    color: black;
+    font-weight: bold;
+}
+
+button:nth-child(2), button:nth-child(2) a {
+    color: white;
+    background: black;
+    /* font-weight: bold; */
+}
+
+.need>h2, .need>p {
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.need>h2 {
+    padding: 1.2em 0;
+}
+
+.need>p {
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+}
+
+.icons {
+    display: flex;
+    padding: 3em 5em;
+}
+
+svg { 
+    height: 100px;
+    padding-bottom: 2em;
+}
+
+.icon {
+    text-align: center;
+}
+
+.icon>p {
+    padding: 2em 3em;
+}
+
+.work {
+    background: rgba(26, 201, 245, 0.603);
+    height: 400px;
+}
+
+.work>h2 {
+    text-align: center;
+    padding: 2.2em 0;
+    font-weight: bold;
+    font-size: large;
+}
+
+.work>ul {
+    display: flex;
+    flex-flow: column wrap;
+    padding: 0 20em;
+    height: 200px;
+    justify-content: center;
+    padding-right: 10em;
+     
+}
+
+
+.work>ul>li {
+    font-weight: bold;
+    font-size: 14px;
+    gap: 1.5em;
+    width: 40%;
+    flex: 1 1 25%;
+    
+}
+
+.work>div {
+    padding: 2em;
+    text-align: center;
+}
+
+.work>div>a {
+    color: white;
+    border: 1px solid black;
+    padding: 1em 3.5em;
+    background-color: black;
+    border-radius: 5px;
+}
+
+.animals {
+    background: white;
+}
+
+.animals>p {
+    text-align: center;
+    padding: 1.8em;
+    
+}
+
+.animals>h2 {
+    text-align: center;
+    font-weight:bolder;
+    letter-spacing: 0.02em;
+    font-size: 30px;
+    padding-top: 1em;
+}
+
+.images>img{
+    width: 22.5%;
+}
+
+.animals>.images {
+    display: flex;
+    gap:3em;
+}
+
+.ourWork>h3 {
+    text-align: center;
+    font-size: 16px;
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
+
+.ourWork>div {
+    margin-left: 9em;
+    margin-right: 9em;
+    font-weight: bold;
+    margin-bottom: 1.5em;
+    
+}
+
+.oneWork>h4{
+    display: block;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-left: 2px solid rgba(169, 165, 165, 0.336);
+    background-color: rgba(26, 201, 245, 0.603);
+    padding: 1.5em 2.1em;
+}
+.oneWork>p {
+    display: block;
+    border-left: 2px solid rgba(169, 165, 165, 0.336);
+    padding: 2.1em;
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(169, 165, 165, 0.336);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    
+}
+
+.finish {
+    display: flex;
+    
+}
+
+.finish img {
+    width: 50%;
+    height: auto;
+    gap: 1em;
+}
+
+.hsus {
+    /* flex-direction: column; */
+    text-align: left;
+    padding: 3em;
+}
+
+.hsus>h3 {
+    font-size: 20px;
+    padding-bottom: 1em;
+}
+
+.hsus>p {
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.point {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-content: flex-start;
+    flex: 1 1 20%;
+}
+
+.email, .point>div {
+    padding: 1em;
+    margin-top: 1em;
+}
+
+.email {
+    width: 40%;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.point>div, .point>div a {
+    border: 1px solid black;
+    width: 30%;
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+}
+
+

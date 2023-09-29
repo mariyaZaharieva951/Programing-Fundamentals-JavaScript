@@ -1,0 +1,19 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+html {
+    display: block;
+}
+
+.container {
+    padding: 2em 20em;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.4em; }
+h3 { font-size: 1.1em;}
