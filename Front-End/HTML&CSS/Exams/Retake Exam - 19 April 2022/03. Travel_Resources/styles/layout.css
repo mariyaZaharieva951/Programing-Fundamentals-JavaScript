@@ -1,0 +1,46 @@
+
+.start {
+    background-image: url("../image/slider.jpg");
+    width: 100%;
+    height: 600px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:auto;
+
+}
+
+.text {
+    border: 0.05px solid black;
+    background-color: black;
+    opacity: 0.6;
+    text-align: left;
+    padding: 3em;
+    width: 22%;
+    position: absolute;
+    margin: 20em 10em 15em 10em;
+    color: white;
+    letter-spacing: 0.08em;
+}
+
+.text>h2 {
+    font-weight: bold;
+    font-size: 1.5em;
+    padding-bottom: 1em;
+
+}
+
+.text>.read {
+    margin-top: 1em;
+    border: 3px solid white;
+    width: 30%;
+}
+.read>a {
+    color: orange;
+    text-align: center;
+    padding: 0.5em;
+    font-weight: bold;
+}
+
+
+
+

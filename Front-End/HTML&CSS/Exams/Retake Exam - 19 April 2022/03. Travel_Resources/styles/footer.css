@@ -1,0 +1,33 @@
+.finish {
+    background: rgb(160, 132, 32);
+    color: white;
+    display: flex;
+    gap:101em
+}
+
+.finish>div {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em 0 0.5em 1.5em;
+    
+}
+.finish>div>p {
+    font-size: 10px;
+}
+
+
+.finish>div a {
+    border: 2px solid white;
+    padding: 0.5em;
+    color: white;
+    font-weight: bold;
+}
+
+.finish>.button {
+    padding: 1em 0.5em;
+    
+}
+
+.reserve {
+    text-align: center;
+}

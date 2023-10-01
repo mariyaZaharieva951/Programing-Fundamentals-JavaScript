@@ -1,13 +1,23 @@
+header {
+    display: flex;
+    margin-top: 2em;
+}
+
+.img {
+    width: 60%;
+}
+
+
 .list, .navigation {
     display: flex;
     justify-content: flex-end;
     list-style-type: none;
-    gap:1.5em;
+    gap: 3em;
     color: grey;
     font-weight: bold;
-    padding-right: 7em;
     padding-bottom: 1em;
 }
+
 
 a {
     
@@ -17,13 +27,17 @@ a {
     text-decoration: none;
     color: rgb(152,152,152);
     gap: 1em;
-   
     
 }
 
-svg {
-    
+.img img {
+    background-color: rgb(160, 132, 32);
+    width: 7%;
+    padding: 2em;
+    margin: 1.5em 8em;
+    position: absolute;
 }
+
 
 
 

@@ -1,6 +1,9 @@
 @import url(./typography.css);
 @import url(./navigation.css);
-/* @import url(./typography.css); */
+@import url(./layout.css);
+@import url(./card.css);
+@import url(./cards.css);
+@import url(./footer.css);
 
 
 

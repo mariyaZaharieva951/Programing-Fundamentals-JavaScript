@@ -1,0 +1,43 @@
+.pics>h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: rgb(109, 107, 107);
+    padding: 1em 10em;
+    letter-spacing: 0.08em;
+}
+
+.pics>p {
+    text-align: center;
+    color: rgb(109, 107, 107);
+    padding-bottom: 1em;
+    font-size: 14px;
+    
+}
+
+.image {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.images {
+    
+    display: flex;
+    gap:1em;
+    justify-content: center;
+    
+}
+
+.image>img {
+    border: 2px solid rgb(109, 107, 107);
+    padding: 0.2em;
+    border-radius: 50%;
+    width: 150px;
+}
+.image>p {
+    text-align: center;
+    color: rgb(109, 107, 107);
+    font-size: 10px;
+}
