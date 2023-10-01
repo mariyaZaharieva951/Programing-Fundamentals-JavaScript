@@ -1,0 +1,29 @@
+.list, .navigation {
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    gap:1.5em;
+    color: grey;
+    font-weight: bold;
+    padding-right: 7em;
+    padding-bottom: 1em;
+}
+
+a {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-decoration: none;
+    color: rgb(152,152,152);
+    gap: 1em;
+   
+    
+}
+
+svg {
+    
+}
+
+
+
