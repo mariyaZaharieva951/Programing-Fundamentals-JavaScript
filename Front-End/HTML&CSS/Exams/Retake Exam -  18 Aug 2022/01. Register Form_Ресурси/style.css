@@ -1,0 +1,94 @@
+@import url(https://fonts.googleapis.com/css2?family=Mulish&display=swap);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    box-sizing: inherit;
+    font: 10px/1.5 "Mulish";
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(./images/background.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+form {
+    background-image: url(./images/form-background.png);
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 2em;
+    box-shadow: 7px 7px 7px 3px rgb(0,0,0,0.3);
+    padding: 5em 30em 3em 3em;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+ 
+}
+div {
+    display: flex;
+    flex-direction: column;
+}
+form>div {
+    padding-top: 1em;
+}
+h1 {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    text-align: center;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    letter-spacing: 0.1em;
+}
+
+div.name {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+input {
+    border: 1px solid gray;
+    border-radius: 2em;
+    padding: 0.3em;
+    
+}
+
+.name input {
+    width: 9.5em;
+}
+.email>input, .password>input, .confirmPassword>input {
+    width: 20em;
+}
+
+label {
+    padding-bottom: 0.5em;
+}
+
+.button {
+    display: inline-block;
+    text-align: center;
+    padding-bottom: 0;
+}
+
+.button>a {
+    display: inline-block;
+    color: white;
+    text-transform: uppercase;
+    background-color: rgb(165, 45, 45);
+    padding: 0.7em 1.5em;
+    border-radius: 1.5em;
+    font-size: 0.8em;
+
+}
