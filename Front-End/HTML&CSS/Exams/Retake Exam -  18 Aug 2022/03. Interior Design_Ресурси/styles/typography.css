@@ -14,7 +14,8 @@ html {
 
 .container {
     display: block;
-   /* position: relative; */
+    margin: 0 20em auto;
+
 }
 
 h1, h2, h3 {

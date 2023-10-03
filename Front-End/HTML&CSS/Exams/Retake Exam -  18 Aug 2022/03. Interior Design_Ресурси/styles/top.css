@@ -1,12 +1,10 @@
 .top {
     background-color: aqua;
-    /* display: inline-block; */
     background-image: url(../image/image.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position:center;
     position: relative;
-    margin: 0 10em auto;
     height: 100vh;
     
 }
@@ -41,6 +39,10 @@
 
 .description {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 40%;
+    left: 70%;
+    border: 1px solid black;
+    margin-right: 2em;
+    text-align: right;
+    padding: 2em 1em;
 }
