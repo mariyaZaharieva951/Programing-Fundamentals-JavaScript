@@ -1,0 +1,46 @@
+.top {
+    background-color: aqua;
+    /* display: inline-block; */
+    background-image: url(../image/image.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+    position: relative;
+    margin: 0 10em auto;
+    height: 100vh;
+    
+}
+
+.head {
+    width: 200px;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    border: 1px solid gray;
+    padding: 1em 5em 1em 1em;
+    box-shadow: 0px 0px 0.5px 1px #aeadad;
+    
+
+}
+
+.head h1 {
+    word-wrap: break-word;
+    font-weight: bold;
+    
+}
+
+.head p {
+    width: 100px;
+    font-size: small;
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+    border-top: 2px solid white;
+
+
+}
+
+.description {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
