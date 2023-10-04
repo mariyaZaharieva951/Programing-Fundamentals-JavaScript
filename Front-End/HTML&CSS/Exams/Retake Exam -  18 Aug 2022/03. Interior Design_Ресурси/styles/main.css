@@ -43,10 +43,6 @@ main {
       
 }
 
-/* .opis:nth-child(0), .opis:nth-child(1), .opis:nth-child(2) {
-    padding-bottom: 3em;
-} */
-
 
 .text {
     display: flex;
@@ -65,8 +61,12 @@ main {
 .opisServices>p>span {
     font-weight: bold;
     text-transform: uppercase;
-    padding-left: 1em;
+    padding-left: 0.5em;
     padding-right: 0.5em;
+}
+
+.opisServices svg {
+    padding-top: 0.1em;
 }
 
 .services>h2, .contact>h2 {

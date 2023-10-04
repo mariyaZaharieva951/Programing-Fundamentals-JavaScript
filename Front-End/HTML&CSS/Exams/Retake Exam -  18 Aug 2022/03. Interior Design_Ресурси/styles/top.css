@@ -44,5 +44,13 @@
     border: 1px solid black;
     margin-right: 2em;
     text-align: right;
-    padding: 2em 1em;
+    padding: 3em 2em 1em;
+    background:linear-gradient(85deg,#a3a097, rgb(220, 220, 220)) ;
+    color: white;
+    
+    
+}
+
+.description p {
+    font-size: 0.8em;
 }
