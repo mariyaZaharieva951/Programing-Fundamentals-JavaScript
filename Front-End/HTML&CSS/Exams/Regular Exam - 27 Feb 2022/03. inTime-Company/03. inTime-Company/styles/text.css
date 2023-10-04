@@ -1,0 +1,29 @@
+.text {
+    padding-top: 1.5em;
+    text-align: center;
+}
+
+.text span {
+    border-bottom: 2px solid rgb(15, 126, 200);
+    padding-bottom: 0.1em;
+}
+
+.text>h2, .text>p {
+    padding-bottom: 2em;
+}
+
+.text>p {
+    text-align: center;
+    padding-left:12em;
+    padding-right:12em;
+}
+
+.text>.button a {
+    color: white;
+    text-decoration: none;
+    border: 1px solid rgba(11, 11, 11, 0.708);
+    background-color: rgba(11, 11, 11, 0.708);
+    padding: 0.7em 1.7em;
+    border-radius: 2em;
+    font-size: 10px;
+}

@@ -1,0 +1,28 @@
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header>p {
+    font-size: 1.3em;
+    padding-left: 5em;
+}
+
+header>p>span {
+    color: rgb(15, 126, 200);
+}
+
+nav>ul {
+    display: flex;
+    list-style-type: none;
+    gap:2em;
+    padding-right: 10em;
+}
+
+nav>ul>li:first-child {
+    border-bottom: 2px solid rgb(15, 126, 200);
+    padding-bottom: 0.2em;
+}
+
+
