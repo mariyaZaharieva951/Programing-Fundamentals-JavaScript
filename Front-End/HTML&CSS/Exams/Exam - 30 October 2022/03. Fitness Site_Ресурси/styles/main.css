@@ -1,0 +1,24 @@
+.fundament>nav ul {
+    display: flex;
+    list-style-type: none;
+    gap: 2em;
+    justify-content: flex-end;
+}
+
+.fundament {
+    text-align: center;
+    background-image: url('../image/fitness-main.jpg');
+}
+
+.welcome>h2, .coach>h2 {
+    text-align: center;
+}
+
+.welcome>.suggestions, .coach>.coaches {
+    display: flex;
+}
+
+footer>p {
+    text-align: center;
+    background-color: red;
+}
