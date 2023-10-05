@@ -18,7 +18,7 @@
     padding-right:12em;
 }
 
-.text>.button a {
+.button a {
     color: white;
     text-decoration: none;
     border: 1px solid rgba(11, 11, 11, 0.708);

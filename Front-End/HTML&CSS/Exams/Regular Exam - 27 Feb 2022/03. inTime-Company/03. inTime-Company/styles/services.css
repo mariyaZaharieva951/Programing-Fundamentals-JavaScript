@@ -1,11 +1,15 @@
 .services {
+    padding-top: 2em;
     display: flex;
     flex-direction: column;
     gap: 1em;
+    background: rgba(211, 211, 211, 0.418);
 }
 
 .services>h2 {
     text-align: center;
+    font-weight: normal;
+    font-size: 2em;
 }
 
 .services>h2>span {
@@ -16,10 +20,38 @@
 
 .ourServices {
     display: flex;
+    padding: 2em 12em;
     gap: 1em;
+    
     
 }
 
 .ourServices>div {
+    background-color: white;
+    border-end-start-radius: 5px;
+    border-end-end-radius: 5px;
     
+}
+
+.ourServices>div>div {
+    text-align: center;
+    padding: 1.5em 1em;
+    color: rgb(104, 96, 96);
+
+}
+
+.ourServices>div>img {
+    
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.ourServices>div>div>p {
+    padding: 1em 0;
+}
+
+.button.read.serv a {
+    border-radius: 4px;
+    font-size: 12px;
 }
