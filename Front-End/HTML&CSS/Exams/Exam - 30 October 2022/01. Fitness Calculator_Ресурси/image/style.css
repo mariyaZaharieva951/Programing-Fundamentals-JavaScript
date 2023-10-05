@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: inherit;
+}
+
+html {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    box-sizing: inherit;
+}
+
+body {
+    display: flex;
+    justify-content: center; 
+    
+    
+}
+.container {
+    
+    display: flex;
+    justify-content: center;
+    margin-top: 8em;
+    border: 1px solid rgba(128, 128, 128, 0.647);
+    border-radius: 12px;
+    box-shadow: 0px 7px 7px 5px rgb(175, 175, 175);
+      
+}
+
+.img>img, .calculator {
+    display: block;
+    width: 600px;
+    height: 500px;
+    
+}
+
+.img>img {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 3em;
+    padding: 3em 1em;
+}
+
+.calculator>h1 {
+    font-weight: bolder;
+    font-size: 20px;
+    padding-bottom: 1em;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+}
+
+.buttons>p a {
+    border: 1px solid rgb(9, 9, 9);
+    color:  rgb(9, 9, 9);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.buttons>.green a {
+    background-color: rgb(150, 219, 46);
+    padding: 0.5em 1.5em; 
+    border-radius: 5px; 
+}
+
+.buttons>.gray a {
+    background-color:rgba(211, 211, 211, 0.603);
+    padding: 0.5em 2em; 
+    border-radius: 5px; 
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.genderBox, .weightBox, .heightBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+label {
+padding-bottom: 1em;
+font-weight: bold;}
+
+select {
+    width: 156.8px;
+    margin-right: 1.5em;
+}
+option{
+        width: 156.8px;
+       
+}
+
+.weightBox>input {
+    margin: 0 6em;
+    height: 20px;
+    
+}
+
+.heightBox>div>input {
+    width: 220px;
+    margin-right: 1.5em;
+}
+
+
+
+.button>p a {
+    border: 1px solid rgb(82, 175, 241);
+    box-shadow: 0px 7px 7px 1px rgb(175, 175, 175);;
+    background-color: rgb(82, 175, 241);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+    padding: 0.3em 18em;
+    
+}
+
+.button>p {
+    margin-top: 3em;
+}
+
+
