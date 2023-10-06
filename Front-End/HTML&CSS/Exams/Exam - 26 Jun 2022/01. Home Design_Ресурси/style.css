@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+html {
+    font-family: 'Courgette', cursive;
+}
+
+.container {
+    margin: 2em 10em;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(211, 211, 211, 0.563);
+    align-items: center;
+    border: 2px solid black;
+}
+
+.container>h1 {
+    font-size: 2.5em;
+    letter-spacing: 0.1em;
+    font-weight: normal;
+}
+
+.container>h2 {
+    font-size: 1.1em;
+    letter-spacing: 0.1em;
+    color: rgb(203, 16, 16);
+    padding-left: 11em;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    gap: 1.2em;
+    padding: 2em 4em;
+}
+
+.card {
+    width: 250px;
+    text-align: center;
+    font-size: 12px;
+    background-color: white;
+    border-radius: 12px;
+    
+    
+}
+
+img {
+    width: 250px;
+    height: 130px;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+}
+
+.card>h2 {
+    border-bottom: 2px solid rgb(203, 16, 16);
+    margin: 0.5em;
+    padding-bottom: 0.5em;
+    
+}
+
+
+.text {
+    padding: 0 0.7em 3em;
+}
+
