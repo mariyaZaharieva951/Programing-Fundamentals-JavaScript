@@ -1,24 +1,121 @@
+.fundament {
+    color: rgb(249, 239, 239);
+}
+
 .fundament>nav ul {
     display: flex;
     list-style-type: none;
-    gap: 2em;
+    gap: 3.5em;
     justify-content: flex-end;
+    margin-right: 4em;
+    color: rgb(249, 239, 239);
+    font-size: 0.9em;
+    padding: 1.3em 0 8em 0;
 }
 
 .fundament {
     text-align: center;
     background-image: url('../image/fitness-main.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+}
+
+
+.fundament h1 {
+    font-size: 2.7em;
+    letter-spacing: 0.2em;
+    font-weight: bold;
+}
+
+.fundament>p {
+    padding: 2em 32em;
+    font-size: 15px;
+}
+
+.fundament .button {
+    padding-top: 0em;
+    font-size: 12px;
+}
+
+.fundament .button>a {
+    color: rgb(249, 239, 239);
+    text-decoration: none;
+    border: 1px solid rgb(210, 8, 8);
+    border-radius: 3px;
+    background-color: rgb(210, 8, 8);
+    font-weight: bold;
+    padding: 0.5em 1.5em;
+    letter-spacing: 0.05em;
+
+}
+
+.welcome, .coach {
+    padding-bottom: 2.5em;
 }
 
 .welcome>h2, .coach>h2 {
     text-align: center;
 }
 
-.welcome>.suggestions, .coach>.coaches {
+.welcome>.suggestions {
     display: flex;
+    justify-content: center;
+    gap: 10em;
 }
 
-footer>p {
+.coach {
+    background-color: rgba(211, 211, 211, 0.425);
+}
+
+.coach>.coaches {
+    display: flex;
+    justify-content: center;
+    gap: 13em;
+}
+
+.welcome>h2, .coach>h2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    padding: 1em 0 2em;
+}
+
+.welcome>h2>span, .coach>h2>span {
+    border-bottom: 3px solid rgb(210, 8, 8);
+    padding-bottom: 1em;
+}
+
+.welcome>.suggestions, .coach>.coaches {
     text-align: center;
-    background-color: red;
+}
+
+.welcome>.suggestions>div, .coach>.coaches>div {
+    width: 20%;
+    font-size: 14px;
+}
+
+.welcome>.suggestions img {
+    width: 15%;
+}
+
+.coach>.coaches img {
+    width: 95%;
+    border-radius: 7px;
+}
+
+.coach>.coaches p {
+    padding: 0 1em;
+    color: darkgray;
+}
+
+.coach>.coaches h3 {
+    font-weight: bold;
+    padding: 0.7em 0em 0em 0em;
+}
+
+.welcome>.suggestions h3, .coach>.coaches h4 {
+    padding: 1em 0;
+    color: rgb(210, 8, 8);
+    font-weight: bold;
 }

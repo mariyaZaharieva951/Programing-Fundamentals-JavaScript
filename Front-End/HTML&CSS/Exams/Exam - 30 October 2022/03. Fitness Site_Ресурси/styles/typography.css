@@ -4,10 +4,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font: inherit;
 }
 
 html {
     font-size: 16px;
-    font-family: 'PT Sans', sans-serif;
-    font-family: 'PT Serif', serif;
+    font-family: 'PT Sans', 'PT Serif', serif;;  
+}
+
+.container {
+    padding: 1em 2em;
+    margin: 1em 2em;
 }
