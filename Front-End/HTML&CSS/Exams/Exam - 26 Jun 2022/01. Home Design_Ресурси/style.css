@@ -38,22 +38,28 @@ html {
     display: flex;
     justify-content: center;
     gap: 1.2em;
-    padding: 2em 4em;
+    padding: 2em 10em;
 }
 
 .card {
-    width: 250px;
+    /* display: flex;
+    flex-direction: column; */
+    /* width: 250px;
+    height: 300px; */
+    flex: 1 1 auto;
     text-align: center;
     font-size: 12px;
     background-color: white;
     border-radius: 12px;
     
     
+    
 }
 
 img {
-    width: 250px;
-    height: 130px;
+    width: 100%;
+    /* height: 130px;  */
+    /* flex: 0 1 auto; */
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
 }
@@ -65,8 +71,35 @@ img {
     
 }
 
+.text>p {
+    padding: 0 1em;
+}
+
+
+.first {
+    margin-top: 1.3em;
+    
+}
 
 .text {
-    padding: 0 0.7em 3em;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    gap: 2em;
+}
+
+.text>p:nth-child(2) {
+    display: inline-block;
+    padding-bottom: 1em;
+}
+
+
+svg {
+    
+    /* display: inline-block; */
+    margin-left: 0.5em;
+    
+
+    
 }
 
