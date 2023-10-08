@@ -1,0 +1,36 @@
+footer {
+    background-color: rgba(152, 244, 216, 0.849);
+    text-align: center;
+    padding: 1.5em 2em;
+
+}
+
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    gap: 3em;
+    margin: 2em 0;
+}
+
+section>div {
+    width: 25%;
+    font-size: 0.8em;
+}
+
+section>div>p {
+    padding-top: 0.5rem;
+}
+
+
+footer a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+footer>p {
+    font-size: 0.8em;
+}
