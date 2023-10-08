@@ -1,0 +1,48 @@
+.top {
+   background-image: url(../images/header-dog.png), url(../images/header-bg.png);
+   background-repeat: no-repeat, no-repeat;
+   background-size: 60%,100%;
+   background-position: 70% 30% , center top;
+   position: relative;
+   height: 100vh;
+   
+   
+
+}
+
+.top>div {
+    position: absolute;
+    top: 30%;
+    left: 27%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.top>div>p:nth-child(1) {
+    font-size: 2.7em;
+    
+}
+
+.top>div>h1 {
+    font-weight: bolder;
+}
+
+p.text{
+    font-size: 8px;
+    padding-top: 0.8em;
+}
+
+.button a{
+    color: rgb(225, 67, 5);
+    text-decoration: none;
+    font-size: 8px;
+    font-weight: bold;
+    background-color: white;
+    padding: 0.5em 2em; 
+    border-radius: 10px;
+}
+
+.button {
+    margin-top: 1.5em;
+}
+

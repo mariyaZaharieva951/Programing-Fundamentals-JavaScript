@@ -1,0 +1,15 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 2em 10em;
+}
+
+nav>ul {
+    display: flex;
+    list-style-type: none;
+    gap: 2em;
+}
+
+header>img {
+    width: 9%;
+}
