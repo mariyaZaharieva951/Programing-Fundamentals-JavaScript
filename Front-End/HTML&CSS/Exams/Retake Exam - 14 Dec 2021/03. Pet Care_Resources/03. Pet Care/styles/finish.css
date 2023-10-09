@@ -1,0 +1,42 @@
+.finish {
+    background-image: url('../images/cats-bg.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: auto;
+    height: 37vh;
+    text-align: center;
+    padding: 70px 0;
+    color: white;
+}
+
+.finish>p {
+    padding: 1.5em 23em;
+    font-size: 12px;
+}
+
+.finish>.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    padding-top: 1em;
+    
+}
+
+.finish a {
+    text-decoration: none;
+    background-color: white;
+    color: orangered;
+    font-weight: bold;
+    padding: 0.7em 2.5em;
+    border-radius: 20px;
+    font-size: 9px;
+}
+
+.finish>div>p:nth-child(2) {
+    font-size: 10px;
+}
+
+.finish span {
+    font-weight: bold;
+    padding-left: 0.5em;
+}

@@ -1,0 +1,38 @@
+footer {
+    background-color: rgba(234, 232, 232, 0.592);
+    padding: 6em;
+    
+
+
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+    
+}
+
+.links h4 {
+    font-size: 14px;
+    padding-bottom: 2em;
+}
+
+.links>ul>li {
+    list-style-type: none;
+    padding-bottom: 1em;
+    color: rgb(117, 116, 116);
+}
+
+.links img {
+    width: 40%;
+    padding-bottom: 2em;
+}
+
+.links:nth-last-child()>li {
+    width: 10%;
+}
+
+.last {
+    width: 90%;
+}
