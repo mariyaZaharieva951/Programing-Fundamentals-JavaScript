@@ -1,0 +1,60 @@
+.dog {
+    text-align: center;
+    padding: 3em;
+}
+
+.cards {
+    display: flex;
+    padding: 3em 7em;
+    gap: 0.5em;
+}
+
+.dog>p {
+    padding: 0.5em 27em;
+    font-size: 9px;
+}
+
+.card {
+    /* border: 1px solid rgba(255, 94, 0, 0.278); */
+    border-radius: 7px;
+    padding: 3em 2em;
+}
+
+.cards>:nth-child(1) {
+    border-left: 1px solid rgba(255, 94, 0, 0.278);
+    border-top: 1px solid rgba(255, 94, 0, 0.278);
+    border-bottom: 1px solid rgba(255, 94, 0, 0.278);
+}
+
+.cards>:nth-child(2) {
+    border: 1px solid rgba(255, 94, 0, 0.278);
+    
+}
+
+.cards>:nth-child(3) {
+    border-right: 1px solid rgba(255, 94, 0, 0.278);
+    border-top: 1px solid rgba(255, 94, 0, 0.278);
+    border-bottom: 1px solid rgba(255, 94, 0, 0.278);
+}
+
+.card>div>img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: auto;
+}
+
+.card>div {
+    
+    background-image: url(../images/service-bg.png);
+    background-size: 55%;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    height: 15vh;
+    width: auto;
+    
+    
+}
