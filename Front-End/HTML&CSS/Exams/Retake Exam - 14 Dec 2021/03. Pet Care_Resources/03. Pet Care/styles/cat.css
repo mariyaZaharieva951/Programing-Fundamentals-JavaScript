@@ -1,0 +1,44 @@
+.cat {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+}
+
+.cat>img {
+    display: block;
+    width: 30%;
+    height: auto;
+}
+
+.cat>article {
+    margin-top: 5em;
+}
+
+.cat>article>p:nth-child(1) {
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+.cat>article>h2 {
+    font-size: 2.3em;
+}
+
+.cat>article>div {
+    padding: 2.5em 0;
+    font-size: 9px;
+}
+
+.cat>article>.about {
+    padding-top: 2em;
+}
+
+.cat a {
+    background-color: orangered;
+    color: white;
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 1em 3.5em;
+    border-radius: 25px;
+}
+

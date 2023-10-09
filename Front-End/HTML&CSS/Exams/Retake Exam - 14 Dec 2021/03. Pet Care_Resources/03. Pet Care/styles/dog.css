@@ -54,7 +54,13 @@
     background-position: center;
     position: relative;
     height: 15vh;
-    width: auto;
-    
-    
+    width: auto; 
+    margin-bottom: 1.5em;
+}
+
+.card p {
+    font-size: 9px;
+    color: rgb(150, 149, 149);
+    line-height: 1.7;
+    padding-top: 1em;
 }
