@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: auto;
+    margin: 2em 5em;
+}
+
+.card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
