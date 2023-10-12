@@ -94,7 +94,7 @@
 } 
 
 .card-list>:nth-child(5)>.two img {
-    width: 140%;
+    width: 100%;
     
 }
 
@@ -102,6 +102,10 @@
     text-align: center;
     padding: 2em 10em;
     font-size: 10px;
+}
+
+.card-list img:hover {
+    transform: scale(1.5);
 }
 
 .text3 {
