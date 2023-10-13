@@ -1,0 +1,18 @@
+.finance>h3 {
+    padding-bottom: 1em;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5em;
+}
+
+.box>article>.text1 {
+    padding-bottom: 1em;
+}
+
+.box img {
+    width: 90%;
+}

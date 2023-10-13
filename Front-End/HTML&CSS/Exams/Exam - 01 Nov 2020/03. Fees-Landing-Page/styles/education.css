@@ -1,0 +1,47 @@
+
+
+.education h3 {
+    padding-bottom: 1em;
+}
+
+.education>p {
+    padding-bottom: 2em;
+}
+
+.education section {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    
+}
+
+.education>section>.line>p:nth-child(1) {
+    padding-left: 1em;
+}
+
+.education>section>.line {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 4em;
+}
+
+.education>section>.line:nth-child(odd) {
+    background-color: rgb(230,230,230);
+}
+.education>section>.line:nth-child(even) {
+    background-color: rgb(248,248,248);
+}
+
+.education>section>.line:nth-child(1) {
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+}
+
+.education>section>.line:last-child {
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.mark1 img, .mark2 img{
+    width: 60%;
+}
