@@ -1,27 +1,94 @@
 @media (width<=600px) {
     body {
+        max-width: 600px;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        /* align-items:baseline; */
     }
 
     .banner {
         width: 100%;
+        margin: 0;
+        padding: 0;
     }
 
     .banner h2 {
-        width: 90%;
+        width: 95%;
         align-items: center;
-        font-size: 1.5em;
-        padding-bottom: 0.4em;
-        border-bottom-style: double;
-        border-left: 0.1em solid;
-        border-right: 0.1em solid;
-        margin: 0 0.5em;
-        padding: 1em 1em 1em;
+        font-size: 1.3em;
+        margin-top: 1.5em;
    }
 
    .banner p {
+        font-size: 1.3em;
+   }
+
+   section.wrapper.special {
     padding-top: 1.5em;
    }
+
+   header.major {
+    margin-bottom: 1em;
+   }
+
+   li {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+   }
+
+   a.button.special{
+    margin: 0;
+    padding: 0;
+   }
+
+   .inner {
+        max-width: 600px;
+        text-align: center;
+        
+   }
+
+   .features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   }
+
+   .feature {
+    width: 95%;
+    padding-left: 0;
+    padding-right: 0;
+   }
+
+   
+   .grid-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   }
+
+   .grid-form .form-control.narrow {
+        width: 95%;
+        text-align: center;
+   }
+
+   .grid-form .form-control {
+    width: 95%;
+   }
+
+
+
+input{
+        width: 95%;
+}
+
+input[type="submit"], .button {
+    width: 95%;
+}
+
+ul.actions li {
+    display: block;
+    
+}
 }
