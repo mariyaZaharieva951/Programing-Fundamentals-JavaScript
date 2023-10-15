@@ -1,0 +1,47 @@
+.site {
+    width: 1050px;
+}
+
+.top {
+    text-align: center;
+    background-image: url(../images/map.jpg);
+    background-position:top;
+    background-repeat: no-repeat;
+    background-size:cover;
+    max-height: 60vh;
+    width: auto;
+}
+
+.articles {
+    display: flex;
+    padding: 0em 4em 1em;
+    justify-content: center;
+    width: 100%;
+}
+
+.articles>div {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    background-color: rgba(223, 215, 204, 0.663);
+}
+
+main h2 {
+    padding: 0.5em 5em;
+    font-size: 14px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    background-color: gray;
+    font-size: 8px;
+    color: white;
+    padding: 3em 0;
+}   
+
+
+
+

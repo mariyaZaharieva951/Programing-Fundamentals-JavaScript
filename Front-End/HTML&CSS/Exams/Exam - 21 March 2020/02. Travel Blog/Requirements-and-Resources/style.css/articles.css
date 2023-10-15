@@ -1,0 +1,47 @@
+article h2 {
+    font-size: 14px;
+}
+
+.one {
+    background-image: url(../images/packing.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 42vh;
+    width: auto;
+
+}
+
+.one h2 {
+    text-align: center;
+    padding: 1.5em 2.2em;
+    color: white;
+}
+
+.two {
+    background-image: url(../images/planning.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 21vh;
+    width: auto;
+}
+
+.two h2 {
+    padding: 0 4em;
+    color: white;
+}
+
+.three {
+    background-image: url(../images/budget.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 21vh;
+    width: auto;
+}
+
+.three h2 {
+    padding: 9em 0 0 0.2em;
+    color: white;
+}
