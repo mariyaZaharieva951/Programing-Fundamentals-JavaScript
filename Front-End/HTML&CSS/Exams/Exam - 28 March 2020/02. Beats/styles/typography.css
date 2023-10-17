@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Open+Sans:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+  font-family: 'Open Sans', sans-serif;  
+  font-size: 14px;
+}
+
+
+.site {
+    width: 1366px;
+    margin: 0 auto;
+    /* padding-right: 10em; */
+    border: 1px solid black;
+    
+}
+
+.bottom {
+    display: flex;
+    padding-top: 7em;
+    gap: 3em;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.bottom .price {
+    font-size: 3em;
+    align-items: center;;
+    font-weight: bolder;
+}
+
+.bottom .button {
+    align-items: center;
+}
+
+.bottom .button a {
+    text-transform: uppercase;
+    padding: 1em 4em;
+}

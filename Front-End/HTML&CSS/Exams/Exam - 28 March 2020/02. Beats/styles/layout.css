@@ -1,0 +1,218 @@
+header {
+    padding: 3em 12em 0;
+}
+
+header nav ul{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 7em;
+}
+
+header li {
+    text-transform: uppercase;
+    color: darkgray;
+}
+
+ul, li {
+    display: block;
+}
+
+.one, .two {
+    display: flex;
+    gap: 2em;
+}
+
+.one article{
+    flex: 1 1 40%;
+}
+
+.one .img {
+    flex: 1 1 55%;
+}
+
+img {
+    width: 100%;
+}
+
+.one article {
+    display: flex;
+    flex-direction: column;
+    padding: 13em 0 0 8em;
+}
+
+.one>article>.title {
+    font-size: 3.5em;
+    text-transform: uppercase;
+    font-weight: normal;
+    padding-bottom: 0.5em;
+}
+
+.one>article>.text {
+    padding-right: 5em;
+    line-height: 2;
+}
+
+.one>article>.button {
+    padding-top: 3em;
+}
+
+.button a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    padding: 1em 3.5em;
+    border-radius: 25px;
+    
+}
+
+.two {
+    padding-top: 10em;
+    justify-content: center;
+    
+}
+
+.two .img {
+    flex: 1 1 40%;
+    padding-left: 5em;
+}
+
+.two .img>img {
+    width: 90%;
+}
+
+.two article {
+    flex: 1 1 50%;
+    align-items: center;
+
+    
+}
+
+.two article .title {
+    text-align: center;
+    font-size: 5em;
+    text-transform: uppercase;
+}
+
+.two article>.box {
+    padding: 5em 10em;
+    
+}
+
+
+.header>p:nth-child(2) {
+    text-transform: uppercase;
+    padding-left: 15em;
+    font-size: 1.2em;
+}
+
+.header span {
+    font-weight: bold;
+}
+
+.two .text {
+    font-size: 1.3em;
+}
+
+.three {
+    background-color: rgb(106, 105, 105);
+    text-align: center;
+    padding-bottom: 4em;
+}
+
+.three .top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:2em;
+    padding: 3em 0;
+    font-weight: normal;
+    
+}
+
+.three .top p {
+    font-size: 2.2em;
+    text-transform: uppercase;
+    color: white;
+}
+
+.three img {
+    width: 7%;
+}
+
+.three .read a {
+    color: white;
+    text-transform: uppercase;
+    font-size: 2.2em;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px solid white;
+}
+
+.four {
+    display: flex;
+
+    align-content: stretch;
+  
+    
+}
+
+.four .girl {
+    width: 50%;
+    
+    align-content: stretch;
+}
+
+.four .girl img {
+    width: 100%;
+}
+
+.four .red {
+    display: flex;
+    /* padding: 1em 2em 0 0; */
+    justify-content: center;
+    width: 50%;
+    background-color: gainsboro;
+    
+    align-content: stretch;
+    margin-bottom: 0.2em;
+}
+
+.four .red .text {
+    align-items: center;
+    padding-left: 8em;
+}
+
+.four .red .img {
+    width: 100%;
+}
+
+.red .text h1 {
+    
+    font-size: 10em;
+    letter-spacing:0;
+    text-transform: uppercase;
+    font-weight: bolder;
+}
+
+.red .text h3 {
+     font-size: 4em;
+     font-weight: 100;
+     padding-left: 0.1em;
+}
+
+.red .text h3 span {
+    color: red;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.four .red>img {
+    width: 100%;
+}
+
+footer p {
+    text-align: center;
+    font-size: 2em;
+    padding: 1.5em 0;
+}
