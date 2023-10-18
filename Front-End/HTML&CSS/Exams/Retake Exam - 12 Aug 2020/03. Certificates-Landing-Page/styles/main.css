@@ -1,0 +1,85 @@
+main h1 {
+    text-align: center;
+    padding-top: 2em;
+}
+
+main>.diploma {
+    background-color:rgb(244, 245, 247);
+    padding: 1em;
+    font-size: 11px;
+}
+
+main>.diploma>p:nth-child(2) {
+    padding: 1.5em 0;
+}
+
+.start {
+    color: white;
+    text-align: center;
+    background-image: url('../images/sign-up-prompt-background.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    position: relative;
+    
+}
+
+/* .start::after{
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    background-color: #3a3838;
+    
+} */
+
+
+.start h1 {
+    padding: 0.5em;
+    font-weight: 500;
+    font-size: 16px;
+    
+    
+}
+
+.start p {
+    font-size: 11px;
+    padding: 0 12em;
+    
+}
+
+.start .buttons {
+    display: flex;
+    padding: 3em 20em;
+    justify-content: space-evenly;
+    
+}
+
+.buttons a {
+    display: block;
+    text-decoration: none;
+}
+
+
+.buttons .apply {
+    color: rgb(115,188,249);
+    background-color: white;
+    padding: 0.5em 3em;
+    border-radius: 6px;
+    font-weight: bold;
+
+    
+}
+
+.buttons .curriculum {
+    color: white;
+    padding: 0.5em 3em;
+    border: 0.5px solid white;
+    border-radius: 6px;
+}
+

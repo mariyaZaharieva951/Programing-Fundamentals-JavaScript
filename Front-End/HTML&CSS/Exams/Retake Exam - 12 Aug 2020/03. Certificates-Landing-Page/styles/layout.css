@@ -10,3 +10,50 @@
    margin: 2em 7em;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+footer {
+    display: flex;
+    border-top: 2px solid darkgray;
+    position: relative;
+}
+
+
+
+footer .left{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    color: lightgray;
+}
+
+footer .left .logo {
+    width: 20%;
+}
+
+footer .right ul{
+    display: flex;
+    gap: 2em;
+   
+    
+}
+
+footer .right ul li {
+    display:inline-block;
+    white-space: nowrap;
+    
+}
+
+.left,.right {
+    margin-top: 2em;
+}
+
+.logo img{
+    width: 100%;
+}
+
+
