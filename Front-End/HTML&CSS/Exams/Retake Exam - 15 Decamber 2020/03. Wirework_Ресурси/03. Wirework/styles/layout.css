@@ -1,0 +1,94 @@
+.site {
+    display: flex;
+    flex-direction: column;
+}
+
+.img {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+   
+}
+.img img {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+    
+    
+}
+
+.text {
+    background-color: rgb(226,78,46);
+    color: rgb(237, 202, 198);
+    padding: 2em 12em 3em;
+    text-align: center;
+
+}
+
+.text>p span {
+    font-weight: bold;
+}
+.text>p span:nth-child(2), .text>p span:nth-child(3), .text>p span:nth-child(4) {
+    text-decoration: underline;
+}
+
+.card-list {
+    display: flex;
+    justify-content: space-between;
+    padding: 5em 2em;
+    gap: 0.5em;
+    background-color: rgb(56,56,56);
+}
+
+.white {
+    text-align: center;
+    padding: 4em 0;
+}
+
+.white h2 {
+    font-size: 2em;
+    font-weight: 500;
+}
+
+.white .title-white {
+    color: gray;
+}
+
+.white .button a{
+    display: inline-block;
+    color:white;
+    background-color: rgb(27,151,114);
+    letter-spacing: 0.2em;
+    font-size: 0.7em;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 1.5em 3.5em;
+
+
+}
+
+.white .button {
+    padding-top: 1.5em;
+}
+
+footer {
+    background-color: rgb(27,151,114);
+}
+
+footer p {
+    color: rgba(255, 255, 255, 0.204);
+    font-weight: normal;
+    text-align: center;
+    padding: 5em 0;
+    
+}
+
+footer p>span {
+    color: rgba(255, 255, 255, 0.641);
+}

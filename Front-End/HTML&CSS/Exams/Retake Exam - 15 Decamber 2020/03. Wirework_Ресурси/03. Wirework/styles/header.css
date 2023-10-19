@@ -1,0 +1,50 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 3em 1.2em;
+    overflow: hidden;
+}
+
+.left-bar {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    
+}
+
+.left-bar>p:nth-child(1) {
+    font-size: 2em;
+    font-weight: bold;
+   
+}
+
+.left-bar>p:nth-child(2) {
+    font-size: 0.9em;
+    padding-top: 0.5em;
+}
+
+.left-bar span {
+    width: 1px;
+    color: rgba(0, 0, 0, 0.347);
+    border-right: 0.2px solid rgba(0, 0, 0, 0.504);
+    padding-left: 0.5em;
+}
+
+header>ul {
+    display: flex;
+}
+
+ul, li {
+    display: inline-block;
+    gap: 0.1em;
+    
+}
+
+header li>a {
+    text-decoration: none;
+    display: block;
+    color: black;
+    background-color: rgba(211, 211, 211, 0.416);
+    padding: 1em 1.5em;
+
+}

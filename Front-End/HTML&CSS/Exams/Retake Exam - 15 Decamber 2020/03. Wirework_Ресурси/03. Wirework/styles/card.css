@@ -1,0 +1,30 @@
+.card {
+    text-align: center;
+    
+}
+
+.card .title {
+    color: white;
+    padding-top: 0.5em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.211);
+}
+
+.card .doc{
+    color: gray;
+    padding: 1.5em 0;
+}
+
+.card .title2 {
+    font-size: 1.1em;
+    color: white;
+}
+
+.logo {
+    background-color: rgb(226,78,46);
+    display: inline-block;
+    padding: 1em;
+    
+}
+
+
