@@ -7,7 +7,7 @@
 }
 
 html {
-    font: 10px/1.2 Inter,serif;
+    font: 12px/1.2 Inter,serif;
     box-sizing: inherit;
 }
 
@@ -27,8 +27,8 @@ section,p {
 
 .container {
     display: flex;
-    padding: 2em 5em;
-    gap: 1em;
+    padding: 3em 8em;
+    gap: 2em;
 }
 
 
@@ -36,7 +36,7 @@ section,p {
     flex: 1 1 60%;
     display: flex;
     flex-direction: column;
-    gap: 1.2em;
+    gap: 2em;
 }
 
 .right {
@@ -46,11 +46,16 @@ section,p {
 .card {
     background-color: white;
     display: flex;
-    padding: 2em;
+    padding: 3em 3em;
     position: relative;
     justify-content: center;
     align-items: center;
     gap: 2em;
+}
+
+.card-right {
+    background-color: white;
+    padding: 2em;
 }
 
 .name {
@@ -60,19 +65,49 @@ section,p {
 }
 
 .text {
-    padding-top: 1em;
+    padding: 1em 1.5em 0 0;
 }
 
 .img {
     max-width: 120px;
     height: 120px;
+    padding-right: 2em;
    
 }
 
-img {
+.card img {
     
     width: 120px;
     height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.bottom {
+    padding-top: 1em;
+    margin-top: 5.5em;
+    border-top: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.card-right .img-right {
+    max-width: 80px;
+    height: 80px;
+}
+
+.work {
+    padding-top: 0.2em;
+}
+
+.card-right .text {
+    padding-top: 3em;
+}
+
+.card-right img {
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 50%;
 }
