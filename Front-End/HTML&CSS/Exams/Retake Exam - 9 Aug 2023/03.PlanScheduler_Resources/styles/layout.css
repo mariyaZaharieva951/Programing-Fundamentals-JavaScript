@@ -1,0 +1,45 @@
+.top {
+    background-image: url(../images/background.jpg);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.statistic-list {
+    background-color: white;
+    padding: 4em 3em 3em;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    gap: 0.5em;
+}
+
+.card-list {
+    display: flex;
+    flex-direction: column;
+    padding: 3em;
+    gap: 1.2em;
+}
+
+.bottom {
+    padding: 0 3em;
+    background-color: rgb(245,245,245);
+}
+
+.box {
+    background-color: white;
+    display: flex;
+    padding: 2em;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+footer .icons{
+    padding: 3em 13em;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+

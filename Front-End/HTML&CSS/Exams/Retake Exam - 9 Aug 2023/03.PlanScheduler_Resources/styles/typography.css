@@ -1,0 +1,14 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap);
+
+
+html {
+   font:10px/1.2 Inter; 
+   box-sizing: inherit;
+}
+
+.site {
+    width: 772px;
+    height: auto;
+    margin: 0 auto;
+    background-color: rgb(217,217,217);
+}

@@ -1,0 +1,24 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 3em 1em 4em;
+}
+
+header ul {
+    display: flex;
+    gap: 1em;
+}
+
+header li {
+    display: inline-block;
+}
+
+header .right-button a{
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 9px;
+    padding: 0.5em 1em;
+}
