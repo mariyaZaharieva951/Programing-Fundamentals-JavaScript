@@ -27,5 +27,5 @@
   top: -25px;
   height: 7em;
   opacity: 0.9;
-  z-index: dashed  ;
+  z-index: 1 ;
 }
