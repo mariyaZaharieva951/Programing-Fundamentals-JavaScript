@@ -1,20 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import { Footer } from './components/Footer';
+import { Header } from './components/Header';
+
 
 function App() {
   return (
     <div classNameName="App">
       
-      <header classNameName="navigation-header">
-    <span classNameName="navigation-logo">
-      <img src="./static/images/todo-icon.png" alt="todo-logo"/>
-    </span>
-    <span className="spacer"></span>
-    <span className="navigation-description">Todo List</span>
-  </header>
+      <Header/>
 
   
-  <main classNameName="main">
+      <main classNameName="main">
 
     <section className="todo-list-container">
       <h1>Todo List</h1>
@@ -125,12 +122,10 @@ function App() {
         </table>
       </div>
     </section>
-  </main>
+      </main>
 
   
-  <footer classNameName="footer">
-    <p>Copyright © designed by Mihail Valkov</p>
-  </footer>
+      <Footer/>
 
     </div>
   );
