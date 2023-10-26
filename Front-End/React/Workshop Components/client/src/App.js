@@ -21,7 +21,7 @@ function App() {
     })
   }, [])
 
-  console.log(users)
+  // console.log(users)
 
   return (
     <div className="App">
@@ -31,7 +31,7 @@ function App() {
         <section className="card users-container">
           <Search/>
 
-          <UserSection/>
+          <UserSection users={users}/>
         </section>
       </main>
 
