@@ -1,7 +1,7 @@
 export const Header = () => {
     return (
-        <header classNameName="navigation-header">
-            <span classNameName="navigation-logo">
+        <header className="navigation-header">
+            <span className="navigation-logo">
                 <img src="./images/todo-icon.png" alt="todo-logo"/>
             </span>
             <span className="spacer"></span>
