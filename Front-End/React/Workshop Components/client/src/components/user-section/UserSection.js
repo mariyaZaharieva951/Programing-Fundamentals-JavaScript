@@ -1,6 +1,12 @@
 import { UserItem } from "./UserItem"
 
 export const UserSection = (props) => {
+
+  const detailsClickHandler = (id) => {
+    console.log(id)
+  }
+
+
     return (
         <div className="table-wrapper">
        
@@ -61,7 +67,7 @@ export const UserSection = (props) => {
           </thead>
           <tbody>
             {/* <!-- Table row component --> */}
-            {props.users.map(user => <UserItem key={user._id} {...user}/>)}
+            {props.users.map(user => <UserItem key={user._id} {...user} onDetailsClick={detailsClickHandler}/>)}
           </tbody>
             </table>
       </div>
