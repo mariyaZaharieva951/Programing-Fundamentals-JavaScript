@@ -5,9 +5,18 @@ export const getAll = async() => {
     const response = await fetch(baseUrl)
     const result = await response.json()
     
-    console.log(result)
+    // console.log(result)
 
     return result.users;
 
 
+}
+
+export const getOne = async (userId) => {
+    const response = await fetch(`${baseUrl}/${userId}`)
+    const result = await response.json()
+    
+    console.log(result)
+
+    return result.user;
 }

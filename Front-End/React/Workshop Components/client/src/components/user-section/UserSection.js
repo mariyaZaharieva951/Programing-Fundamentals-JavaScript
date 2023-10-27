@@ -1,15 +1,32 @@
+import { useState } from "react"
+import * as userService from '../../services/UserService'
 import { UserItem } from "./UserItem"
+import { UserDeails } from "./UserDetails";
 
 export const UserSection = (props) => {
 
+  const [selectedUser, setSelectedUser] = useState(null);
+
   const detailsClickHandler = (id) => {
-    console.log(id)
+    // console.log(id)
+    userService.getOne(id)
+    .then(user => {
+      console.log(user);
+      setSelectedUser(user)
+    })
+  }
+
+  const closeClickHandler = () => {
+    console.log('close');
+    setSelectedUser(null)
   }
 
 
     return (
         <div className="table-wrapper">
-       
+
+            {selectedUser && <UserDeails key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
+
             <table className="table">
           <thead>
             <tr>
