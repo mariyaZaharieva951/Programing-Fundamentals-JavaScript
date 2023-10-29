@@ -2,17 +2,46 @@ import { useState } from "react"
 import * as userService from '../../services/UserService'
 import { UserItem } from "./UserItem"
 import { UserDeails } from "./UserDetails";
+import { UserEdit } from "./UserEdit";
+import { UserDelete } from "./UserDelete";
+
+
+const UserActions = {
+  Details: 'details',
+  Edit: 'edit',
+  Delete: 'delete'
+}
+
 
 export const UserSection = (props) => {
 
   const [selectedUser, setSelectedUser] = useState(null);
+  const [userAction, setUserAction] = useState(null);
+
+  const editClickHandler = (id) => {
+    userService.getOne(id)
+    .then(user => {
+        setSelectedUser(user);
+        setUserAction(UserActions.Edit);
+        console.log('ACTION',userAction)
+    })
+  }
 
   const detailsClickHandler = (id) => {
     // console.log(id)
     userService.getOne(id)
     .then(user => {
-      console.log(user);
       setSelectedUser(user)
+      setUserAction(UserActions.Details)
+    })
+  }
+
+  const deleteClickHandler = (id) => {
+    userService.getOne(id)
+    .then(user => {
+      console.log('delete');
+      setSelectedUser(user)
+      setUserAction(UserActions.Delete)
     })
   }
 
@@ -25,7 +54,9 @@ export const UserSection = (props) => {
     return (
         <div className="table-wrapper">
 
-            {selectedUser && <UserDeails key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
+            {selectedUser && (UserActions.Details === userAction) && <UserDeails key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
+            {selectedUser && (UserActions.Edit === userAction) && <UserEdit key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
+            {selectedUser && (UserActions.Delete === userAction) && <UserDelete key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
 
             <table className="table">
           <thead>
@@ -84,7 +115,8 @@ export const UserSection = (props) => {
           </thead>
           <tbody>
             {/* <!-- Table row component --> */}
-            {props.users.map(user => <UserItem key={user._id} {...user} onDetailsClick={detailsClickHandler}/>)}
+            {props.users.map(user => <UserItem key={user._id} {...user} onDetailsClick={detailsClickHandler} onEditClick={editClickHandler} onDeleteClick={deleteClickHandler}/>)}
+            {/* console.log(props) */}
           </tbody>
             </table>
       </div>
