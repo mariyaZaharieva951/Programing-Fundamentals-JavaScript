@@ -1,15 +1,17 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import * as userService from '../../services/UserService'
 import { UserItem } from "./UserItem"
 import { UserDeails } from "./UserDetails";
 import { UserEdit } from "./UserEdit";
 import { UserDelete } from "./UserDelete";
+import { UserAdd } from './UserAdd';
 
 
 const UserActions = {
   Details: 'details',
   Edit: 'edit',
-  Delete: 'delete'
+  Delete: 'delete',
+  Add: 'add'
 }
 
 
@@ -18,13 +20,34 @@ export const UserSection = (props) => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [userAction, setUserAction] = useState(null);
 
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+      userService.getAll()
+      .then(users => setUsers(users))
+  }, [])
+
+  // console.log(users)
+
+
+
+
   const editClickHandler = (id) => {
     userService.getOne(id)
     .then(user => {
         setSelectedUser(user);
         setUserAction(UserActions.Edit);
         console.log('ACTION',userAction)
+  
     })
+  }
+
+  const addClickHandler = (user) => {
+   
+        setUserAction(UserActions.Add);
+        console.log('ADD',selectedUser)
+  
+    
   }
 
   const detailsClickHandler = (id) => {
@@ -47,16 +70,35 @@ export const UserSection = (props) => {
 
   const closeClickHandler = () => {
     console.log('close');
-    setSelectedUser(null)
+    setSelectedUser(null);
+    setUserAction(null);
+  }
+
+  const userCreateHandler = (ev) => {
+    ev.preventDefault();
+    const formData = new FormData(ev.target);
+    const {firstName,lastName,email,imageUrl,phoneNumber,...address} = Object.fromEntries(formData)
+    const userData = {firstName,lastName,email,imageUrl,phoneNumber,address}
+    console.log('DATA',userData)
+    
+    userService.create(userData)
+    .then((user) => {
+      console.log(user)
+      setUsers(oldUsers => [...oldUsers,user])
+      closeClickHandler();
+    });
+  
   }
 
 
     return (
+      <>
         <div className="table-wrapper">
 
             {selectedUser && (UserActions.Details === userAction) && <UserDeails key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
             {selectedUser && (UserActions.Edit === userAction) && <UserEdit key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
             {selectedUser && (UserActions.Delete === userAction) && <UserDelete key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
+            {(UserActions.Add === userAction) && <UserAdd onUserCreate={userCreateHandler} onClose={closeClickHandler}/>}
 
             <table className="table">
           <thead>
@@ -115,10 +157,12 @@ export const UserSection = (props) => {
           </thead>
           <tbody>
             {/* <!-- Table row component --> */}
-            {props.users.map(user => <UserItem key={user._id} {...user} onDetailsClick={detailsClickHandler} onEditClick={editClickHandler} onDeleteClick={deleteClickHandler}/>)}
+            {users.map(user => <UserItem  {...user} onDetailsClick={detailsClickHandler} onEditClick={editClickHandler} onDeleteClick={deleteClickHandler} onUserCreate={addClickHandler}/>)}
             {/* console.log(props) */}
           </tbody>
             </table>
       </div>
+          <button className="btn-add btn" onClick={() => addClickHandler({user:null})}>Add new user</button>
+      </>
     )
 }

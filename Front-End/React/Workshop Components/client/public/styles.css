@@ -179,6 +179,8 @@ ul {
   width: 100%;
 }
 
+
+
 /* Table  */
 .table-wrapper {
   position: relative;
@@ -187,6 +189,7 @@ ul {
   background: white;
   overflow: auto;
   width: 100%;
+  height: 500px;
   margin-bottom: 5px;
 }
 
@@ -806,6 +809,7 @@ ul {
   align-items: stretch;
   width: 100%;
 }
+
 
 .input-wrapper span {
   display: flex;
