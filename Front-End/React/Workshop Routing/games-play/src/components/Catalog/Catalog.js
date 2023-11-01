@@ -1,37 +1,18 @@
-const Catalog = () => {
+import GameItem from "./GameItem";
+
+
+const Catalog = ({games}) => {
     return (
         <section id="catalog-page">
             <h1>All Games</h1>
             {/* <!-- Display div: with information about every game (if any) --> */}
-            <div class="allGames">
-                <div class="allGames-info">
-                    <img src="./images/avatar-1.jpg"/>
-                    <h6>Action</h6>
-                    <h2>Cover Fire</h2>
-                    <a href="#" class="details-button">Details</a>
-                </div>
-
-            </div>
-            <div class="allGames">
-                <div class="allGames-info">
-                    <img src="./images/avatar-1.jpg"/>
-                    <h6>Action</h6>
-                    <h2>Zombie lang</h2>
-                    <a href="#" class="details-button">Details</a>
-                </div>
-
-            </div>
-            <div class="allGames">
-                <div class="allGames-info">
-                    <img src="./images/avatar-1.jpg"/>
-                    <h6>Action</h6>
-                    <h2>MineCraft</h2>
-                    <a href="#" class="details-button">Details</a>
-                </div>
-            </div>
+            
+           {games.length > 0 
+           ? games.map(x => <GameItem key={x._id} game={x}/>) 
+           : <h3 class="no-articles">No articles yet</h3>}
 
             {/* <!-- Display paragraph: If there is no games  --> */}
-            <h3 class="no-articles">No articles yet</h3>
+            
         </section>
     )
 }

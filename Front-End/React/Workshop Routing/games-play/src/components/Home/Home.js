@@ -1,19 +1,8 @@
-import {useState, useEffect} from 'react'
-import * as gameService from '../../services/gameService'
+
 import Game from '../../components/Home/Game'
 
 
-const Home = () => {
-
-    const [games,setGames] = useState([]);
-
-    useEffect( () => {
-       gameService.getAll()
-       .then(result => 
-        setGames(result))
-        
-    },[])
-
+const Home = ({games}) => {
 
 
     return (
