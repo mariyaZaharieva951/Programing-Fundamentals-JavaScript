@@ -16,7 +16,7 @@ const Details = ({games, addComment}) => {
     const addCommentHandler = (e) => {
 
         e.preventDefault();
-        console.log(comment);
+        console.log(currentGame);
 
         const result = `${comment.username}: ${comment.comment}`;
         addComment(gameId,result);
@@ -49,16 +49,20 @@ const Details = ({games, addComment}) => {
                 <div className="details-comments">
                     <h2>Comments:</h2>
                     <ul>
+
+                        {currentGame.comments?.map(x => 
+                            <li className="comment">
+                            <p>{x}</p>
+                            </li>)
+                        }
                         {/* <!-- list all comments for current game (If any) --> */}
-                        <li className="comment">
-                            <p>Content: I rate this one quite highly.</p>
-                        </li>
-                        <li className="comment">
-                            <p>Content: The best game.</p>
-                        </li>
+                        
                     </ul>
+                    
+                    {!currentGame.comments && <p className="no-comment">No comments.</p>}
+
                     {/* <!-- Display paragraph: If there are no games in the database --> */}
-                    <p className="no-comment">No comments.</p>
+                    
                 </div>
 
                 {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}

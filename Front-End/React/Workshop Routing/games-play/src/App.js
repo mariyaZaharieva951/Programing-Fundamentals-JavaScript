@@ -19,14 +19,24 @@ function App() {
 
   const addComment = (gameId, comment) => {
     setGames(oldState => {
-      const game = oldState.find(x => x._id === gameId);
+      const currentGame = oldState.find(x => x._id === gameId);
 
-      const commetns = game.commetns || [];
-      commetns.push(comment);
+      if(currentGame.comments) {
+        currentGame?.comments.push(comment)
+      } else {
+        currentGame.comments = [];
+        currentGame.comments.push(comment)
+      }
+
+      // currentGame?.comments ? currentGame?.comments.push(comment) : currentGame?.comments = [];
+    
+      console.log(currentGame)
+      const comments = currentGame.comments
 
       return [
         ...oldState.filter(x => x._id !== gameId),
-        {...game,commetns}
+        {...currentGame,comments},
+       
       ]
     })
       
