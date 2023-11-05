@@ -1,13 +1,13 @@
-const baseUrl = 'http://localhost:3005/api/users';
+const baseUrl = 'http://localhost:3030/jsonstore/users';
 
 
 export const getAll = async() => {
-    const response = await fetch(baseUrl)
-    const result = await response.json()
-    
-    // console.log(result)
+    const response = await fetch(baseUrl);
+    const result = await response.json();
+    const data = Object.values(result);
+  
 
-    return result.users;
+    return data;
 
 
 }
@@ -21,7 +21,7 @@ export const getOne = async (userId) => {
     return result.user;
 }
 
-export const create = async(userData) => {
+export const create = async({userData}) => {
     const response = await fetch(baseUrl, {
         method: 'POST',
         headers: {
@@ -31,7 +31,7 @@ export const create = async(userData) => {
     })
     
     const result = await response.json();
-    console.log(result);
+    console.log('RESULT',result);
 
     return result.user;
 

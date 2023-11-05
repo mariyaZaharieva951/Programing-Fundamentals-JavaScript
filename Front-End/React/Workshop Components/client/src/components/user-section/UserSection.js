@@ -21,13 +21,14 @@ export const UserSection = (props) => {
   const [userAction, setUserAction] = useState(null);
 
   const [users, setUsers] = useState([]);
+  console.log('USERS',users)
 
   useEffect(() => {
       userService.getAll()
       .then(users => setUsers(users))
   }, [])
 
-  // console.log(users)
+ 
 
 
 
@@ -76,17 +77,32 @@ export const UserSection = (props) => {
 
   const userCreateHandler = (ev) => {
     ev.preventDefault();
-    const formData = new FormData(ev.target);
-    const {firstName,lastName,email,imageUrl,phoneNumber,...address} = Object.fromEntries(formData)
-    const userData = {firstName,lastName,email,imageUrl,phoneNumber,address}
-    console.log('DATA',userData)
     
-    userService.create(userData)
-    .then((user) => {
-      console.log(user)
-      setUsers(oldUsers => [...oldUsers,user])
-      closeClickHandler();
-    });
+    const formData = new FormData(ev.target);
+        const {
+            firstName,
+            lastName,
+            email,
+            imageUrl,
+            phoneNumber,
+            ...address
+        } = Object.fromEntries(formData);
+
+        const userData = {
+            firstName,
+            lastName,
+            email,
+            imageUrl,
+            phoneNumber,
+            address,
+        };
+        console.log(userData)
+
+        userService.create(userData)
+            .then(user => {
+                setUsers(oldUsers => [...oldUsers, user]);
+                closeClickHandler();
+            });
   
   }
 
@@ -157,7 +173,7 @@ export const UserSection = (props) => {
           </thead>
           <tbody>
             {/* <!-- Table row component --> */}
-            {users.map(user => <UserItem  {...user} onDetailsClick={detailsClickHandler} onEditClick={editClickHandler} onDeleteClick={deleteClickHandler} onUserCreate={addClickHandler}/>)}
+            {users.map(user =>  <UserItem key={user._id} {...user} onDetailsClick={detailsClickHandler} onEditClick={editClickHandler} onDeleteClick={deleteClickHandler} onUserCreate={addClickHandler}/>)}
             {/* console.log(props) */}
           </tbody>
             </table>
