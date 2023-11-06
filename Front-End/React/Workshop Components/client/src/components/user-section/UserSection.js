@@ -67,18 +67,12 @@ export const UserSection = (props) => {
   setNewUser(newUserData);
   
 
-  // let newUsers = users.map(user => {
-  //   if(user._id !== selectedUser._id) {
-  //     const updateUser = {
-  //       ...user
-  //     }
-  //     console.log(updateUser)
-  //     return updateUser
-  //   }
-  //   return user;
-  // });
+  let newUsers = users.filter(user => 
+    user._id !== selectedUser._id
+  )
+  console.log('NEW',newUsers)
   
-  // setUsers(newUsers)
+  setUsers(newUsers)
   userService.edit(selectedUser._id,newUserData)
             .then(user => {
               console.log('USER',user)
