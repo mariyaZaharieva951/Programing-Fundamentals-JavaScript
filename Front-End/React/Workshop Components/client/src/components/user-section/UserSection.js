@@ -22,6 +22,8 @@ export const UserSection = (props) => {
 
   const [users, setUsers] = useState([]);
 
+  const [newUser, setNewUser] = useState(null)
+
 
   useEffect(() => {
       userService.getAll()
@@ -30,17 +32,64 @@ export const UserSection = (props) => {
 
  
 
-
-
-
   const editClickHandler = (id) => {
     userService.getOne(id)
     .then(user => {
         setSelectedUser(user);
         setUserAction(UserActions.Edit);
         
-  
     })
+  }
+
+  const editUserHandler = (ev) => {
+    ev.preventDefault();
+
+    const newFormData = new FormData(ev.target);
+    
+    const {
+      firstName,
+      lastName,
+      email,
+      imageUrl,
+      phoneNumber,
+      ...address
+  } = Object.fromEntries(newFormData);
+
+  const newUserData = {
+      firstName,
+      lastName,
+      email,
+      imageUrl,
+      phoneNumber,
+      address,
+  };
+
+  setNewUser(newUserData);
+  
+
+  // let newUsers = users.map(user => {
+  //   if(user._id !== selectedUser._id) {
+  //     const updateUser = {
+  //       ...user
+  //     }
+  //     console.log(updateUser)
+  //     return updateUser
+  //   }
+  //   return user;
+  // });
+  
+  // setUsers(newUsers)
+  userService.edit(selectedUser._id,newUserData)
+            .then(user => {
+              console.log('USER',user)
+                
+                setUsers(oldUsers => [...oldUsers, user]);
+               
+            });
+  
+  setUserAction(null)
+
+  
   }
 
   const addClickHandler = (user) => {
@@ -53,7 +102,7 @@ export const UserSection = (props) => {
   const detailsClickHandler = async (id) => {
     
     const user = await userService.getOne(id)
-
+    console.log('get',user)
       setSelectedUser(user)
 
       setUserAction(UserActions.Details);
@@ -112,6 +161,7 @@ export const UserSection = (props) => {
                 setUsers(oldUsers => [...oldUsers, user]);
                 closeClickHandler();
             });
+            
   
   }
 
@@ -121,7 +171,7 @@ export const UserSection = (props) => {
         <div className="table-wrapper">
 
             {selectedUser && (UserActions.Details === userAction) && <UserDeails key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
-            {selectedUser && (UserActions.Edit === userAction) && <UserEdit key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
+            {selectedUser && (UserActions.Edit === userAction) && <UserEdit key={selectedUser._id} user={selectedUser} onClose={closeClickHandler} onEditClick={editUserHandler}/>}
             {selectedUser && (UserActions.Delete === userAction) && <UserDelete key={selectedUser._id} user={selectedUser} onClose={closeClickHandler} onDelete={deleteUserHandler}/>}
             {(UserActions.Add === userAction) && <UserAdd onUserCreate={userCreateHandler} onClose={closeClickHandler}/>}
 

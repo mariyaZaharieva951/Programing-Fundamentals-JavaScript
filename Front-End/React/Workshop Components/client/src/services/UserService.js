@@ -14,7 +14,7 @@ export const getAll = async() => {
 export const getOne = async (userId) => {
     const response = await fetch(`${baseUrl}/${userId}`)
     const result = await response.json()
-    
+    console.log('result',result)
     return result;
 }
 
@@ -28,7 +28,7 @@ export const create = async(userData) => {
     })
     
     const result = await response.json();
-    console.log('RESULT',result);
+
 
     return result;
 }
@@ -39,6 +39,20 @@ export const remove = async (userId) => {
         method: 'DELETE'
     });
 
+    const result = await response.json();
+    
+    return result;
+}
+
+export const edit = async (userId,newUserData) => {
+    const response = await fetch(`${baseUrl}/${userId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(newUserData)
+        
+    });
     const result = await response.json();
     
     return result;

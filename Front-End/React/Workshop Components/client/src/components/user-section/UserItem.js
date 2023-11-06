@@ -1,5 +1,6 @@
 export const UserItem = ({
   user,
+ 
   onEditClick,
   onDetailsClick,
   onDeleteClick

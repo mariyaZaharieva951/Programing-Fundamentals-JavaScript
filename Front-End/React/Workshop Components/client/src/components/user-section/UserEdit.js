@@ -1,4 +1,5 @@
-export const UserEdit = ({user,onClose}) => {
+export const UserEdit = ({user,onClose,onEditClick}) => {
+
     return (
     <div className="overlay">
         <div className="backdrop" onClick={onClose}></div>
@@ -15,13 +16,13 @@ export const UserEdit = ({user,onClose}) => {
                 </svg>
               </button>
             </header>
-            <form>
+            <form onSubmit={onEditClick}>
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="firstName">First name</label>
                   <div className="input-wrapper">
                     <span><i class="fa fa-user"></i></span>
-                    <input id="firstName" name="firstName" type="text" />
+                    <input id="firstName" name="firstName" type="text" defaultValue={user.firstName}/>
                   </div>
                   <p className="form-error">
                     First name should be at least 3 characters long!
@@ -31,7 +32,7 @@ export const UserEdit = ({user,onClose}) => {
                   <label htmlFor="lastName">Last name</label>
                   <div className="input-wrapper">
                     <span><i className="fa fa-user"></i></span>
-                    <input id="lastName" name="lastName" type="text" />
+                    <input id="lastName" name="lastName" type="text" defaultValue={user.lastName}/>
                   </div>
                   <p className="form-error">
                     Last name should be at least 3 characters long!
@@ -44,7 +45,7 @@ export const UserEdit = ({user,onClose}) => {
                   <label htmlFor="email">Email</label>
                   <div className="input-wrapper">
                     <span><i className="fa fa-envelope"></i></span>
-                    <input id="email" name="email" type="text" />
+                    <input id="email" name="email" type="text" defaultValue={user.email}/>
                   </div>
                   <p className="form-error">Email is not valid!</p>
                 </div>
@@ -52,7 +53,7 @@ export const UserEdit = ({user,onClose}) => {
                   <label htmlFor="phoneNumber">Phone number</label>
                   <div className="input-wrapper">
                     <span><i className="fa fa-phone"></i></span>
-                    <input id="phoneNumber" name="phoneNumber" type="text" />
+                    <input id="phoneNumber" name="phoneNumber" type="text" defaultValue={user.phoneNumber}/>
                   </div>
                   <p className="form-error">Phone number is not valid!</p>
                 </div>
@@ -62,7 +63,7 @@ export const UserEdit = ({user,onClose}) => {
                 <label htmlFor="imageUrl">Image Url</label>
                 <div className="input-wrapper">
                   <span><i className="fa fa-image"></i></span>
-                  <input id="imageUrl" name="imageUrl" type="text" />
+                  <input id="imageUrl" name="imageUrl" type="text" defaultValue={user.imageUrl}/>
                 </div>
                 <p className="form-error">ImageUrl is not valid!</p>
               </div>
@@ -72,7 +73,7 @@ export const UserEdit = ({user,onClose}) => {
                   <label htmlFor="country">Country</label>
                   <div className="input-wrapper">
                     <span><i className="fa fa-map"></i></span>
-                    <input id="country" name="country" type="text" />
+                    <input id="country" name="country" type="text" defaultValue={user.address.country}/>
                   </div>
                   <p className="form-error">
                     Country should be at least 2 characters long!
@@ -82,7 +83,7 @@ export const UserEdit = ({user,onClose}) => {
                   <label htmlFor="city">City</label>
                   <div className="input-wrapper">
                     <span><i className="fa fa-city"></i></span>
-                    <input id="city" name="city" type="text" />
+                    <input id="city" name="city" type="text" defaultValue={user.address.city}/>
                   </div>
                   <p className="form-error">
                     City should be at least 3 characters long!
@@ -95,7 +96,7 @@ export const UserEdit = ({user,onClose}) => {
                   <label htmlFor="street">Street</label>
                   <div className="input-wrapper">
                     <span><i className="fa fa-map"></i></span>
-                    <input id="street" name="street" type="text" />
+                    <input id="street" name="street" type="text" defaultValue={user.address.street}/>
                   </div>
                   <p className="form-error">
                     Street should be at least 3 characters long!
@@ -105,7 +106,7 @@ export const UserEdit = ({user,onClose}) => {
                   <label htmlFor="streetNumber">Street number</label>
                   <div className="input-wrapper">
                     <span><i className="fa fa-house-chimney"></i></span>
-                    <input id="streetNumber" name="streetNumber" type="text" />
+                    <input id="streetNumber" name="streetNumber" type="text" defaultValue={user.address.streetNumber}/>
                   </div>
                   <p className="form-error">
                     Street number should be a positive number!
