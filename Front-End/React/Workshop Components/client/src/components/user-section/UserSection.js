@@ -21,7 +21,7 @@ export const UserSection = (props) => {
   const [userAction, setUserAction] = useState(null);
 
   const [users, setUsers] = useState([]);
-  console.log('USERS',users)
+
 
   useEffect(() => {
       userService.getAll()
@@ -38,7 +38,7 @@ export const UserSection = (props) => {
     .then(user => {
         setSelectedUser(user);
         setUserAction(UserActions.Edit);
-        console.log('ACTION',userAction)
+        
   
     })
   }
@@ -46,31 +46,40 @@ export const UserSection = (props) => {
   const addClickHandler = (user) => {
    
         setUserAction(UserActions.Add);
-        console.log('ADD',selectedUser)
   
     
   }
 
-  const detailsClickHandler = (id) => {
-    // console.log(id)
-    userService.getOne(id)
-    .then(user => {
+  const detailsClickHandler = async (id) => {
+    
+    const user = await userService.getOne(id)
+
       setSelectedUser(user)
-      setUserAction(UserActions.Details)
-    })
+
+      setUserAction(UserActions.Details);
+      
+    
   }
 
-  const deleteClickHandler = (id) => {
-    userService.getOne(id)
-    .then(user => {
-      console.log('delete');
-      setSelectedUser(user)
-      setUserAction(UserActions.Delete)
-    })
+  const deleteClickHandler = async (id) => {
+    const user = await userService.getOne(id)
+     
+    setSelectedUser(user)
+     
+    setUserAction(UserActions.Delete)
+  
+  }
+
+  const deleteUserHandler = async () => {
+    
+    await userService.remove(selectedUser._id);
+    setUsers(oldState => oldState.filter(user => user._id !== selectedUser._id));
+    setSelectedUser(null);
+    setUserAction(null)
   }
 
   const closeClickHandler = () => {
-    console.log('close');
+    
     setSelectedUser(null);
     setUserAction(null);
   }
@@ -96,7 +105,7 @@ export const UserSection = (props) => {
             phoneNumber,
             address,
         };
-        console.log(userData)
+        
 
         userService.create(userData)
             .then(user => {
@@ -113,7 +122,7 @@ export const UserSection = (props) => {
 
             {selectedUser && (UserActions.Details === userAction) && <UserDeails key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
             {selectedUser && (UserActions.Edit === userAction) && <UserEdit key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
-            {selectedUser && (UserActions.Delete === userAction) && <UserDelete key={selectedUser._id} user={selectedUser} onClose={closeClickHandler}/>}
+            {selectedUser && (UserActions.Delete === userAction) && <UserDelete key={selectedUser._id} user={selectedUser} onClose={closeClickHandler} onDelete={deleteUserHandler}/>}
             {(UserActions.Add === userAction) && <UserAdd onUserCreate={userCreateHandler} onClose={closeClickHandler}/>}
 
             <table className="table">
@@ -173,7 +182,7 @@ export const UserSection = (props) => {
           </thead>
           <tbody>
             {/* <!-- Table row component --> */}
-            {users.map(user =>  <UserItem key={user._id} {...user} onDetailsClick={detailsClickHandler} onEditClick={editClickHandler} onDeleteClick={deleteClickHandler} onUserCreate={addClickHandler}/>)}
+            {users.map(user =>  <UserItem key={user._id} user={user} onDetailsClick={detailsClickHandler} onEditClick={editClickHandler} onDeleteClick={deleteClickHandler} onUserCreate={addClickHandler}/>)}
             {/* console.log(props) */}
           </tbody>
             </table>

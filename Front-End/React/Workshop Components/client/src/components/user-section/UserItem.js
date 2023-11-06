@@ -1,21 +1,26 @@
-export const UserItem = (props) => {
-  // console.log(props)
+export const UserItem = ({
+  user,
+  onEditClick,
+  onDetailsClick,
+  onDeleteClick
+}) => {
+  
     return (
       <>
         <tr>
               <td>
-                <img src={props.imageUrl}
-                  alt={`${props.firstName}'s profile`} className="image" />
+                <img src={user.imageUrl}
+                  alt={`${user.firstName}'s profile`} className="image" />
               </td>
               
-              <td>{props.firstName}</td>
-              <td>{props.lastName}</td>
-              <td>{props.email}</td>
-              <td>{props.phoneNumber}</td>
-              <td>{props.createdAt}</td>
+              <td>{user.firstName}</td>
+              <td>{user.lastName}</td>
+              <td>{user.email}</td>
+              <td>{user.phoneNumber}</td>
+              <td>{user.createdAt}</td>
 
               <td className="actions">
-                <button className="btn edit-btn" title="Edit" onClick={() => props.onEditClick(props._id)}>
+                <button className="btn edit-btn" title="Edit" onClick={() => onEditClick(user._id)}>
                   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square"
                     className="svg-inline--fa fa-pen-to-square" role="img" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 532 512">
@@ -24,7 +29,7 @@ export const UserItem = (props) => {
                     </path>
                   </svg>
                 </button>
-                <button className="btn delete-btn" title="Delete" onClick={() => props.onDeleteClick(props._id)}>
+                <button className="btn delete-btn" title="Delete" onClick={() => onDeleteClick(user._id)}>
                   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
                     className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
                     <path fill="currentColor"
@@ -32,7 +37,7 @@ export const UserItem = (props) => {
                     </path>
                   </svg>
                 </button>
-                <button className="btn info-btn" title="Info" onClick={() => props.onDetailsClick(props._id)}>
+                <button className="btn info-btn" title="Info" onClick={() => onDetailsClick(user._id)}>
                   <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info"
                     className="svg-inline--fa fa-info" role="img" xmlns="http://www.w3.org/2000/svg"
                     viewBox="-150 0 512 612">
