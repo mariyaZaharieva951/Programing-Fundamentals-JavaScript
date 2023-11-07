@@ -5,7 +5,7 @@ export const getAll = async() => {
     const response = await fetch(baseUrl);
     const result = await response.json();
     const data = Object.values(result);
-  console.log(data)
+  
     return data;
 
 
@@ -14,17 +14,35 @@ export const getAll = async() => {
 export const getOne = async (userId) => {
     const response = await fetch(`${baseUrl}/${userId}`)
     const result = await response.json()
-    console.log('result',result)
+    
+    
     return result;
 }
 
-export const create = async(userData) => {
+export const create = async(data) => {
+
+    const body = {
+        firstName : data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        imageUrl: data.imageUrl,
+        phoneNumber: data.phoneNumber,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        address: {
+          country: data.country,
+          city: data.city,
+          street: data.street,
+          streetNumber: data.streetNumber
+        }
+      }
+      
     const response = await fetch(baseUrl, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(body)
     })
     
     const result = await response.json();
@@ -44,13 +62,31 @@ export const remove = async (userId) => {
     return result;
 }
 
-export const edit = async (userId,newUserData) => {
+export const edit = async (userId,data) => {
+
+    const body = {
+        _id: userId,
+        firstName : data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        imageUrl: data.imageUrl,
+        phoneNumber: data.phoneNumber,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        address: {
+          country: data.country,
+          city: data.city,
+          street: data.street,
+          streetNumber: data.streetNumber
+        }
+      }
+
     const response = await fetch(`${baseUrl}/${userId}`, {
         method: 'PUT',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
         },
-        body: JSON.stringify(newUserData)
+        body: JSON.stringify(body)
         
     });
     const result = await response.json();

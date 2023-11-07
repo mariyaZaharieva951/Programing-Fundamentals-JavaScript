@@ -22,8 +22,6 @@ export const UserSection = (props) => {
 
   const [users, setUsers] = useState([]);
 
-  const [newUser, setNewUser] = useState(null)
-
 
   useEffect(() => {
       userService.getAll()
@@ -32,13 +30,11 @@ export const UserSection = (props) => {
 
  
 
-  const editClickHandler = (id) => {
-    userService.getOne(id)
-    .then(user => {
+  const editClickHandler = async (id) => {
+    const user = await userService.getOne(id)
         setSelectedUser(user);
         setUserAction(UserActions.Edit);
         
-    })
   }
 
   const editUserHandler = (ev) => {
@@ -50,38 +46,38 @@ export const UserSection = (props) => {
       firstName,
       lastName,
       email,
-      imageUrl,
       phoneNumber,
+      imageUrl,
+      createdAt,
+      updatedAtt,
       ...address
   } = Object.fromEntries(newFormData);
 
   const newUserData = {
-      firstName,
-      lastName,
-      email,
-      imageUrl,
-      phoneNumber,
-      address,
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    imageUrl,
+    createdAt,
+    updatedAtt,
+    ...address
   };
-
-  setNewUser(newUserData);
-  
 
   let newUsers = users.filter(user => 
     user._id !== selectedUser._id
   )
-  console.log('NEW',newUsers)
   
   setUsers(newUsers)
+
   userService.edit(selectedUser._id,newUserData)
-            .then(user => {
-              console.log('USER',user)
-                
-                setUsers(oldUsers => [...oldUsers, user]);
-               
-            });
-  
+  .then(user => {
+    
+    setUsers(oldUsers => [...oldUsers, user]);
+
+}); 
   setUserAction(null)
+  setSelectedUser(null)
 
   
   }
@@ -96,7 +92,7 @@ export const UserSection = (props) => {
   const detailsClickHandler = async (id) => {
     
     const user = await userService.getOne(id)
-    console.log('get',user)
+   
       setSelectedUser(user)
 
       setUserAction(UserActions.Details);
@@ -105,6 +101,7 @@ export const UserSection = (props) => {
   }
 
   const deleteClickHandler = async (id) => {
+    
     const user = await userService.getOne(id)
      
     setSelectedUser(user)
@@ -227,7 +224,7 @@ export const UserSection = (props) => {
           <tbody>
             {/* <!-- Table row component --> */}
             {users.map(user =>  <UserItem key={user._id} user={user} onDetailsClick={detailsClickHandler} onEditClick={editClickHandler} onDeleteClick={deleteClickHandler} onUserCreate={addClickHandler}/>)}
-            {/* console.log(props) */}
+           
           </tbody>
             </table>
       </div>
