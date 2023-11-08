@@ -21,3 +21,17 @@ const baseUrl = 'http://localhost:3030/users';
         console.log(error)
     }
 }
+
+export const logout = async (accessToken) => {
+    try{
+        const response = await fetch(`${baseUrl}/logout`, {
+            headers: {
+                'X-Authorization': accessToken
+    }
+    });
+    console.log(response)
+    return response; 
+} catch(error) {
+    console.log(error);
+}
+} 
