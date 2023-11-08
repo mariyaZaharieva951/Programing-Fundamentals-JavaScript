@@ -1,8 +1,15 @@
 import { Link } from 'react-router-dom'
 import * as authService from '../../services/authService'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../contexts/authContext'
+import { useContext } from 'react'
 
 
 const Login = () => {
+  const { userLogin } = useContext(AuthContext)
+
+  const navigate = useNavigate();
+
   const onSubmit = (ev) => {
     ev.preventDefault();
 
@@ -11,7 +18,12 @@ const Login = () => {
 
     authService.login(email,password)
       .then(authData => {
-        console.log(authData)
+        userLogin(authData) //запазваме юзъра в контекста
+        
+        navigate('/');
+      })
+      .catch(() => {
+        alert('The login is not successful!');
       })
     
   }

@@ -9,14 +9,18 @@ import Register from './components/Register/Register';
 import Create from './components/Create/Create';
 import Catalog from './components/Catalog/Catalog';
 import Details from './components/Details/Details';
-
+import { AuthContext } from './contexts/authContext';
 
 
 
 function App() {
 
   const [games,setGames] = useState([]);
-  
+  const [auth,setAuth] = useState([]);
+
+  const userLogin = (authData) => {
+    setAuth(authData);
+  }
 
   const addComment = (gameId, comment) => {
     setGames(oldState => {
@@ -53,6 +57,7 @@ function App() {
 
 
   return (
+    <AuthContext.Provider value={{user:auth, userLogin}}>
     <div id="box">
   <Header/>
   {/* Main Content */}
@@ -99,7 +104,7 @@ function App() {
   {/*Details Page*/}
  
 </div>
-
+  </AuthContext.Provider>
   );
 }
 

@@ -17,9 +17,6 @@ const baseUrl = 'http://localhost:3030/users';
             
             return result;
         }
-        
-        
-        
     } catch(error) {
         console.log(error)
     }
