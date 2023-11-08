@@ -16,6 +16,7 @@ import Details from './components/Details/Details';
 function App() {
 
   const [games,setGames] = useState([]);
+  
 
   const addComment = (gameId, comment) => {
     setGames(oldState => {
