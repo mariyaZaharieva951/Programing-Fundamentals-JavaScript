@@ -77,7 +77,7 @@ const Details = ({games, addComment}) => {
                 {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
                 <div className="buttons">
                     <Link to={`/games/edit/${gameId}`} className="button">Edit</Link>
-                    <Link to="#" className="button">Delete</Link>
+                    <Link to={`/games/delete/${gameId}`} className="button">Delete</Link>
                 </div>
             </div>
 

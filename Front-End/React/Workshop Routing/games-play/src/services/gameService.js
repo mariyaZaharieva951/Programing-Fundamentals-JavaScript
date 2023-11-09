@@ -70,6 +70,32 @@ export const edit = (gameId,gameData) => {
     
 }
 
+export const remove = (gameId) => {
+    const authData = localStorage.getItem('auth');
+    let auth = '';
+    if(authData) {
+        auth = JSON.parse(authData)
+    }
+    
+    let headers = {};
+    if(auth.accessToken) {
+        headers['X-Authorization'] = auth.accessToken;
+    }
+    //  let headers = isAuth();
+
+     return fetch(`${baseUrl}/data/games/${gameId}`, {
+        method: 'DELETE',
+        headers: {
+            ...headers,
+            'content-type': 'application/json'
+        },
+    })
+    .then(res => res.json())
+    
+    
+    
+}
+
 
 // const isAuth = () => {
 //     const authData = localStorage.getItem('auth');

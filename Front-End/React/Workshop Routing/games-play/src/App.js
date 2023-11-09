@@ -11,12 +11,14 @@ import Catalog from './components/Catalog/Catalog';
 import Details from './components/Details/Details';
 import Logout from './components/Logout/Logout';
 
+
 import { AuthContext } from './contexts/authContext';
 import { GameContext } from './contexts/gameContext';
 
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { useNavigate } from 'react-router-dom';
 import Edit from './components/Edit/Edit';
+import Delete from './components/Delete/Delete';
 
 
 function App() {
@@ -72,6 +74,10 @@ function App() {
     setGames(oldState => oldState.map(game => game._id === gameId ? gameData : game)) 
   }
 
+  const deleteGame = (gameId) => {
+    setGames(oldState => oldState.filter(game => game._id !== gameId)) 
+  }
+
   useEffect( () => {
      gameService.getAll()
      .then(result => 
@@ -86,7 +92,7 @@ function App() {
     <div id="box">
   <Header/>
   {/* Main Content */}
-  <GameContext.Provider value={{games,addGame,editGame}}>
+  <GameContext.Provider value={{games,addGame,editGame,deleteGame}}>
   <main id="main-content">
     <Routes>
         <Route path="/" element={<Home games={games}/>}/>
@@ -97,6 +103,7 @@ function App() {
         <Route path="/games" element={<Catalog games={games}/>}/>
         <Route path="/games/:gameId" element={<Details games={games} addComment={addComment}/>}/>
         <Route path="/games/edit/:gameId" element={<Edit/>}/>
+        <Route path="/games/delete/:gameId" element={<Delete/>}/>
         {/* <Route path="/home/:gameId" element={<Details games={games}/>}/> */}
 
     </Routes>
