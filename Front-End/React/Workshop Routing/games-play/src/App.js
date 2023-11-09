@@ -9,13 +9,19 @@ import Register from './components/Register/Register';
 import Create from './components/Create/Create';
 import Catalog from './components/Catalog/Catalog';
 import Details from './components/Details/Details';
-import { AuthContext } from './contexts/authContext';
 import Logout from './components/Logout/Logout';
-import { useLocalStorage } from './hooks/useLocalStorage';
 
+import { AuthContext } from './contexts/authContext';
+import { GameContext } from './contexts/gameContext';
+
+import { useLocalStorage } from './hooks/useLocalStorage';
+import { useNavigate } from 'react-router-dom';
+import Edit from './components/Edit/Edit';
 
 
 function App() {
+
+  const navigate = useNavigate();
 
   const [games,setGames] = useState([]);
   const [auth,setAuth] = useLocalStorage('auth',[]);
@@ -53,6 +59,19 @@ function App() {
       
   }
 
+  const addGame = (gameData) => {
+    setGames(oldState => [
+      ...oldState,
+      gameData
+    ]);
+
+    navigate('/games')
+  }
+
+  const editGame = (gameId, gameData) => {
+    setGames(oldState => oldState.map(game => game._id === gameId ? gameData : game)) 
+  }
+
   useEffect( () => {
      gameService.getAll()
      .then(result => 
@@ -67,6 +86,7 @@ function App() {
     <div id="box">
   <Header/>
   {/* Main Content */}
+  <GameContext.Provider value={{games,addGame,editGame}}>
   <main id="main-content">
     <Routes>
         <Route path="/" element={<Home games={games}/>}/>
@@ -76,13 +96,13 @@ function App() {
         <Route path="/create" element={<Create/>}/>
         <Route path="/games" element={<Catalog games={games}/>}/>
         <Route path="/games/:gameId" element={<Details games={games} addComment={addComment}/>}/>
+        <Route path="/games/edit/:gameId" element={<Edit/>}/>
         {/* <Route path="/home/:gameId" element={<Details games={games}/>}/> */}
 
     </Routes>
     
-  
   </main>
- 
+  </GameContext.Provider>
   {/* Edit Page ( Only for the creator )*/}
   {/* <section id="edit-page" className="auth">
     <form id="edit">

@@ -3,9 +3,26 @@ const baseUrl = 'http://localhost:3030/users';
 
 export const register = async (email,password) => {
     try {
+        
+        const authData = localStorage.getItem('auth');
+        let auth = '';
+        if(authData) {
+            auth = JSON.parse(authData)
+        }
+        
+        let headers = {};
+        if(auth.accessToken) {
+            headers['X-Authorization'] = auth.accessToken;
+        }
+        
+
+
         const response = await fetch(`${baseUrl}/register`, {
             method: 'POST',
-            headers: { "Content-type": "application/json" },
+            headers: { 
+                ...headers,
+                "Content-type": "application/json" 
+            },
             body: JSON.stringify({email,password})
         })
         if(response.ok) {
