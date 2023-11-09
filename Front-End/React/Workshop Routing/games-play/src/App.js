@@ -11,13 +11,14 @@ import Catalog from './components/Catalog/Catalog';
 import Details from './components/Details/Details';
 import { AuthContext } from './contexts/authContext';
 import Logout from './components/Logout/Logout';
+import { useLocalStorage } from './hooks/useLocalStorage';
 
 
 
 function App() {
 
   const [games,setGames] = useState([]);
-  const [auth,setAuth] = useState([]);
+  const [auth,setAuth] = useLocalStorage('auth',[]);
 
   const userLogin = (authData) => {
     setAuth(authData);
